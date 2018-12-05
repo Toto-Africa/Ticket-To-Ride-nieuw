@@ -4,10 +4,10 @@ import Route
 import Speler
 import os
 from tkinter import *
-import tkMessageBox
+
 
 from PIL import Image, ImageTk
-
+#
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
@@ -26,7 +26,7 @@ class GUI:
                     # controleren dat belangrijkste textvakken niet leeg zijn
                     username = e1.get()
                     age = agevar.get()
-                    tkMessageBox.showinfo("Hello Python", "Hello " + username + " : " + age)
+                    messagebox.showinfo("Hello Python", "Hello " + username + " : " + age)
                     if len(e2.get()) == 0:
                         cpu1 = "Patrick"
                     else:
