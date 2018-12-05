@@ -4,7 +4,9 @@ import Route
 import Speler
 import os
 from tkinter import *
-import tkinter.messagebox
+import tkMessageBox
+
+from PIL import Image, ImageTk
 
 import matplotlib
 matplotlib.use('TkAgg')
@@ -53,9 +55,10 @@ class GUI:
         rel_path = "maxresdefault.png"
         abs_file_path = os.path.join(script_dir, rel_path)
 
-        background_image = PhotoImage(file=abs_file_path)
-        background_label = Label(master, image=background_image)
-        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        bg_image = PhotoImage(file="maxresdefault.gif", )
+        bg_image = bg_image.zoom(25)
+        bg_label = Label(master, image=bg_image)
+        bg_label.place(x=0, y=0, width=640, height=360)
 
         Label(master, text="Speler naam - leeftijd").grid(row=0)
         Label(master, text="CPU1 naam").grid(row=1)
@@ -110,7 +113,6 @@ class GUI:
         routes.append(Route.Route('blue', 2, [listOfCities[4], listOfCities[1]], 0))  # Wenen (blue)
         routes.append(Route.Route('red', 2, [listOfCities[4], listOfCities[3]], 0))  # Kiev (red)
 
-
         board = nx.Graph()
 
         for city in listOfCities:
@@ -125,7 +127,6 @@ class GUI:
 
         copyBoard = board.copy()
 
-
         pos = nx.spring_layout(board)
 
         #nx.draw(board)
@@ -135,12 +136,33 @@ class GUI:
         plt.axis('off')
         plt.show()
 
+        return routes
+
+    def updatebord(self, routes):
+
+        for route in routes:
+          #                 # from city                # to city                  # path cost                      # color of path
+          board.add_edge(route.get_cities()[0], route.get_cities()[1], weight=route.get_pathCost(), edgeColors=route.get_color())
+
+        copyBoard = board.copy()
+
+        pos = nx.spring_layout(board)
+
+        #nx.draw(board)
+        nx.draw_networkx_nodes(board, pos, node_size=700)
+        nx.draw_networkx_edge_labels(board, pos)
+
+        plt.axis('off')
+        plt.show()
+        return routes
+
 
 
 my_gui = GUI()
 
+
 while True:
-    my_gui.initbord()
+    my_gui.start()
 
 
 
