@@ -187,7 +187,7 @@ class GUI:
         # Canvas maken en hier graph in tekenen
         canvas = FigureCanvasTkAgg(f, master=root)
         canvas.draw()
-        canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        canvas.get_tk_widget().grid(row=0, column=1)
 
         def next_graph():
             messagebox.showinfo("test")
@@ -196,18 +196,23 @@ class GUI:
         b = Button(root, text="Extra treinkaart", command=next_graph)
         b1 = Button(root, text="Route innemen", command=next_graph)
         b2 = Button(root, text="Missie wisselen", command=next_graph)
-        b.pack(side=LEFT)
-        b1.pack(side=LEFT)
-        b2.pack(side=LEFT)
+        b.grid(row=4)
+        b1.grid(row=5)
+        b2.grid(row=6)
 
         #SCOREBORD
         #tabel aanmaken
-        height = 5
-        width = 5
-        for i in range(height):  # Rows
-            for j in range(width):  # Columns
-                b = Entry(root, text="")
-                b.grid(row=i, column=j)
+
+        Label(root, text="Spelersnamen", bg="black", fg="white").grid(row=4, column=4)
+        Label(root, text="Voltooide missies", bg="black", fg="white").grid(row=4, column=5)
+        Label(root, text="Pionnen", bg="black", fg="white").grid(row=4, column=6)
+        Label(root, text="Toto africa").grid(row=5, column=4)
+        Label(root, text="Elmer").grid(row=6, column=4)
+        Label(root, text="Jan").grid(row=7, column=4)
+        Label(root, text="Dries").grid(row=8, column=4)
+
+        #als rest klaar is dan scorebord van goed naar slecht laten tonen (voorlopig: this will do)
+
 
         mainloop()
         #Hierin speler statistieken (pionnen, kaarten, etc) laten zien + besturingsknoppen
