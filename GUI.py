@@ -19,6 +19,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 class GUI:
 
+
     def start(self):
 
         def close_start():
@@ -97,7 +98,7 @@ class GUI:
         b1.grid(row=4, column=5)
         b2.grid(row=4, column=6)
 
-        mainloop()
+        mainloop(1)
 
     def initbord(self):
 
@@ -200,9 +201,29 @@ class GUI:
         def next_graph():
             messagebox.showinfo("test")
 
+        def route_innemen():
+            popup = Tk()
+
+            def cancel_route():
+                popup.destroy()
+
+            Label(popup, text="Van").grid(row=0, column=0)
+            evan = Entry(popup)
+            evan.grid(row=0, column=1)
+            Label(popup, text="Naar").grid(row=1, column=0)
+            evan = Entry(popup)
+            evan.grid(row=1, column=1)
+            b = Button(popup, text="INNEMEN", command=next_graph)
+            b2 = Button(popup, text="Annuleer", command=cancel_route)
+            b.grid(row=2, column =0)
+            b2.grid(row=2, column=1)
+
+
+            mainloop(1)
+
         #Control Buttons
         b = Button(root, text="Extra treinkaart", command=next_graph)
-        b1 = Button(root, text="Route innemen", command=next_graph)
+        b1 = Button(root, text="Route innemen", command=route_innemen)
         b2 = Button(root, text="Missie wisselen", command=next_graph)
         b.grid(row=5)
         b1.grid(row=6)
@@ -222,7 +243,7 @@ class GUI:
         #als rest klaar is dan scorebord van goed naar slecht laten tonen (voorlopig: this will do)
 
 
-        mainloop()
+        mainloop(1)
         #Hierin speler statistieken (pionnen, kaarten, etc) laten zien + besturingsknoppen
         #Ook scorebord
 
