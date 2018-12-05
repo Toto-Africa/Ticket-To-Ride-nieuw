@@ -170,6 +170,14 @@ class GUI:
     def spelerstats(self):
 
         root = Tk()
+
+        bg_image = PhotoImage(file="maxresdefault.png", )
+        bg_image = bg_image.zoom(1)
+        bg_image = bg_image.subsample(1)
+        bg_label = Label(root, image=bg_image)
+        bg_label.place(x=0, y=0, width=980, height=520)
+
+
         root.wm_title("Spelersbord")
         # Quit when the window is done !!!!WERKT NOG ALTIJD NIET GOED!!!
         root.wm_protocol('WM_DELETE_WINDOW', root.quit)
@@ -196,9 +204,9 @@ class GUI:
         b = Button(root, text="Extra treinkaart", command=next_graph)
         b1 = Button(root, text="Route innemen", command=next_graph)
         b2 = Button(root, text="Missie wisselen", command=next_graph)
-        b.grid(row=4)
-        b1.grid(row=5)
-        b2.grid(row=6)
+        b.grid(row=5)
+        b1.grid(row=6)
+        b2.grid(row=7)
 
         #SCOREBORD
         #tabel aanmaken
