@@ -167,7 +167,7 @@ class GUI:
         plt.show()
         return routes
 
-    def spelerstats(self):
+    def spelerstats(self): #hier gaan we het attribuut speler (en beurt????) zeker moeten megeven, eventueel ook de graph of list met spelers
 
         root = Tk()
 
