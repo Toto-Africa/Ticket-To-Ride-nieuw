@@ -232,13 +232,13 @@ class GUI:
 
         #Spelerstats displayen
         Label(root, text="Treinkaarten (R;G;Z;W;B;G", bg="grey", fg="white").grid(row=9, column=0)
-        #Label(root, text="alle kaarten van de speler").grid(row=9, column, 1)
+        Label(root, text="alle kaarten van de speler").grid(row=9, column=1, sticky="W")
         Label(root, text="Pionnen", bg="grey", fg="white").grid(row=10, column=0)
-        # Label(root, text=speler.pawns).grid(row=10, column, 1)
+        Label(root, text="speler.pawns").grid(row=10, column = 1, sticky="W")
         Label(root, text="Missie1", bg="grey", fg="white").grid(row=11, column=0)
-        # Label(root, text=speler.missions1).grid(row=11, column, 1)
+        Label(root, text="speler.missions1").grid(row=11, column=1, sticky="W")
         Label(root, text="Missie2", bg="grey", fg="white").grid(row=12, column=0)
-        # Label(root, text=speler.missions2).grid(row=12, column, 1)
+        Label(root, text="speler.missions2").grid(row=12, column= 1, sticky="W")
 
         #SCOREBORD
         #tabel aanmaken
