@@ -14,10 +14,15 @@ import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
 
 class GUI:
 
     def start(self):
+
+        def close_start():
+            master.destroy()
 
         def buttonstart():
             # hier dan overgaan naar beurt?
@@ -63,10 +68,10 @@ class GUI:
         bg_label = Label(master, image=bg_image)
         bg_label.place(x=0, y=0, width=640, height=360)
 
-        Label(master, text="Speler naam - leeftijd").grid(row=0)
-        Label(master, text="CPU1 naam").grid(row=1)
-        Label(master, text="CPU2 naam").grid(row=2)
-        Label(master, text="CPU3 naam").grid(row=3)
+        Label(master, text="Speler naam - leeftijd").grid(row=0, column=4)
+        Label(master, text="CPU1 naam").grid(row=1, column=4)
+        Label(master, text="CPU2 naam").grid(row=2, column=4)
+        Label(master, text="CPU3 naam").grid(row=3, column=4)
 
         e1 = Entry(master)
         e2 = Entry(master)
@@ -82,6 +87,7 @@ class GUI:
         drop = OptionMenu(master, agevar, *ages)
 
         b1 = Button(master, text="Start Spel", command=buttonstart) #als er op button gedrukt wordt dan voeren we 'buttonstart' uit
+        b2 = Button(master, text="Afsluiten", command=close_start)
 
         e1.grid(row=0, column=5)
         drop.grid(row=0, column=6)
@@ -89,6 +95,7 @@ class GUI:
         e3.grid(row=2, column=5)
         e4.grid(row=3, column=5)
         b1.grid(row=4, column=5)
+        b2.grid(row=4, column=6)
 
         mainloop()
 
@@ -160,17 +167,58 @@ class GUI:
         plt.show()
         return routes
 
-    def spelerstats(self, speler, spelers):
+    def spelerstats(self):
 
+        root = Tk()
+        root.wm_title("Spelersbord")
+        # Quit when the window is done !!!!WERKT NOG ALTIJD NIET GOED!!!
+        root.wm_protocol('WM_DELETE_WINDOW', root.quit)
+
+        f = plt.figure(figsize=(5, 4))
+        a = f.add_subplot(111)
+        plt.axis('off')
+
+        # INSERT HIER ONZE GRAPH (dit is voorbeeldgraph)
+        G = nx.complete_graph(5)
+        pos = nx.circular_layout(G)
+        nx.draw_networkx(G, pos=pos, ax=a)
+
+
+        # Canvas maken en hier graph in tekenen
+        canvas = FigureCanvasTkAgg(f, master=root)
+        canvas.draw()
+        canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+
+        def next_graph():
+            messagebox.showinfo("test")
+
+        #Control Buttons
+        b = Button(root, text="Extra treinkaart", command=next_graph)
+        b1 = Button(root, text="Route innemen", command=next_graph)
+        b2 = Button(root, text="Missie wisselen", command=next_graph)
+        b.pack(side=LEFT)
+        b1.pack(side=LEFT)
+        b2.pack(side=LEFT)
+
+        #SCOREBORD
+        #tabel aanmaken
+        height = 5
+        width = 5
+        for i in range(height):  # Rows
+            for j in range(width):  # Columns
+                b = Entry(root, text="")
+                b.grid(row=i, column=j)
+
+        mainloop()
         #Hierin speler statistieken (pionnen, kaarten, etc) laten zien + besturingsknoppen
         #Ook scorebord
-        mainloop()
+
 
 my_gui = GUI()
 
 
 while True:
-    my_gui.start()
+    my_gui.spelerstats()
 
 
 
