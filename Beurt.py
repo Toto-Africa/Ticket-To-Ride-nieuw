@@ -24,7 +24,7 @@ class Beurt:
 
         # Menselijke speler aanmaken: heeft id = 0
         # Treinkaarten en missiekaarten op begin van spel: constructor Speler
-        player = Speler.Speler(0, name, age, color, startHand) # Menselijke speler altijd ID = 0 geven # Of Speler.Speler.__init__(...)
+        player = Speler.Speler(0, name, age, color) # Menselijke speler altijd ID = 0 geven # Of Speler.Speler.__init__(...)
 
         self.deck = TrainCards.TrainCards() # Deck treinkaarten
         self.missioncards = MissionCards.MissionCards()  # Deck missiekaarten
