@@ -204,15 +204,25 @@ class GUI:
         def route_innemen():
             popup = Tk()
 
+            listOfCities = [
+                "Berlijn", "Wenen", "Warschau", "Kiev", "Boekarest"  # 0, 1, 2, 3, 4
+            ]
+
+            vanvar = StringVar(popup)
+            naarvar = StringVar(popup)
+
+            dropvan = OptionMenu(popup, vanvar, *listOfCities)
+            dropnaar = OptionMenu(popup, naarvar, *listOfCities)
+
             def cancel_route():
                 popup.destroy()
 
             Label(popup, text="Van").grid(row=0, column=0)
-            evan = Entry(popup)
-            evan.grid(row=0, column=1)
+            #evan = Entry(popup)
+            dropvan.grid(row=0, column=1)
             Label(popup, text="Naar").grid(row=1, column=0)
-            evan = Entry(popup)
-            evan.grid(row=1, column=1)
+            #enaar = Entry(popup)
+            dropnaar.grid(row=1, column=1)
             b = Button(popup, text="INNEMEN", command=next_graph)
             b2 = Button(popup, text="Annuleer", command=cancel_route)
             b.grid(row=2, column =0)
@@ -231,7 +241,7 @@ class GUI:
         b2.grid(row=6)
 
         #Spelerstats displayen
-        Label(root, text="Treinkaarten (R;G;Z;W;B;G", bg="grey", fg="white").grid(row=9, column=0)
+        Label(root, text="Treinkaarten (R;G;Z;W;B;G)", bg="grey", fg="white").grid(row=9, column=0)
         Label(root, text="alle kaarten van de speler").grid(row=9, column=1, sticky="W")
         Label(root, text="Pionnen", bg="grey", fg="white").grid(row=10, column=0)
         Label(root, text="speler.pawns").grid(row=10, column = 1, sticky="W")
