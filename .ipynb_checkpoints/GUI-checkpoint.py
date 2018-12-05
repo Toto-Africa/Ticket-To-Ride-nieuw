@@ -1,5 +1,3 @@
-from tkinter import messagebox
-
 import networkx as nx #soort van graph waar we het spelbord van kunnen maken
 
 import Route
@@ -8,8 +6,8 @@ import os
 from tkinter import *
 
 
-#from PIL import Image, ImageTk
-
+from PIL import Image, ImageTk
+#
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
@@ -58,8 +56,7 @@ class GUI:
         abs_file_path = os.path.join(script_dir, rel_path)
 
         bg_image = PhotoImage(file="maxresdefault.gif", )
-        bg_image = bg_image.zoom(1)
-        bg_image = bg_image.subsample(2)
+        bg_image = bg_image.zoom(25)
         bg_label = Label(master, image=bg_image)
         bg_label.place(x=0, y=0, width=640, height=360)
 
@@ -143,7 +140,6 @@ class GUI:
 
     def updatebord(self, routes):
 
-        board = nx.Graph()
         for route in routes:
           #                 # from city                # to city                  # path cost                      # color of path
           board.add_edge(route.get_cities()[0], route.get_cities()[1], weight=route.get_pathCost(), edgeColors=route.get_color())
@@ -152,9 +148,9 @@ class GUI:
 
         pos = nx.spring_layout(board)
 
-        nx.draw(board)
-        #nx.draw_networkx_nodes(board, pos, node_size=700)
-        #nx.draw_networkx_edge_labels(board, pos)
+        #nx.draw(board)
+        nx.draw_networkx_nodes(board, pos, node_size=700)
+        nx.draw_networkx_edge_labels(board, pos)
 
         plt.axis('off')
         plt.show()
