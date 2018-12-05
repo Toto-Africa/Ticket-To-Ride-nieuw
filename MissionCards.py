@@ -1,24 +1,25 @@
 
 import random
 
+
 class MissionCards(object):
 
     def __init__(self): # Toegevoegd door Michiel
         self.missions = [(("Berlijn, Kiev"), (("Warschau"),("Wenen"),("Warschau, Wenen"),("Wenen, Bucharest"))),
-                     (("Berlijn, Bucharest"), (("Wenen"), ("Warschau, Kiev"), ("Warschau, Wenen"))),
-                     (("Warschau, Bucharest"), (("Wenen"),("Kiev"),("Berlijn, Wenen"))),
-                     (("Berlijn, Wenen"),(("Warschau"),("Warschau, Kiev"))),
-                     (("Berlijn, Warschau"),(("Wenen"),("Wenen, Kiev"))),
-                     (("Warschau, Wenen"),(("Berlijn"), ("Kiev"), ("Kiev, Bucharest"))),
-                     (("Kiev, Bucharest"),(("Wenen"),("Warschau, Wenen"))),
-                     (("Kiev, Wenen"),(("Bucharest"),("Warschau"),("Warschau, Berlijn")))
+                     #(("Berlijn, Bucharest"), (("Wenen"), ("Warschau, Kiev"), ("Warschau, Wenen"))),
+                     #(("Warschau, Bucharest"), (("Wenen"),("Kiev"),("Berlijn, Wenen"))),
+                     #(("Berlijn, Wenen"),(("Warschau"),("Warschau, Kiev"))),
+                     #(("Berlijn, Warschau"),(("Wenen"),("Wenen, Kiev"))),
+                     #(("Warschau, Wenen"),(("Berlijn"), ("Kiev"), ("Kiev, Bucharest"))),
+                     #(("Kiev, Bucharest"),(("Wenen"),("Warschau, Wenen"))),
+                     #(("Kiev, Wenen"),(("Bucharest"),("Warschau"),("Warschau, Berlijn")))
                          #Enzovoort kunnen we deze hardcoden
                ]
-
+        random.shuffle(self.missions)  # Schud de missies door mekaar
     #print(missions[0][1][2])  #Dit geeft "Tussen1, Tussen2, Tussen4" uit eerste missie, op deze manier kunnen we dus wel de tuples doorzoeken ;)
                                 #TUPLES ZIJN IMMUTABLE --> Onwijzigbaar na initialisatie van values!
 
-    self.shuffle(missions)  #Schud de missies door mekaar
+
 
 
     def dealMission(self):

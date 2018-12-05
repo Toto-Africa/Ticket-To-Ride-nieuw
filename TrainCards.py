@@ -31,3 +31,5 @@ class TrainCards(object):
         return len(self.cards)      #Geeft weer hoeveel treinkaarten er nog zijn, kan bv tellertje geven op bord?
                                     #Indien dit niet gewenst is, deze methode verwijderen
 
+
+    #print(dealCard())
