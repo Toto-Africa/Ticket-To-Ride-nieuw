@@ -176,7 +176,7 @@ class GUI:
         bg_image = bg_image.zoom(1)
         bg_image = bg_image.subsample(1)
         bg_label = Label(root, image=bg_image)
-        bg_label.place(x=0, y=0, width=980, height=520)
+        bg_label.place(x=0, y=0, width=980, height=720)
 
 
         root.wm_title("Spelersbord")
@@ -222,12 +222,23 @@ class GUI:
             mainloop(1)
 
         #Control Buttons
+        #Methodes uit beurt vasthangen aan deze routes
         b = Button(root, text="Extra treinkaart", command=next_graph)
         b1 = Button(root, text="Route innemen", command=route_innemen)
         b2 = Button(root, text="Missie wisselen", command=next_graph)
-        b.grid(row=5)
-        b1.grid(row=6)
-        b2.grid(row=7)
+        b.grid(row=4)
+        b1.grid(row=5)
+        b2.grid(row=6)
+
+        #Spelerstats displayen
+        Label(root, text="Treinkaarten (R;G;Z;W;B;G", bg="grey", fg="white").grid(row=9, column=0)
+        #Label(root, text="alle kaarten van de speler").grid(row=9, column, 1)
+        Label(root, text="Pionnen", bg="grey", fg="white").grid(row=10, column=0)
+        # Label(root, text=speler.pawns).grid(row=10, column, 1)
+        Label(root, text="Missie1", bg="grey", fg="white").grid(row=11, column=0)
+        # Label(root, text=speler.missions1).grid(row=11, column, 1)
+        Label(root, text="Missie2", bg="grey", fg="white").grid(row=12, column=0)
+        # Label(root, text=speler.missions2).grid(row=12, column, 1)
 
         #SCOREBORD
         #tabel aanmaken
@@ -239,6 +250,8 @@ class GUI:
         Label(root, text="Elmer").grid(row=6, column=4)
         Label(root, text="Jan").grid(row=7, column=4)
         Label(root, text="Dries").grid(row=8, column=4)
+
+
 
         #als rest klaar is dan scorebord van goed naar slecht laten tonen (voorlopig: this will do)
 
