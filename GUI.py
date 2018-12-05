@@ -83,12 +83,12 @@ class GUI:
 
         b1 = Button(master, text="Start Spel", command=buttonstart) #als er op button gedrukt wordt dan voeren we 'buttonstart' uit
 
-        e1.grid(row=0, column=1)
-        drop.grid(row=0, column=2)
-        e2.grid(row=1, column=1)
-        e3.grid(row=2, column=1)
-        e4.grid(row=3, column=1)
-        b1.grid(row=4, column=1)
+        e1.grid(row=0, column=5)
+        drop.grid(row=0, column=6)
+        e2.grid(row=1, column=5)
+        e3.grid(row=2, column=5)
+        e4.grid(row=3, column=5)
+        b1.grid(row=4, column=5)
 
         mainloop()
 
@@ -160,7 +160,11 @@ class GUI:
         plt.show()
         return routes
 
+    def spelerstats(self, speler, spelers):
 
+        #Hierin speler statistieken (pionnen, kaarten, etc) laten zien + besturingsknoppen
+        #Ook scorebord
+        mainloop()
 
 my_gui = GUI()
 
