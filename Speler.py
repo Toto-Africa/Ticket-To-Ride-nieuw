@@ -28,8 +28,8 @@ class Speler:
     def get_pawns(self):
         return self.__pawnnr
 
-    def remove_one_pawn(self):
-        self.__pawnnr -= 1
+    def remove_pawns(self, amount):
+        self.__pawnnr -= amount
 
     def get_missions(self):
         return self.__missions
@@ -54,9 +54,6 @@ class Speler:
 
     def set_color(self, color):
         self.__color = color
-
-    def set_pawnnr(self, pawnnr):
-        self.__pawnnr = pawnnr
 
     def set_missionscomp(self):
         self.__missionscomp += 1
