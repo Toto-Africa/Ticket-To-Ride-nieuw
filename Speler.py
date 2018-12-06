@@ -16,7 +16,7 @@ class Speler:
         # Met collection.hand is beter denk ik: card=TrainCards.dealCard();self.hand[card] += 1; maar kdenk collection best nog initialiseren
         # Op die manier wordt elke kleur (dus "red" bv) als een aantal bijgehouden ipv een lijst
 
-        self.hand = collections.Counter(red=0, blue=0, green=0, black=0, white=0, yellow=0)  # Opvragen met hand['red']
+        self.hand = collections.Counter(red=0, blue=0, green=0)  # Opvragen met hand['red']
 
         # dit zou dan de constructor zijn om nieuwe spelers aan te maken? 'Jaa (Dries) :D'
         # Je geeft dan id, name, age, color mee in het startscherm (GUI)  'id genereer je automatisch bij het startscherm of hier?, de rest komt uit het startscherm'
@@ -28,8 +28,8 @@ class Speler:
     def get_pawns(self):
         return self.__pawnnr
 
-    def remove_one_pawn(self):
-        self.__pawnnr -= 1
+    def remove_pawns(self, amount):
+        self.__pawnnr -= amount
 
     def get_missions(self):
         return self.__missions
@@ -55,10 +55,7 @@ class Speler:
     def set_color(self, color):
         self.__color = color
 
-    def set_pawnnr(self, pawnnr):
-        self.__pawnnr = pawnnr
-
-    def set_missionscomp(self, missionscomp):
+    def set_missionscomp(self):
         self.__missionscomp += 1
 
     def set_currmissions(self, currmissions):

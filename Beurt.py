@@ -63,7 +63,6 @@ class Beurt:
 
     # Normale methodes
     def swap_mission(self, pl = Speler.Speler, mission_to_change = str()): # Correct????
-        pl.remove_one_pawn()
         new_mission = self.missioncards.dealMission()
         for i in range(0, 2):
             if pl.get_missions()[i] == mission_to_change:
@@ -71,7 +70,6 @@ class Beurt:
 
 
     def extra_traincard(self, pl = Speler.Speler):
-        pl.remove_one_pawn()
         color = self.deck.dealCard()                # dealCard: returnt 1 kaart? Correcte methode? Instantie maken eerst?
         pl.add_card_to_hand(color)                                        #NOTA VAN ELMER: Best object bv "Deck" aanmaken --> self.deck = TrainCards.TrainCards()
                                                 #Dit initialiseert Traincards met een stapel, daarna doe je self.deck.dealCard()" natuurlijk in de speler zijn hand
@@ -79,13 +77,12 @@ class Beurt:
 
     def conquer_route(self, route = Route.Route, player = Speler.Speler):
         # Is route al ingenomen?
-        player.remove_one_pawn()
         if route.get_occupiedBy() == 0:
             # Heeft speler genoeg treinkaarten?
-            if player.get_traincards(route.get_color()) >= route.get_pathCost():
+            if player.get_traincards(route.get_color()) >= route.get_pathCost() or player.get_traincards(route.get_color() + player.get_traincards(route.get_color('wild')) >= route.get_pathCost()):
                 route.set_occupiedBy(player.get_id)
                 player.remove_card_from_hand(route.get_color(), route.get_pathCost())
-
+                player.remove_pawns(route.get_pathCost())
                 end_of_beurt(player)
             else:
                 print("Niet genoeg treinkaarten")
@@ -104,17 +101,18 @@ class Beurt:
         # If (kaarten van Speler kloppen om route in te nemen en nrOfBoxes klopt)
             # Route.isTaken == true
 
+
+
+    # Controleer of missie voltooid werd
+    # Ja, missie werd voltooid: aantal voltooide missies + 1
+    # Zes verschillende missies voltooid? -> ja: Speler wint
+    # Neen: zijn pionnen van speler op? -> Ja: Speler met meeste voltooide missies wint
+    # Neen: nieuwe missiekaart
+
+    # Neen, missie werd niet voltooid:
+    # Zijn pionnen op? --> Ja: speler met meeste voltooide missies wint
+    # Neen: volgende beurt
     def end_of_beurt(self, pl = Speler.Speler):
-        # Controleer of missie voltooid werd
-        # Ja, missie werd voltooid: aantal voltooide missies + 1
-        # Zes verschillende missies voltooid? -> ja: Speler wint
-        # Neen: zijn pionnen van speler op? -> Ja: Speler met meeste voltooide missies wint
-        # Neen: nieuwe missiekaart
-
-        # Neen, missie werd niet voltooid:
-        # Zijn pionnen op? --> Ja: speler met meeste voltooide missies wint
-        # Neen: volgende beurt
-
         #if  Missie voltooid (Hoe implementeren???)
             #pl.set_missionscomp()
 
@@ -132,7 +130,6 @@ class Beurt:
                 # Speler met meeste aantal voltooide missies wint
             else:
                 # Volgende beurt -> Wel "else" statement nodig?
-
 
 
 
