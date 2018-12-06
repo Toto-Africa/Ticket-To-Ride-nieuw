@@ -104,17 +104,18 @@ class Beurt:
         # If (kaarten van Speler kloppen om route in te nemen en nrOfBoxes klopt)
             # Route.isTaken == true
 
+
+
+    # Controleer of missie voltooid werd
+    # Ja, missie werd voltooid: aantal voltooide missies + 1
+    # Zes verschillende missies voltooid? -> ja: Speler wint
+    # Neen: zijn pionnen van speler op? -> Ja: Speler met meeste voltooide missies wint
+    # Neen: nieuwe missiekaart
+
+    # Neen, missie werd niet voltooid:
+    # Zijn pionnen op? --> Ja: speler met meeste voltooide missies wint
+    # Neen: volgende beurt
     def end_of_beurt(self, pl = Speler.Speler):
-        # Controleer of missie voltooid werd
-        # Ja, missie werd voltooid: aantal voltooide missies + 1
-        # Zes verschillende missies voltooid? -> ja: Speler wint
-        # Neen: zijn pionnen van speler op? -> Ja: Speler met meeste voltooide missies wint
-        # Neen: nieuwe missiekaart
-
-        # Neen, missie werd niet voltooid:
-        # Zijn pionnen op? --> Ja: speler met meeste voltooide missies wint
-        # Neen: volgende beurt
-
         #if  Missie voltooid (Hoe implementeren???)
             #pl.set_missionscomp()
 

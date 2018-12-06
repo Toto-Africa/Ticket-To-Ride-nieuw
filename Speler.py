@@ -58,7 +58,7 @@ class Speler:
     def set_pawnnr(self, pawnnr):
         self.__pawnnr = pawnnr
 
-    def set_missionscomp(self, missionscomp):
+    def set_missionscomp(self):
         self.__missionscomp += 1
 
     def set_currmissions(self, currmissions):
