@@ -82,9 +82,8 @@ class Beurt:
             if player.get_traincards(route.get_color()) >= route.get_pathCost():
                 route.set_occupiedBy(player.get_id)
                 player.remove_card_from_hand(route.get_color(), route.get_pathCost())
-                player.set_missioncomp() # Verhoog aantal voltooide missies met 1
 
-                check_six_completed_routes(player)
+                end_of_Beurt()
             else:
                 print("Niet genoeg treinkaarten")
                 # Moet nog naar messagebox?
@@ -106,6 +105,17 @@ class Beurt:
         if player.get_missionscomp == 6:
             print("Spel voltooid")
             # Toon eindscherm
+
+    def end_of_Beurt(self, pl = Speler.Speler):
+        # Controleer of missie voltooid werd
+        # Ja, missie werd voltooid:
+        # Zes verschillende missies voltooid? -> ja: Speler wint
+        # Neen: zijn pionnen van speler op? -> Ja: Speler met meeste voltooide missies wint
+        # Neen: nieuwe missiekaart
+
+        # Neen, missie werd niet voltooid:
+        # Zijn pionnen op? --> Ja: speler met meeste voltooide missies wint
+        # Neen: volgende beurt
 
 
 
