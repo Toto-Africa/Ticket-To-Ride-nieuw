@@ -1,7 +1,7 @@
 # import TrainCards
 import collections
 
-
+# LOGICA PIONNEN!!!
 class Speler:
     # constructor
     def __init__(self, id, name, age, color):
@@ -24,6 +24,9 @@ class Speler:
         # pawnnr, missionscomplete, traincards en missioncards worden dan gegenereerd? (controleren of dit wel de juiste instanties zijn?)
 
     # onderstaande is vrij overbodig denk ik
+
+    def get_pawns(self):
+        return self.__pawnnr
 
     def get_missions(self):
         return self.__missions

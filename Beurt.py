@@ -108,7 +108,7 @@ class Beurt:
 
     def end_of_Beurt(self, pl = Speler.Speler):
         # Controleer of missie voltooid werd
-        # Ja, missie werd voltooid:
+        # Ja, missie werd voltooid: aantal voltooide missies + 1
         # Zes verschillende missies voltooid? -> ja: Speler wint
         # Neen: zijn pionnen van speler op? -> Ja: Speler met meeste voltooide missies wint
         # Neen: nieuwe missiekaart
@@ -116,6 +116,25 @@ class Beurt:
         # Neen, missie werd niet voltooid:
         # Zijn pionnen op? --> Ja: speler met meeste voltooide missies wint
         # Neen: volgende beurt
+
+        #if  Missie voltooid (Hoe implementeren???)
+            #pl.set_missionscomp()
+
+            if  pl.get_missionscomp() == 6:
+                # Spel is uit, pl wint -> naar overwinningsscherm
+            else:
+                if pl.get_pawns == 0:
+                    # Speler met meeste aantal voltooide missies wint
+                else:
+                    # Nieuwe missiekaart
+
+        # Missie werd niet voltooid
+        else:
+            if pl.get_pawns == 0:
+                # Speler met meeste aantal voltooide missies wint
+            else:
+                # Volgende beurt -> Wel "else" statement nodig?
+
 
 
 
