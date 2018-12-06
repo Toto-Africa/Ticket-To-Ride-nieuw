@@ -79,7 +79,7 @@ class Beurt:
         # Is route al ingenomen?
         if route.get_occupiedBy() == 0:
             # Heeft speler genoeg treinkaarten?
-            if player.get_traincards(route.get_color()) >= route.get_pathCost() or player.get_traincards(route.get_color() + player.get_traincards(route.get_color('wild')) >= route.get_pathCost():
+            if player.get_traincards(route.get_color()) >= route.get_pathCost() or player.get_traincards(route.get_color() + player.get_traincards(route.get_color('wild')) >= route.get_pathCost()):
                 route.set_occupiedBy(player.get_id)
                 player.remove_card_from_hand(route.get_color(), route.get_pathCost())
                 player.remove_pawns(route.get_pathCost())

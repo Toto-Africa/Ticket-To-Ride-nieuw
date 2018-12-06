@@ -16,7 +16,7 @@ class Speler:
         # Met collection.hand is beter denk ik: card=TrainCards.dealCard();self.hand[card] += 1; maar kdenk collection best nog initialiseren
         # Op die manier wordt elke kleur (dus "red" bv) als een aantal bijgehouden ipv een lijst
 
-        self.hand = collections.Counter(red=0, blue=0, green=0, black=0, white=0, yellow=0)  # Opvragen met hand['red']
+        self.hand = collections.Counter(red=0, blue=0, green=0)  # Opvragen met hand['red']
 
         # dit zou dan de constructor zijn om nieuwe spelers aan te maken? 'Jaa (Dries) :D'
         # Je geeft dan id, name, age, color mee in het startscherm (GUI)  'id genereer je automatisch bij het startscherm of hier?, de rest komt uit het startscherm'

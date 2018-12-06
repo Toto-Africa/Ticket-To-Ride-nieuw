@@ -4,10 +4,10 @@ import random
 class TrainCards(object):
 
     def __init__(self):
-        self.colors = ["black", "white", "green", "blue", "red", "yellow"]
+        self.colors = ["green", "blue", "red"]
 
         #wildcards nog toevoegen
-        self.cards = ["wild" for i in range(6)] + [i for i in self.colors for j in range(66)]
+        self.cards = ["wild" for i in range(6)] + [i for i in self.colors for j in range(22)]
         self.shuffle(self.cards)
 
 
@@ -23,7 +23,7 @@ class TrainCards(object):
 
         except IndexError:
             #SPEL STOPPEN
-            print("Tis gedaan")
+            return("gedaan")
 
 
     def cardsLeftover(self):
