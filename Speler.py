@@ -28,6 +28,9 @@ class Speler:
     def get_missions(self):
         return self.__missions
 
+    def get_traincards(self, color):
+        return self.hand[color]
+
     def is_cpu(self):
         return False
 
@@ -55,8 +58,8 @@ class Speler:
     def add_card_to_hand(self, color):
         self.hand[color] = self.hand[color] + 1
 
-    def remove_card_from_hand(self, color):
-        self.hand[color] = self.hand[color] - 1
+    def remove_cards_from_hand(self, color, amount):
+        self.hand[color] = self.hand[color] - amount
 
     """"
     DIT MOET IN BEURT DENK IK? in methode 'extra_train_card'

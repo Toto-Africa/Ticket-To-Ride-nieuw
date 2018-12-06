@@ -4,7 +4,8 @@ class Route:
     __cities = []
     __occupiedBy = 0
 
-    def __init__(self, color, pathCost, cities, occupiedBy):
+    def __init__(self, id, color, pathCost, cities, occupiedBy):
+        self.__id = id
         self.__color = color
         self.__pathCost = pathCost
         self.__cities = cities
@@ -13,6 +14,9 @@ class Route:
     #
     # getters and setters
     #
+
+    def get_id(self):
+        return self.__id
 
     def get_color(self):
         return self.__color
