@@ -58,10 +58,7 @@ class GUI:
         # eerst namen ingeven: spelers aanmaken dus
 
         master = Tk()
-
-        script_dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
-        rel_path = "maxresdefault.png"
-        abs_file_path = os.path.join(script_dir, rel_path)
+        master.wm_title("Start")
 
         bg_image = PhotoImage(file="maxresdefault.gif", )
         bg_image = bg_image.zoom(1)
@@ -106,67 +103,71 @@ class GUI:
         listOfCities = [
             "Berlijn", "Wenen", "Warschau", "Kiev", "Boekarest"  # 0, 1, 2, 3, 4
         ]
+
         routes = []
         # Berlijn to
         # Wenen to
         #rou = Route.Route('', 0, ["", ""], 0)
-        routes.append(Route.Route('yellow', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (yellow)
-        routes.append(Route.Route('red', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (red)
+        routes.append(Route.Route('r', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (yellow)
+        routes.append(Route.Route('r', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (red)
         # Warschau to
-        routes.append(Route.Route('blue', 2, [listOfCities[2], listOfCities[0]], 0))  # Berlijn (blue)
-        routes.append(Route.Route('green', 2, [listOfCities[2], listOfCities[0]], 0))  # Berlijn (green)
-        routes.append(Route.Route('black', 1, [listOfCities[2], listOfCities[1]], 0))  # Wenen (black)
+        routes.append(Route.Route('b', 2, [listOfCities[2], listOfCities[0]], 0))  # Berlijn (blue)
+        routes.append(Route.Route('g', 2, [listOfCities[2], listOfCities[0]], 0))  # Berlijn (green)
+        routes.append(Route.Route('b', 1, [listOfCities[2], listOfCities[1]], 0))  # Wenen (black)
         # Kiev to
-        routes.append(Route.Route('white', 3, [listOfCities[3], listOfCities[1]], 0))  # Wenen (white)
-        routes.append(Route.Route('yellow', 1, [listOfCities[3], listOfCities[2]], 0))  # Warschau (yellow)
+        routes.append(Route.Route('r', 3, [listOfCities[3], listOfCities[1]], 0))  # Wenen (white)
+        routes.append(Route.Route('g', 1, [listOfCities[3], listOfCities[2]], 0))  # Warschau (yellow)
         # Boekarest to
-        routes.append(Route.Route('yellow', 2, [listOfCities[4], listOfCities[1]], 0))  # Wenen (yellow)
-        routes.append(Route.Route('blue', 2, [listOfCities[4], listOfCities[1]], 0))  # Wenen (blue)
-        routes.append(Route.Route('red', 2, [listOfCities[4], listOfCities[3]], 0))  # Kiev (red)
+        routes.append(Route.Route('r', 2, [listOfCities[4], listOfCities[1]], 0))  # Wenen (yellow)
+        routes.append(Route.Route('b', 2, [listOfCities[4], listOfCities[1]], 0))  # Wenen (blue)
+        routes.append(Route.Route('r', 2, [listOfCities[4], listOfCities[3]], 0))  # Kiev (red)
 
         board = nx.Graph()
 
-        for city in listOfCities:
-            board.add_node(city)
-            print(city)
-
+        board.add_node("Berlijn", pos=(1, 1))
+        board.add_node("Wenen", pos=(2, 0))
+        board.add_node("Warschau", pos=(3, 1))
+        board.add_node("Kiev", pos=(5, 0))
+        board.add_node("Boekarest", pos=(5, -2))
+        #for city in listOfCities:
+         #   board.add_node(city)
+          #  print(city)
 
         for route in routes:
           #                 # from city                # to city                  # path cost                      # color of path
-          board.add_edge(route.get_cities()[0], route.get_cities()[1], weight=route.get_pathCost(), edgeColors=route.get_color())
+          board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost())
           print(route.get_cities()[0] + " naar " + route.get_cities()[1] +  " kleur " + route.get_color())
 
-        copyBoard = board.copy()
+        edges = board.edges()
+        colors = [board[u][v]['color'] for u, v in edges]
+        weights = [board[u][v]['weight'] for u, v in edges]
 
-        pos = nx.spring_layout(board)
-
-        #nx.draw(board)
-        nx.draw_networkx_nodes(board, pos, node_size=700)
-        nx.draw_networkx_edge_labels(board, pos)
-
-        plt.axis('off')
-        plt.show()
-
-        return routes
-
-    def updatebord(self, routes):
-
-        board = nx.Graph()
-        for route in routes:
-          #                 # from city                # to city                  # path cost                      # color of path
-          board.add_edge(route.get_cities()[0], route.get_cities()[1], weight=route.get_pathCost(), edgeColors=route.get_color())
+        pos = nx.get_node_attributes(board, 'pos')
 
         copyBoard = board.copy()
 
-        pos = nx.spring_layout(board)
-
-        nx.draw(board)
+        nx.draw(board, pos, edges=edges, edge_color=colors, width=weights, with_labels=True)
         #nx.draw_networkx_nodes(board, pos, node_size=700)
         #nx.draw_networkx_edge_labels(board, pos)
 
         plt.axis('off')
         plt.show()
+
         return routes
+
+    def win(self):
+
+        master = Tk()
+        master.wm_title("Winner")
+
+        bg_image = PhotoImage(file="win.png", )
+
+        bg_label = Label(master, image=bg_image)
+
+        bg_label.pack()
+        Label(master, text="... WINT! Feestje! Amai, tof seg! Hoho, leuk spelletje!", bg="black", fg="white", font=("Helvetica", 30)).pack()
+
+        mainloop(0)
 
     def spelerstats(self): #hier gaan we het attribuut speler (en beurt????) zeker moeten megeven, eventueel ook de graph of list met spelers
 
@@ -188,10 +189,53 @@ class GUI:
         plt.axis('off')
 
         # INSERT HIER ONZE GRAPH (dit is voorbeeldgraph)
-        G = nx.complete_graph(5)
-        pos = nx.circular_layout(G)
-        nx.draw_networkx(G, pos=pos, ax=a)
+        #OP termijn zou route moeten doorgegeven worden, en dan kan er veel van dieje zever hieronder wweg
+        listOfCities = [
+            "Berlijn", "Wenen", "Warschau", "Kiev", "Boekarest"  # 0, 1, 2, 3, 4
+        ]
 
+        routes = []
+        #
+        #rou = Route.Route('', 0, ["", ""], 0)
+        routes.append(Route.Route('r', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (yellow)
+        routes.append(Route.Route('r', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (red)
+        # Warschau to
+        routes.append(Route.Route('b', 2, [listOfCities[2], listOfCities[0]], 0))  # Berlijn (blue)
+        routes.append(Route.Route('g', 2, [listOfCities[2], listOfCities[0]], 0))  # Berlijn (green)
+        routes.append(Route.Route('b', 1, [listOfCities[2], listOfCities[1]], 0))  # Wenen (black)
+        # Kiev to
+        routes.append(Route.Route('r', 3, [listOfCities[3], listOfCities[1]], 0))  # Wenen (white)
+        routes.append(Route.Route('g', 1, [listOfCities[3], listOfCities[2]], 0))  # Warschau (yellow)
+        # Boekarest to
+        routes.append(Route.Route('r', 2, [listOfCities[4], listOfCities[1]], 0))  # Wenen (yellow)
+        routes.append(Route.Route('b', 2, [listOfCities[4], listOfCities[1]], 0))  # Wenen (blue)
+        routes.append(Route.Route('r', 2, [listOfCities[4], listOfCities[3]], 0))  # Kiev (red)
+
+        board = nx.Graph()
+
+        board.add_node("Berlijn", pos=(1, 1))
+        board.add_node("Wenen", pos=(2, 0))
+        board.add_node("Warschau", pos=(3, 1))
+        board.add_node("Kiev", pos=(5, 0))
+        board.add_node("Boekarest", pos=(5, -2))
+        #for city in listOfCities:
+         #   board.add_node(city)
+          #  print(city)
+
+        for route in routes:
+          #                 # from city                # to city                  # path cost                      # color of path
+          board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost())
+          print(route.get_cities()[0] + " naar " + route.get_cities()[1] +  " kleur " + route.get_color())
+
+        edges = board.edges()
+        colors = [board[u][v]['color'] for u, v in edges]
+        weights = [board[u][v]['weight'] for u, v in edges]
+
+        pos = nx.get_node_attributes(board, 'pos')
+
+        copyBoard = board.copy()
+
+        nx.draw(board, pos, edges=edges, edge_color=colors, width=weights, with_labels=True, ax=a)
 
         # Canvas maken en hier graph in tekenen
         canvas = FigureCanvasTkAgg(f, master=root)
@@ -200,6 +244,20 @@ class GUI:
 
         def next_graph():
             messagebox.showinfo("test")
+
+        def winwin():
+            master = Tk()
+            master.wm_title("Winner")
+
+            bg_image = PhotoImage(file="win.png", )
+
+            bg_label = Label(master, image=bg_image)
+
+            bg_label.pack()
+            Label(master, text="JIJ WINT! Feestje! Amai, tof seg! Hoho, leuk spelletje!", bg="black", fg="white",
+                  font=("Helvetica", 30)).pack()
+
+            mainloop(0)
 
         def route_innemen():
             popup = Tk()
@@ -236,9 +294,12 @@ class GUI:
         b = Button(root, text="Extra treinkaart", command=next_graph)
         b1 = Button(root, text="Route innemen", command=route_innemen)
         b2 = Button(root, text="Missie wisselen", command=next_graph)
+        b3 = Button(root, text="Valsspelen is ook spelen", command=winwin)
+
         b.grid(row=4)
         b1.grid(row=5)
         b2.grid(row=6)
+        b3.grid(row=7)
 
         #Spelerstats displayen
         Label(root, text="Treinkaarten (R;G;Z;W;B;G)", bg="grey", fg="white").grid(row=9, column=0)
@@ -261,10 +322,7 @@ class GUI:
         Label(root, text="Jan").grid(row=7, column=4)
         Label(root, text="Dries").grid(row=8, column=4)
 
-
-
         #als rest klaar is dan scorebord van goed naar slecht laten tonen (voorlopig: this will do)
-
 
         mainloop(1)
         #Hierin speler statistieken (pionnen, kaarten, etc) laten zien + besturingsknoppen
@@ -272,10 +330,7 @@ class GUI:
 
 
 my_gui = GUI()
-
-
 while True:
     my_gui.spelerstats()
-
 
 
