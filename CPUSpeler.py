@@ -34,21 +34,3 @@ class CPUSpeler(Speler.Speler):
 
     def is_cpu(self):
         return True
-
-    def set_name(self, name):
-        self.__name = name
-
-    def set_age(self, age):
-        self.__age = age
-
-    def set_color(self, color):
-        self.__color = color
-
-    def set_pawnnr(self, pawnnr):
-        self.__pawnnr = pawnnr
-
-    def set_missionscomp(self, missionscomp):
-        self.__missionscomp = missionscomp
-
-    def set_currmissions(self, currmissions):
-        self.__currmissions = currmissions
