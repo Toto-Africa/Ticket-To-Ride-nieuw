@@ -81,21 +81,31 @@ class Beurt:
             # Heeft speler genoeg treinkaarten?
             if player.get_traincards(route.get_color()) >= route.get_pathCost():
                 route.set_occupiedBy(player.get_id)
-                    player.remove_card_from_hand(route.get_color(), route.get_pathCost())
+                player.remove_card_from_hand(route.get_color(), route.get_pathCost())
+                player.set_missioncomp() # Verhoog aantal voltooide missies met 1
 
+                check_six_completed_routes(player)
             else:
                 print("Niet genoeg treinkaarten")
+                # Moet nog naar messagebox?
 
         else:
             print("Deze route is reeds ingenomen")
+            # Moet nog naar messagebox?
 
 
 
-    def check_completed_route(self, routeid):
-        print("Test")
+    # Mee in conquer_route geimplementeerd
+    # def check_completed_route(self, routeid):
+       # print("Test")
         # Code controleer of er een route voltooid is
         # If (kaarten van Speler kloppen om route in te nemen en nrOfBoxes klopt)
             # Route.isTaken == true
+
+    def check_six_completed_routes(self, player = Speler.Speler):
+        if player.get_missionscomp == 6:
+            print("Spel voltooid")
+            # Toon eindscherm
 
 
 

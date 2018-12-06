@@ -37,6 +37,9 @@ class Speler:
     def get_id(self):
         return self.__id
 
+    def get_missionscomp(self):
+        return self.__missionscomp
+
     def set_name(self, name):
         self.__name = name
 
@@ -50,7 +53,7 @@ class Speler:
         self.__pawnnr = pawnnr
 
     def set_missionscomp(self, missionscomp):
-        self.__missionscomp = missionscomp
+        self.__missionscomp += 1
 
     def set_currmissions(self, currmissions):
         self.__currmissions = currmissions
