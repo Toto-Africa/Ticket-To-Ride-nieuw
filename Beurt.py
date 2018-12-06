@@ -22,9 +22,9 @@ class Beurt:
 
         # Planning: eerst gewone speler aanmaken. Dan CPU-spelers: eerst kaarten genereren, dan toekennen bij aanmaken CPU-speler
 
-        # Menselijke speler aanmaken: heeft id = 0
+        # Menselijke speler aanmaken: heeft id = 1
         # Treinkaarten en missiekaarten op begin van spel: constructor Speler
-        player = Speler.Speler(0, name, age, color) # Menselijke speler altijd ID = 0 geven # Of Speler.Speler.__init__(...)
+        player = Speler.Speler(1, name, age, color) # Menselijke speler altijd ID = 0 geven # Of Speler.Speler.__init__(...)
 
         self.deck = TrainCards.TrainCards() # Deck treinkaarten
         self.missioncards = MissionCards.MissionCards()  # Deck missiekaarten
@@ -41,15 +41,15 @@ class Beurt:
 
         d = {} # Dictionary
 
-        # CPU-spelers aanmaken: 3 CPU-spelers (1, 2, 3)
+        # CPU-spelers aanmaken: 3 CPU-spelers (2, 3, 4)
         for i in range(0, 3):
-            # cpu1, cpu2 en cpu3: werkt dit?
+            # cpu2, cpu3 en cpu4: werkt dit? (Getal achter "cpu" is ID)
             # namen cpu's zitten in array: itereren over array?
-            d["cpu" + str(i+1)] = CPUSpeler.CPUSpeler(i+1, cpu_names[i], randint(10, 99), OVERIGE_KLEUREN) # Eerste deel werkt                                                                                               # #Willekeurige leeftijd tussen 10 en 99
+            d["cpu" + str(i+2)] = CPUSpeler.CPUSpeler(i+2, cpu_names[i], randint(10, 99), OVERIGE_KLEUREN) # Eerste deel werkt                                                                                               # #Willekeurige leeftijd tussen 10 en 99
 
         # 4 treinkaarten nemen om te starten (CPU)
         for k in range(len(d)):
-            for j in range(0,3):
+            for j in range(0, 3):
                 # Treinkaarten toekennen aan CPU's
                 traincard = self.deck.dealCard()
                 #traincards_array.append(traincard)  # # Indien methode "TrainCards.dealcard" kaartenteller van Speler verhoogt, dan is dit niet nodig
@@ -64,7 +64,7 @@ class Beurt:
     # Normale methodes
     def swap_mission(self, pl = Speler.Speler, mission_to_change = str()): # Correct????
         new_mission = self.missioncards.dealMission()
-        for i in range(0,2):
+        for i in range(0, 2):
             if pl.get_missions()[i] == mission_to_change:
                 pl.get_missions[i] = new_mission
 
@@ -75,17 +75,61 @@ class Beurt:
                                                 #Dit initialiseert Traincards met een stapel, daarna doe je self.deck.dealCard()" natuurlijk in de speler zijn hand
 
 
-    def conquer_route(self, routeid):
-        print("Test")
-        # Code routeInnemen
-        # check_completed_route == true
-        # Route ergens bijhouden bij Speler of Route
+    def conquer_route(self, route = Route.Route, player = Speler.Speler):
+        # Is route al ingenomen?
+        if route.get_occupiedBy() == 0:
+            # Heeft speler genoeg treinkaarten?
+            if player.get_traincards(route.get_color()) >= route.get_pathCost() or player.get_traincards(route.get_color() + player.get_traincards(route.get_color('wild')) >= route.get_pathCost():
+                route.set_occupiedBy(player.get_id)
+                player.remove_card_from_hand(route.get_color(), route.get_pathCost())
+                player.remove_pawns(route.get_pathCost())
+                end_of_beurt(player)
+            else:
+                print("Niet genoeg treinkaarten")
+                # Moet nog naar messagebox?
 
-    def check_completed_route(self, routeid):
-        print("Test")
+        else:
+            print("Deze route is reeds ingenomen")
+            # Moet nog naar messagebox?
+
+
+
+    # Mee in conquer_route geimplementeerd
+    # def check_completed_route(self, routeid):
+       # print("Test")
         # Code controleer of er een route voltooid is
         # If (kaarten van Speler kloppen om route in te nemen en nrOfBoxes klopt)
             # Route.isTaken == true
+
+
+
+    # Controleer of missie voltooid werd
+    # Ja, missie werd voltooid: aantal voltooide missies + 1
+    # Zes verschillende missies voltooid? -> ja: Speler wint
+    # Neen: zijn pionnen van speler op? -> Ja: Speler met meeste voltooide missies wint
+    # Neen: nieuwe missiekaart
+
+    # Neen, missie werd niet voltooid:
+    # Zijn pionnen op? --> Ja: speler met meeste voltooide missies wint
+    # Neen: volgende beurt
+    def end_of_beurt(self, pl = Speler.Speler):
+        #if  Missie voltooid (Hoe implementeren???)
+            #pl.set_missionscomp()
+
+            if  pl.get_missionscomp() == 6:
+                # Spel is uit, pl wint -> naar overwinningsscherm
+            else:
+                if pl.get_pawns == 0:
+                    # Speler met meeste aantal voltooide missies wint
+                else:
+                    # Nieuwe missiekaart
+
+        # Missie werd niet voltooid
+        else:
+            if pl.get_pawns == 0:
+                # Speler met meeste aantal voltooide missies wint
+            else:
+                # Volgende beurt -> Wel "else" statement nodig?
 
 
 

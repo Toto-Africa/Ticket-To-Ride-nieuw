@@ -1,7 +1,7 @@
 # import TrainCards
 import collections
 
-
+# LOGICA PIONNEN!!!
 class Speler:
     # constructor
     def __init__(self, id, name, age, color):
@@ -25,14 +25,26 @@ class Speler:
 
     # onderstaande is vrij overbodig denk ik
 
+    def get_pawns(self):
+        return self.__pawnnr
+
+    def remove_pawns(self, amount):
+        self.__pawnnr -= amount
+
     def get_missions(self):
         return self.__missions
+
+    def get_traincards(self, color):
+        return self.hand[color]
 
     def is_cpu(self):
         return False
 
     def get_id(self):
         return self.__id
+
+    def get_missionscomp(self):
+        return self.__missionscomp
 
     def set_name(self, name):
         self.__name = name
@@ -43,11 +55,8 @@ class Speler:
     def set_color(self, color):
         self.__color = color
 
-    def set_pawnnr(self, pawnnr):
-        self.__pawnnr = pawnnr
-
-    def set_missionscomp(self, missionscomp):
-        self.__missionscomp = missionscomp
+    def set_missionscomp(self):
+        self.__missionscomp += 1
 
     def set_currmissions(self, currmissions):
         self.__currmissions = currmissions
@@ -55,8 +64,8 @@ class Speler:
     def add_card_to_hand(self, color):
         self.hand[color] = self.hand[color] + 1
 
-    def remove_card_from_hand(self, color):
-        self.hand[color] = self.hand[color] - 1
+    def remove_cards_from_hand(self, color, amount):
+        self.hand[color] = self.hand[color] - amount
 
     """"
     DIT MOET IN BEURT DENK IK? in methode 'extra_train_card'

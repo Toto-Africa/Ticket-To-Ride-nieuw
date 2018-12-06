@@ -1,21 +1,29 @@
+from tkinter import messagebox
+
 import networkx as nx #soort van graph waar we het spelbord van kunnen maken
 
 import Route
 import Speler
 import os
 from tkinter import *
-import tkMessageBox
 
-from PIL import Image, ImageTk
+
+#from PIL import Image, ImageTk
 
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
 
 class GUI:
 
+
     def start(self):
+
+        def close_start():
+            master.destroy()
 
         def buttonstart():
             # hier dan overgaan naar beurt?
@@ -26,7 +34,7 @@ class GUI:
                     # controleren dat belangrijkste textvakken niet leeg zijn
                     username = e1.get()
                     age = agevar.get()
-                    tkMessageBox.showinfo("Hello Python", "Hello " + username + " : " + age)
+                    messagebox.showinfo("Hello Python", "Hello " + username + " : " + age)
                     if len(e2.get()) == 0:
                         cpu1 = "Patrick"
                     else:
@@ -56,14 +64,15 @@ class GUI:
         abs_file_path = os.path.join(script_dir, rel_path)
 
         bg_image = PhotoImage(file="maxresdefault.gif", )
-        bg_image = bg_image.zoom(25)
+        bg_image = bg_image.zoom(1)
+        bg_image = bg_image.subsample(2)
         bg_label = Label(master, image=bg_image)
         bg_label.place(x=0, y=0, width=640, height=360)
 
-        Label(master, text="Speler naam - leeftijd").grid(row=0)
-        Label(master, text="CPU1 naam").grid(row=1)
-        Label(master, text="CPU2 naam").grid(row=2)
-        Label(master, text="CPU3 naam").grid(row=3)
+        Label(master, text="Speler naam - leeftijd").grid(row=0, column=4)
+        Label(master, text="CPU1 naam").grid(row=1, column=4)
+        Label(master, text="CPU2 naam").grid(row=2, column=4)
+        Label(master, text="CPU3 naam").grid(row=3, column=4)
 
         e1 = Entry(master)
         e2 = Entry(master)
@@ -79,15 +88,17 @@ class GUI:
         drop = OptionMenu(master, agevar, *ages)
 
         b1 = Button(master, text="Start Spel", command=buttonstart) #als er op button gedrukt wordt dan voeren we 'buttonstart' uit
+        b2 = Button(master, text="Afsluiten", command=close_start)
 
-        e1.grid(row=0, column=1)
-        drop.grid(row=0, column=2)
-        e2.grid(row=1, column=1)
-        e3.grid(row=2, column=1)
-        e4.grid(row=3, column=1)
-        b1.grid(row=4, column=1)
+        e1.grid(row=0, column=5)
+        drop.grid(row=0, column=6)
+        e2.grid(row=1, column=5)
+        e3.grid(row=2, column=5)
+        e4.grid(row=3, column=5)
+        b1.grid(row=4, column=5)
+        b2.grid(row=4, column=6)
 
-        mainloop()
+        mainloop(1)
 
     def initbord(self):
 
@@ -140,6 +151,7 @@ class GUI:
 
     def updatebord(self, routes):
 
+        board = nx.Graph()
         for route in routes:
           #                 # from city                # to city                  # path cost                      # color of path
           board.add_edge(route.get_cities()[0], route.get_cities()[1], weight=route.get_pathCost(), edgeColors=route.get_color())
@@ -148,21 +160,122 @@ class GUI:
 
         pos = nx.spring_layout(board)
 
-        #nx.draw(board)
-        nx.draw_networkx_nodes(board, pos, node_size=700)
-        nx.draw_networkx_edge_labels(board, pos)
+        nx.draw(board)
+        #nx.draw_networkx_nodes(board, pos, node_size=700)
+        #nx.draw_networkx_edge_labels(board, pos)
 
         plt.axis('off')
         plt.show()
         return routes
 
+    def spelerstats(self): #hier gaan we het attribuut speler (en beurt????) zeker moeten megeven, eventueel ook de graph of list met spelers
+
+        root = Tk()
+
+        bg_image = PhotoImage(file="maxresdefault.png", )
+        bg_image = bg_image.zoom(1)
+        bg_image = bg_image.subsample(1)
+        bg_label = Label(root, image=bg_image)
+        bg_label.place(x=0, y=0, width=980, height=720)
+
+
+        root.wm_title("Spelersbord")
+        # Quit when the window is done !!!!WERKT NOG ALTIJD NIET GOED!!!
+        root.wm_protocol('WM_DELETE_WINDOW', root.quit)
+
+        f = plt.figure(figsize=(5, 4))
+        a = f.add_subplot(111)
+        plt.axis('off')
+
+        # INSERT HIER ONZE GRAPH (dit is voorbeeldgraph)
+        G = nx.complete_graph(5)
+        pos = nx.circular_layout(G)
+        nx.draw_networkx(G, pos=pos, ax=a)
+
+
+        # Canvas maken en hier graph in tekenen
+        canvas = FigureCanvasTkAgg(f, master=root)
+        canvas.draw()
+        canvas.get_tk_widget().grid(row=0, column=1)
+
+        def next_graph():
+            messagebox.showinfo("test")
+
+        def route_innemen():
+            popup = Tk()
+
+            listOfCities = [
+                "Berlijn", "Wenen", "Warschau", "Kiev", "Boekarest"  # 0, 1, 2, 3, 4
+            ]
+
+            vanvar = StringVar(popup)
+            naarvar = StringVar(popup)
+
+            dropvan = OptionMenu(popup, vanvar, *listOfCities)
+            dropnaar = OptionMenu(popup, naarvar, *listOfCities)
+
+            def cancel_route():
+                popup.destroy()
+
+            Label(popup, text="Van").grid(row=0, column=0)
+            #evan = Entry(popup)
+            dropvan.grid(row=0, column=1)
+            Label(popup, text="Naar").grid(row=1, column=0)
+            #enaar = Entry(popup)
+            dropnaar.grid(row=1, column=1)
+            b = Button(popup, text="INNEMEN", command=next_graph)
+            b2 = Button(popup, text="Annuleer", command=cancel_route)
+            b.grid(row=2, column =0)
+            b2.grid(row=2, column=1)
+
+
+            mainloop(1)
+
+        #Control Buttons
+        #Methodes uit beurt vasthangen aan deze routes
+        b = Button(root, text="Extra treinkaart", command=next_graph)
+        b1 = Button(root, text="Route innemen", command=route_innemen)
+        b2 = Button(root, text="Missie wisselen", command=next_graph)
+        b.grid(row=4)
+        b1.grid(row=5)
+        b2.grid(row=6)
+
+        #Spelerstats displayen
+        Label(root, text="Treinkaarten (R;G;Z;W;B;G)", bg="grey", fg="white").grid(row=9, column=0)
+        Label(root, text="alle kaarten van de speler").grid(row=9, column=1, sticky="W")
+        Label(root, text="Pionnen", bg="grey", fg="white").grid(row=10, column=0)
+        Label(root, text="speler.pawns").grid(row=10, column = 1, sticky="W")
+        Label(root, text="Missie1", bg="grey", fg="white").grid(row=11, column=0)
+        Label(root, text="speler.missions1").grid(row=11, column=1, sticky="W")
+        Label(root, text="Missie2", bg="grey", fg="white").grid(row=12, column=0)
+        Label(root, text="speler.missions2").grid(row=12, column= 1, sticky="W")
+
+        #SCOREBORD
+        #tabel aanmaken
+
+        Label(root, text="Spelersnamen", bg="black", fg="white").grid(row=4, column=4)
+        Label(root, text="Voltooide missies", bg="black", fg="white").grid(row=4, column=5)
+        Label(root, text="Pionnen", bg="black", fg="white").grid(row=4, column=6)
+        Label(root, text="Toto africa").grid(row=5, column=4)
+        Label(root, text="Elmer").grid(row=6, column=4)
+        Label(root, text="Jan").grid(row=7, column=4)
+        Label(root, text="Dries").grid(row=8, column=4)
+
+
+
+        #als rest klaar is dan scorebord van goed naar slecht laten tonen (voorlopig: this will do)
+
+
+        mainloop(1)
+        #Hierin speler statistieken (pionnen, kaarten, etc) laten zien + besturingsknoppen
+        #Ook scorebord
 
 
 my_gui = GUI()
 
 
 while True:
-    my_gui.start()
+    my_gui.spelerstats()
 
 
 
