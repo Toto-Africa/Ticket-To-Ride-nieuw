@@ -245,19 +245,7 @@ class GUI:
         def next_graph():
             messagebox.showinfo("test")
 
-        def winwin():
-            master = Tk()
-            master.wm_title("Winner")
 
-            bg_image = PhotoImage(file="win.png", )
-
-            bg_label = Label(master, image=bg_image)
-
-            bg_label.pack()
-            Label(master, text="JIJ WINT! Feestje! Amai, tof seg! Hoho, leuk spelletje!", bg="black", fg="white",
-                  font=("Helvetica", 30)).pack()
-
-            mainloop(0)
 
         def route_innemen():
             popup = Tk()
@@ -294,12 +282,10 @@ class GUI:
         b = Button(root, text="Extra treinkaart", command=next_graph)
         b1 = Button(root, text="Route innemen", command=route_innemen)
         b2 = Button(root, text="Missie wisselen", command=next_graph)
-        b3 = Button(root, text="Valsspelen is ook spelen", command=winwin)
 
         b.grid(row=4)
         b1.grid(row=5)
         b2.grid(row=6)
-        b3.grid(row=7)
 
         #Spelerstats displayen
         Label(root, text="Treinkaarten (R;G;Z;W;B;G)", bg="grey", fg="white").grid(row=9, column=0)
