@@ -63,6 +63,7 @@ class Beurt:
 
     # Normale methodes
     def swap_mission(self, pl = Speler.Speler, mission_to_change = str()): # Correct????
+        pl.remove_one_pawn()
         new_mission = self.missioncards.dealMission()
         for i in range(0, 2):
             if pl.get_missions()[i] == mission_to_change:
@@ -70,6 +71,7 @@ class Beurt:
 
 
     def extra_traincard(self, pl = Speler.Speler):
+        pl.remove_one_pawn()
         color = self.deck.dealCard()                # dealCard: returnt 1 kaart? Correcte methode? Instantie maken eerst?
         pl.add_card_to_hand(color)                                        #NOTA VAN ELMER: Best object bv "Deck" aanmaken --> self.deck = TrainCards.TrainCards()
                                                 #Dit initialiseert Traincards met een stapel, daarna doe je self.deck.dealCard()" natuurlijk in de speler zijn hand
@@ -77,13 +79,14 @@ class Beurt:
 
     def conquer_route(self, route = Route.Route, player = Speler.Speler):
         # Is route al ingenomen?
+        player.remove_one_pawn()
         if route.get_occupiedBy() == 0:
             # Heeft speler genoeg treinkaarten?
             if player.get_traincards(route.get_color()) >= route.get_pathCost():
                 route.set_occupiedBy(player.get_id)
                 player.remove_card_from_hand(route.get_color(), route.get_pathCost())
 
-                end_of_Beurt()
+                end_of_beurt(player)
             else:
                 print("Niet genoeg treinkaarten")
                 # Moet nog naar messagebox?
@@ -101,12 +104,7 @@ class Beurt:
         # If (kaarten van Speler kloppen om route in te nemen en nrOfBoxes klopt)
             # Route.isTaken == true
 
-    def check_six_completed_routes(self, player = Speler.Speler):
-        if player.get_missionscomp == 6:
-            print("Spel voltooid")
-            # Toon eindscherm
-
-    def end_of_Beurt(self, pl = Speler.Speler):
+    def end_of_beurt(self, pl = Speler.Speler):
         # Controleer of missie voltooid werd
         # Ja, missie werd voltooid: aantal voltooide missies + 1
         # Zes verschillende missies voltooid? -> ja: Speler wint

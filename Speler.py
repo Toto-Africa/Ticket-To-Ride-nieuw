@@ -28,6 +28,9 @@ class Speler:
     def get_pawns(self):
         return self.__pawnnr
 
+    def remove_one_pawn(self):
+        self.__pawnnr -= 1
+
     def get_missions(self):
         return self.__missions
 
