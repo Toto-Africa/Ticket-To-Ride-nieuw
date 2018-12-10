@@ -1,5 +1,5 @@
-import TrainCards
-import MissionCards
+from klasses import TrainCards
+from klasses import MissionCards
 import time
 
 

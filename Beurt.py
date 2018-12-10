@@ -1,9 +1,9 @@
-import Speler
-import CPUSpeler
-import GUI
-import TrainCards
-import MissionCards
-import Route
+from klasses import Speler
+from klasses import CPUSpeler
+#from klasses import GUI
+from klasses import TrainCards
+from klasses import MissionCards
+from klasses import Route
 from random import randint
 from collections import defaultdict
 d = defaultdict(int)
@@ -83,7 +83,7 @@ class Beurt:
                 route.set_occupiedBy(player.get_id)
                 player.remove_card_from_hand(route.get_color(), route.get_pathCost())
                 player.remove_pawns(route.get_pathCost())
-                end_of_beurt(player)
+                self.end_of_beurt(player)
             else:
                 print("Niet genoeg treinkaarten")
                 # Moet nog naar messagebox?
@@ -112,8 +112,16 @@ class Beurt:
     # Neen, missie werd niet voltooid:
     # Zijn pionnen op? --> Ja: speler met meeste voltooide missies wint
     # Neen: volgende beurt
-    def end_of_beurt(self, pl = Speler.Speler):
+    def end_of_beurt(self, pl = Speler.Speler, mission = MissionCards.MissionCards):
         #if  Missie voltooid (Hoe implementeren???)
+        # Eerst itereren door eerste kolom ("Waar staat missie?")
+        # Dan itereren door elementen in tweede kolom ("Staat route erin?")
+        mission_accomp = False # boolean mission_accomp zegt of Speler missie voltooid heeft
+        for i in self.missioncards:
+            # Juiste rij zoeken in tabel met routes
+            # Daarna waardes in tweede kolom voor die rij itereren en controleren of juiste route erbij zit
+
+        if mission_accomp:
             #pl.set_missionscomp()
 
             if  pl.get_missionscomp() == 6:

@@ -2,9 +2,10 @@ from tkinter import messagebox
 
 import networkx as nx #soort van graph waar we het spelbord van kunnen maken
 
-import Route
-import Speler
-import os
+from klasses import Route
+from klasses import Speler
+#import os
+
 from tkinter import *
 
 
