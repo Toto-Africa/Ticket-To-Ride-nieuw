@@ -116,10 +116,12 @@ class Beurt:
         #if  Missie voltooid (Hoe implementeren???)
         # Eerst itereren door eerste kolom ("Waar staat missie?")
         # Dan itereren door elementen in tweede kolom ("Staat route erin?")
-        boolean = False
+        mission_accomp = False # boolean mission_accomp zegt of Speler missie voltooid heeft
         for i in self.missioncards:
+            # Juiste rij zoeken in tabel met routes
+            # Daarna waardes in tweede kolom voor die rij itereren en controleren of juiste route erbij zit
 
-
+        if mission_accomp:
             #pl.set_missionscomp()
 
             if  pl.get_missionscomp() == 6:
