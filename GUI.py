@@ -57,7 +57,7 @@ class GUI:
                 cpunamen.append(cpu3)
                 beurt = Beurt.Beurt(username, age, 'pink', cpunamen);
 
-                my_gui.spelerstats()
+                my_gui.spelerstats(beurt)
 
 
 
@@ -70,11 +70,11 @@ class GUI:
         master = Tk()
         master.wm_title("Start")
 
-        #bg_image = PhotoImage(file="maxresdefault.gif", )
-        #bg_image = bg_image.zoom(1)
-        #bg_image = bg_image.subsample(2)
-        #bg_label = Label(master, image=bg_image)
-        #bg_label.place(x=0, y=0, width=640, height=360)
+        bg_image = PhotoImage(file="maxresdefault.png", )
+        bg_image = bg_image.zoom(1)
+        bg_image = bg_image.subsample(1)
+        bg_label = Label(master, image=bg_image)
+        bg_label.place(x=0, y=0, width=380, height=160)
 
         Label(master, text="Speler naam - leeftijd").grid(row=0, column=4)
         Label(master, text="CPU1 naam").grid(row=1, column=4)
@@ -179,7 +179,7 @@ class GUI:
 
         mainloop(0)
 
-    def spelerstats(self): #hier gaan we het attribuut speler (en beurt????) zeker moeten megeven, eventueel ook de graph of list met spelers
+    def spelerstats(self, beurt): #hier gaan we het attribuut speler (en beurt????) zeker moeten megeven, eventueel ook de graph of list met spelers
 
         root = Tk()
 
