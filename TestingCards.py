@@ -8,12 +8,12 @@ class Test(object):
         player = Speler.Speler(1, "Elmer", "21", "Rood")
         deck = TrainCards.TrainCards()
         #missions = MissionCards.MissionCards()
-        for j in range(80):
+        for j in range(10):
             getrokkenKaart = deck.dealCard()
             player.add_card_to_hand(getrokkenKaart)
 
         print(player.hand)
-        player.remove_cards_from_hand("red", 20)
+        player.remove_cards_from_hand("red", 9)
         print(player.hand)
         #for i in range(80):
         #        time.sleep(0.1)
