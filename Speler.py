@@ -12,8 +12,8 @@ class Speler:
         self.__color = color  # deze opbjecten krijgt hij door van de GUI? ofwa?
         self.__pawnnr = 20
         self.__missionscomp = 0
-        self.__missioncard1 = ('init1','init2')
-        self.__missioncard2 = ('init1','init2')
+        self.__missioncard1 = ('init1', 'init2')
+        self.__missioncard2 = ('init1', 'init2')
 
         # Met collection.hand is beter denk ik: card=TrainCards.dealCard();self.hand[card] += 1; maar kdenk collection best nog initialiseren
         # Op die manier wordt elke kleur (dus "red" bv) als een aantal bijgehouden ipv een lijst
@@ -66,7 +66,7 @@ class Speler:
 
     def set_missions(self, missioncard1, missioncard2):
         self.__missioncard1 = missioncard1
-        self.missioncard2 = missioncard2
+        self.__missioncard2 = missioncard2
 
 
     def add_card_to_hand(self, color):
