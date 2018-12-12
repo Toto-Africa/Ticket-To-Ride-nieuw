@@ -48,7 +48,8 @@ class Beurt:
             d["cpu" + str(i+2)] = CPUSpeler.CPUSpeler(i+2, cpu_names[i], randint(10, 99), OVERIGE_KLEUREN) # Eerste deel werkt                                                                                               # #Willekeurige leeftijd tussen 10 en 99
 
         # 4 treinkaarten nemen om te starten (CPU)
-        for k in range(len(d)):
+        #for k in range(len(d)):
+        for k, v in d:
             for j in range(0, 3):
                 # Treinkaarten toekennen aan CPU's
                 traincard = self.deck.dealCard()
