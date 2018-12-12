@@ -303,15 +303,24 @@ class GUI:
         b1.grid(row=5)
         b2.grid(row=6)
 
+        missie1 = beurt.return_player(1).get_missions()[0]
+        missie2= beurt.return_player(1).get_missions()[1]
+
         #Spelerstats displayen
-        Label(root, text="Treinkaarten (R;G;Z;W;B;G)", bg="grey", fg="white").grid(row=9, column=0)
-        Label(root, text="alle kaarten van de speler").grid(row=9, column=1, sticky="W")
-        Label(root, text="Pionnen", bg="grey", fg="white").grid(row=10, column=0)
-        Label(root, text="speler.pawns").grid(row=10, column = 1, sticky="W")
-        Label(root, text="Missie1", bg="grey", fg="white").grid(row=11, column=0)
-        Label(root, text="speler.missions1").grid(row=11, column=1, sticky="W")
-        Label(root, text="Missie2", bg="grey", fg="white").grid(row=12, column=0)
-        Label(root, text="speler.missions2").grid(row=12, column= 1, sticky="W")
+        Label(root, text="Treinkaarten Rood", bg="grey", fg="white").grid(row=9, column=0)
+        Label(root, text="Treinkaarten Groen", bg="grey", fg="white").grid(row=10, column=0)
+        Label(root, text="Treinkaarten Blauw", bg="grey", fg="white").grid(row=11, column=0)
+        Label(root, text="Treinkaarten Wild", bg="grey", fg="white").grid(row=12, column=0)
+        Label(root, text=beurt.return_player(1).get_traincards('red')).grid(row=9, column=1, sticky="W")
+        Label(root, text=beurt.return_player(1).get_traincards('green')).grid(row=10, column=1, sticky="W")
+        Label(root, text=beurt.return_player(1).get_traincards('blue')).grid(row=11, column=1, sticky="W")
+        Label(root, text=beurt.return_player(1).get_traincards('wild')).grid(row=12, column=1, sticky="W")
+        Label(root, text="Pionnen", bg="grey", fg="white").grid(row=13, column=0)
+        Label(root, text=beurt.return_player(1).get_pawns()).grid(row=13, column = 1, sticky="W")
+        Label(root, text="Missie1", bg="grey", fg="white").grid(row=14, column=0)
+        Label(root, text=missie1).grid(row=14, column=1, sticky="W")
+        Label(root, text="Missie2", bg="grey", fg="white").grid(row=15, column=0)
+        Label(root, text=missie2).grid(row=15, column= 1, sticky="W")
 
         #SCOREBORD
         #tabel aanmaken
