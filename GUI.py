@@ -41,12 +41,12 @@ class GUI:
                     else:
                         cpu1 = e2.get()
 
-                    if len(e4.get()) == 0:
+                    if len(e3.get()) == 0:
                         cpu2 = "Staf"
                     else:
                         cpu2 = e3.get()
 
-                    if len(e3.get()) == 0:
+                    if len(e4.get()) == 0:
                         cpu3 = "Marc"
                     else:
                         cpu3 = e4.get()
@@ -200,6 +200,17 @@ class GUI:
         # Quit when the window is done !!!!WERKT NOG ALTIJD NIET GOED!!!
         root.wm_protocol('WM_DELETE_WINDOW', root.quit)
 
+        def updatedash():
+            Label(root, text=beurt.return_player(1).get_traincards('red')).grid(row=9, column=1, sticky="W")
+            Label(root, text=beurt.return_player(1).get_traincards('green')).grid(row=10, column=1, sticky="W")
+            Label(root, text=beurt.return_player(1).get_traincards('blue')).grid(row=11, column=1, sticky="W")
+            Label(root, text=beurt.return_player(1).get_traincards('wild')).grid(row=12, column=1, sticky="W")
+
+            Label(root, text=beurt.return_player(1).get_pawns()).grid(row=13, column=1, sticky="W")
+
+            Label(root, text=beurt.return_player(1).get_mission(1)[0]).grid(row=14, column=1, sticky="W")
+            Label(root, text=beurt.return_player(1).get_mission(2)[0]).grid(row=15, column=1, sticky="W")
+
         f = plt.figure(figsize=(5, 4))
         a = f.add_subplot(111)
         plt.axis('off')
@@ -261,7 +272,10 @@ class GUI:
         def next_graph():
             messagebox.showinfo("test")
 
+        def extra_tc():
 
+            beurt.extra_traincard(beurt.return_player(1))
+            updatedash()
 
         def route_innemen():
             popup = Tk()
@@ -290,12 +304,11 @@ class GUI:
             b.grid(row=2, column =0)
             b2.grid(row=2, column=1)
 
-
             mainloop(1)
 
         #Control Buttons
         #Methodes uit beurt vasthangen aan deze routes
-        b = Button(root, text="Extra treinkaart", command=next_graph)
+        b = Button(root, text="Extra treinkaart", command=extra_tc)
         b1 = Button(root, text="Route innemen", command=route_innemen)
         b2 = Button(root, text="Missie wisselen", command=next_graph)
 
@@ -309,16 +322,12 @@ class GUI:
         Label(root, text="Treinkaarten Groen", bg="grey", fg="white").grid(row=10, column=0)
         Label(root, text="Treinkaarten Blauw", bg="grey", fg="white").grid(row=11, column=0)
         Label(root, text="Treinkaarten Wild", bg="grey", fg="white").grid(row=12, column=0)
-        Label(root, text=beurt.return_player(1).get_traincards('red')).grid(row=9, column=1, sticky="W")
-        Label(root, text=beurt.return_player(1).get_traincards('green')).grid(row=10, column=1, sticky="W")
-        Label(root, text=beurt.return_player(1).get_traincards('blue')).grid(row=11, column=1, sticky="W")
-        Label(root, text=beurt.return_player(1).get_traincards('wild')).grid(row=12, column=1, sticky="W")
         Label(root, text="Pionnen", bg="grey", fg="white").grid(row=13, column=0)
-        Label(root, text=beurt.return_player(1).get_pawns()).grid(row=13, column = 1, sticky="W")
+
         Label(root, text="Missie1", bg="grey", fg="white").grid(row=14, column=0)
-        Label(root, text=beurt.return_player(1).get_mission(1)[0]).grid(row=14, column=1, sticky="W")
+
         Label(root, text="Missie2", bg="grey", fg="white").grid(row=15, column=0)
-        Label(root, text=beurt.return_player(1).get_mission(2)[0]).grid(row=15, column= 1, sticky="W")
+
 
         #SCOREBORD
         #tabel aanmaken
@@ -332,6 +341,8 @@ class GUI:
         Label(root, text=beurt.return_player(4).get_name()).grid(row=8, column=4)
 
         #als rest klaar is dan scorebord van goed naar slecht laten tonen (voorlopig: this will do)
+
+        updatedash()
 
         mainloop(1)
         #Hierin speler statistieken (pionnen, kaarten, etc) laten zien + besturingsknoppen
