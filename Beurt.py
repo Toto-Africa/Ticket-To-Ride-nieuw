@@ -119,11 +119,11 @@ class Beurt:
 
      #   mission_accomp = False # boolean mission_accomp zegt of Speler missie voltooid heeft
       #  pl_mission1 = pl.get_missions()[0]
-        pl_mission2 = pl.get_missions()[1]
+        #pl_mission2 = pl.get_missions()[1]
        # for i in self.missioncards:
             # Juiste rij zoeken in tabel met routes
-            tabel_missions = tabel[i][0]
-            tabel_missions.split(",")
+          #  tabel_missions = tabel[i][0]
+           # tabel_missions.split(",")
         #    if tabel[i][0] == pl_mission1
             # Daarna waardes in tweede kolom voor die rij itereren en controleren of juiste route erbij zit
 
