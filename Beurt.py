@@ -42,9 +42,12 @@ class Beurt:
         cpu_colors = ['blue', 'green', 'yellow']
         # CPU-spelers aanmaken: 3 CPU-spelers (2, 3, 4)                                                                                             # #Willekeurige leeftijd tussen 10 en 99
 
-        global cpu_x = CPUSpeler.CPUSpeler(2, cpu_names[0], 'blue')
-        global cpu_y = CPUSpeler.CPUSpeler(3, cpu_names[1], 'green')
-        global cpu_z = CPUSpeler.CPUSpeler(4, cpu_names[2], 'yellow')
+        global cpu_x
+        global cpu_y
+        global cpu_z
+        cpu_x = CPUSpeler.CPUSpeler(2, cpu_names[0], 'blue')
+        cpu_y = CPUSpeler.CPUSpeler(3, cpu_names[1], 'green')
+        cpu_z = CPUSpeler.CPUSpeler(4, cpu_names[2], 'yellow')
 
         # 4 treinkaarten nemen om te starten (CPU)
         for j in range(0, 3):
