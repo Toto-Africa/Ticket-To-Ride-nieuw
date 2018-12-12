@@ -303,8 +303,6 @@ class GUI:
         b1.grid(row=5)
         b2.grid(row=6)
 
-        missie1 = beurt.return_player(1).get_missions()[0]
-        missie2= beurt.return_player(1).get_missions()[1]
 
         #Spelerstats displayen
         Label(root, text="Treinkaarten Rood", bg="grey", fg="white").grid(row=9, column=0)
@@ -318,9 +316,9 @@ class GUI:
         Label(root, text="Pionnen", bg="grey", fg="white").grid(row=13, column=0)
         Label(root, text=beurt.return_player(1).get_pawns()).grid(row=13, column = 1, sticky="W")
         Label(root, text="Missie1", bg="grey", fg="white").grid(row=14, column=0)
-        Label(root, text=missie1).grid(row=14, column=1, sticky="W")
+        Label(root, text=beurt.return_player(1).get_mission(1)[0]).grid(row=14, column=1, sticky="W")
         Label(root, text="Missie2", bg="grey", fg="white").grid(row=15, column=0)
-        Label(root, text=missie2).grid(row=15, column= 1, sticky="W")
+        Label(root, text=beurt.return_player(1).get_mission(2)[0]).grid(row=15, column= 1, sticky="W")
 
         #SCOREBORD
         #tabel aanmaken
