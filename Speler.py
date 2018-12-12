@@ -26,6 +26,9 @@ class Speler:
 
     # onderstaande is vrij overbodig denk ik
 
+    def get_name(self):
+        return self.__name
+
     def get_pawns(self):
         return self.__pawnnr
 
