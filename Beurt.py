@@ -38,7 +38,6 @@ class Beurt:
         missioncard1 = self.missioncards.dealMission()
         missioncard2 = self.missioncards.dealMission()
         player.set_currmissions(tuple([missioncard1, missioncard2]))
-<
 
         cpu_colors = ['blue', 'green', 'yellow']
         # CPU-spelers aanmaken: 3 CPU-spelers (2, 3, 4)                                                                                             # #Willekeurige leeftijd tussen 10 en 99
