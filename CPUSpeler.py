@@ -30,25 +30,26 @@ class CPUSpeler(Speler.Speler):
     def getname(self):
         return self.get_name()
 
-    def remove_cards_from_hand(self, color, amount):
-        aantalMetWilds = self.hand[color]+self.hand["wild"]
-        aantalPionnen = self.get_pawns()
-        bewerkingCode = 0 # 0 = geldig, 1 = ongeldig. Te weinig resources, 2 = spel afgelopen
-        if(aantalMetWilds < amount or aantalPionnen < amount):
-            bewerkingCode = 1
-        else:
-            if(self.hand[color]<amount):
-                rest = amount - self.hand[color]
-                self.hand[color] = 0
-                self.hand["wild"] = self.hand["wild"] - rest
-                self.remove_pawns(amount)
-                if self.get_pawns() == 0:
-                    bewerkingCode = 2
-                    #messagebox.showwarning("Spel afgelopen", "Speler: " + self.__name + " heeft geen pionnen meer over!")
-            else:
-                self.hand[color] = self.hand[color] - amount
-                self.remove_pawns(amount)
-                if self.get_pawns() == 0:
-                    bewerkingCode = 2
-                    #messagebox.showwarning("Spel afgelopen", "Speler: " + self.__name + " heeft geen pionnen meer over!")
-        return bewerkingCode
+    # logica blijft hetzelfde in CPUSpeler en Speler
+    #def remove_cards_from_hand(self, color, amount):
+    #    aantalMetWilds = self.hand[color]+self.hand["wild"]
+    #    aantalPionnen = self.get_pawns()
+    #    bewerkingCode = 0 # 0 = geldig, 1 = ongeldig. Te weinig resources, 2 = spel afgelopen
+    #    if(aantalMetWilds < amount or aantalPionnen < amount):
+    #        bewerkingCode = 1
+    #    else:
+    #        if(self.hand[color]<amount):
+    #            rest = amount - self.hand[color]
+    #            self.hand[color] = 0
+    #            self.hand["wild"] = self.hand["wild"] - rest
+    #            self.remove_pawns(amount)
+    #            if self.get_pawns() == 0:
+    #                bewerkingCode = 2
+    #                #messagebox.showwarning("Spel afgelopen", "Speler: " + self.__name + " heeft geen pionnen meer over!")
+    #        else:
+    #            self.hand[color] = self.hand[color] - amount
+    #            self.remove_pawns(amount)
+    #            if self.get_pawns() == 0:
+    #                bewerkingCode = 2
+    #                #messagebox.showwarning("Spel afgelopen", "Speler: " + self.__name + " heeft geen pionnen meer over!")
+    #    return bewerkingCode
