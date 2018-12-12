@@ -39,7 +39,7 @@ class Beurt:
         # Missiekaarten menselijke speler
         missioncard1 = self.missioncards.dealMission()
         missioncard2 = self.missioncards.dealMission()
-        player.set_currmissions(tuple([missioncard1, missioncard2]))
+        player.set_missions(missioncard1, missioncard2)
 
         cpu_colors = ['blue', 'green', 'yellow']
         # CPU-spelers aanmaken: 3 CPU-spelers (2, 3, 4)                                                                                             # #Willekeurige leeftijd tussen 10 en 99
@@ -72,15 +72,15 @@ class Beurt:
         # Missiekaarten toekennen aan CPU's (terug buitenste for-loop om over CPU's te stappen)
         missioncard1 = self.missioncards.dealMission()
         missioncard2 = self.missioncards.dealMission()
-        cpu_x.set_currmissions = tuple([missioncard1, missioncard2])
+        cpu_x.set_missions(missioncard1, missioncard2)
 
         missioncard1 = self.missioncards.dealMission()
         missioncard2 = self.missioncards.dealMission()
-        cpu_y.set_currmissions = tuple([missioncard1, missioncard2])
+        cpu_y.set_missions(missioncard1, missioncard2)
 
         missioncard1 = self.missioncards.dealMission()
         missioncard2 = self.missioncards.dealMission()
-        cpu_z.set_currmissions = tuple([missioncard1, missioncard2])
+        cpu_z.set_missions(missioncard1, missioncard2)
 
 
     # Normale methodes

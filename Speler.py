@@ -12,7 +12,8 @@ class Speler:
         self.__color = color  # deze opbjecten krijgt hij door van de GUI? ofwa?
         self.__pawnnr = 20
         self.__missionscomp = 0
-        self.__missions = tuple(["string1", "string2"])  # Zelfde als ("string1", "string2")
+        self.__missioncard1
+        self.__missioncard2
 
         # Met collection.hand is beter denk ik: card=TrainCards.dealCard();self.hand[card] += 1; maar kdenk collection best nog initialiseren
         # Op die manier wordt elke kleur (dus "red" bv) als een aantal bijgehouden ipv een lijst
@@ -23,8 +24,6 @@ class Speler:
         # Je geeft dan id, name, age, color mee in het startscherm (GUI)  'id genereer je automatisch bij het startscherm of hier?, de rest komt uit het startscherm'
 
         # pawnnr, missionscomplete, traincards en missioncards worden dan gegenereerd? (controleren of dit wel de juiste instanties zijn?)
-
-    # onderstaande is vrij overbodig denk ik
 
     def get_name(self):
         return self.name
@@ -62,8 +61,10 @@ class Speler:
     def set_missionscomp(self):
         self.__missionscomp += 1
 
-    def set_currmissions(self, currmissions):
-        self.__currmissions = currmissions
+    def set_missions(self, missioncard1, missioncard2):
+        self.__missioncard1 = missioncard1
+        self.missioncard2 = missioncard2
+
 
     def add_card_to_hand(self, color):
         self.hand[color] = self.hand[color] + 1
