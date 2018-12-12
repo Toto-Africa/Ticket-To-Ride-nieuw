@@ -1,9 +1,9 @@
 from tkinter import messagebox
 
 import networkx as nx #soort van graph waar we het spelbord van kunnen maken
-
-from klasses import Route
-from klasses import Speler
+import Beurt
+import Route
+import Speler
 #import os
 
 from tkinter import *
@@ -51,6 +51,15 @@ class GUI:
                     else:
                         cpu3 = e4.get()
 
+                cpunamen = []
+                cpunamen.append(cpu1)
+                cpunamen.append(cpu2)
+                cpunamen.append(cpu3)
+                beurt = Beurt.Beurt(username, age, 'pink', cpunamen);
+
+                my_gui.spelerstats()
+
+
 
                     # doorgeven en ga naar beurt dan? hoe doe ik da juist? :D variables zijn dan: (username, age, cpu1-3)
                     # kleuren moeten hier ook nog bij
@@ -61,11 +70,11 @@ class GUI:
         master = Tk()
         master.wm_title("Start")
 
-        bg_image = PhotoImage(file="maxresdefault.gif", )
-        bg_image = bg_image.zoom(1)
-        bg_image = bg_image.subsample(2)
-        bg_label = Label(master, image=bg_image)
-        bg_label.place(x=0, y=0, width=640, height=360)
+        #bg_image = PhotoImage(file="maxresdefault.gif", )
+        #bg_image = bg_image.zoom(1)
+        #bg_image = bg_image.subsample(2)
+        #bg_label = Label(master, image=bg_image)
+        #bg_label.place(x=0, y=0, width=640, height=360)
 
         Label(master, text="Speler naam - leeftijd").grid(row=0, column=4)
         Label(master, text="CPU1 naam").grid(row=1, column=4)
@@ -96,7 +105,7 @@ class GUI:
         b1.grid(row=4, column=5)
         b2.grid(row=4, column=6)
 
-        mainloop(1)
+        mainloop(0)
 
     def initbord(self):
 
@@ -246,19 +255,7 @@ class GUI:
         def next_graph():
             messagebox.showinfo("test")
 
-        def winwin():
-            master = Tk()
-            master.wm_title("Winner")
 
-            bg_image = PhotoImage(file="win.png", )
-
-            bg_label = Label(master, image=bg_image)
-
-            bg_label.pack()
-            Label(master, text="JIJ WINT! Feestje! Amai, tof seg! Hoho, leuk spelletje!", bg="black", fg="white",
-                  font=("Helvetica", 30)).pack()
-
-            mainloop(0)
 
         def route_innemen():
             popup = Tk()
@@ -295,12 +292,10 @@ class GUI:
         b = Button(root, text="Extra treinkaart", command=next_graph)
         b1 = Button(root, text="Route innemen", command=route_innemen)
         b2 = Button(root, text="Missie wisselen", command=next_graph)
-        b3 = Button(root, text="Valsspelen is ook spelen", command=winwin)
 
         b.grid(row=4)
         b1.grid(row=5)
         b2.grid(row=6)
-        b3.grid(row=7)
 
         #Spelerstats displayen
         Label(root, text="Treinkaarten (R;G;Z;W;B;G)", bg="grey", fg="white").grid(row=9, column=0)
@@ -332,6 +327,6 @@ class GUI:
 
 my_gui = GUI()
 while True:
-    my_gui.spelerstats()
+    my_gui.start()
 
 
