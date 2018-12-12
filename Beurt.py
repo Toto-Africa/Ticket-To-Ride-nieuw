@@ -46,7 +46,7 @@ class Beurt:
         for i in range(0, 3):
             # cpu2, cpu3 en cpu4: werkt dit? (Getal achter "cpu" is ID)
             # namen cpu's zitten in array: itereren over array?
-            d["cpu" + str(i+2)] = CPUSpeler.CPUSpeler(i+2, cpu_names[i], randint(10, 99), cpu_colors[i]) # Eerste deel werkt                                                                                               # #Willekeurige leeftijd tussen 10 en 99
+            d["cpu" + str(i+2)] = CPUSpeler.CPUSpeler(i+2, cpu_names[i], cpu_colors[i]) # Eerste deel werkt                                                                                               # #Willekeurige leeftijd tussen 10 en 99
 
         # 4 treinkaarten nemen om te starten (CPU)
         #for k in range(len(d)):
