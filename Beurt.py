@@ -112,31 +112,37 @@ class Beurt:
     # Neen, missie werd niet voltooid:
     # Zijn pionnen op? --> Ja: speler met meeste voltooide missies wint
     # Neen: volgende beurt
-    def end_of_beurt(self, pl = Speler.Speler, mission = MissionCards.MissionCards):
+    #def end_of_beurt(self, pl = Speler.Speler, tabel = list):
         #if  Missie voltooid (Hoe implementeren???)
         # Eerst itereren door eerste kolom ("Waar staat missie?")
         # Dan itereren door elementen in tweede kolom ("Staat route erin?")
-        mission_accomp = False # boolean mission_accomp zegt of Speler missie voltooid heeft
-        for i in self.missioncards:
+
+     #   mission_accomp = False # boolean mission_accomp zegt of Speler missie voltooid heeft
+      #  pl_mission1 = pl.get_missions()[0]
+        pl_mission2 = pl.get_missions()[1]
+       # for i in self.missioncards:
             # Juiste rij zoeken in tabel met routes
+            tabel_missions = tabel[i][0]
+            tabel_missions.split(",")
+        #    if tabel[i][0] == pl_mission1
             # Daarna waardes in tweede kolom voor die rij itereren en controleren of juiste route erbij zit
 
-        if mission_accomp:
+        #if mission_accomp:
             #pl.set_missionscomp()
 
-            if  pl.get_missionscomp() == 6:
+         #   if  pl.get_missionscomp() == 6:
                 # Spel is uit, pl wint -> naar overwinningsscherm
-            else:
-                if pl.get_pawns == 0:
+          #  else:
+           #     if pl.get_pawns == 0:
                     # Speler met meeste aantal voltooide missies wint
-                else:
+             #   else:
                     # Nieuwe missiekaart
 
         # Missie werd niet voltooid
-        else:
-            if pl.get_pawns == 0:
+        # else:
+          #  if pl.get_pawns == 0:
                 # Speler met meeste aantal voltooide missies wint
-            else:
+           # else:
                 # Volgende beurt -> Wel "else" statement nodig?
 
 
