@@ -50,6 +50,7 @@ class Beurt:
         global cpu_z
         cpu_z = CPUSpeler.CPUSpeler(4, cpu_names[2], 'yellow')
 
+
         # 4 treinkaarten nemen om te starten (CPU)
         for j in range(0, 3):
             # Treinkaarten toekennen aan CPU's

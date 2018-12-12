@@ -10,8 +10,8 @@ class CPUSpeler(Speler.Speler):
     # Age niet meegeven als argument in constructor CPU-Speler
     def __init__(self, id, name, color):  # Niet zeker van inheritance
         age = randint(10, 99)
-        Speler.Speler(id, name, age, color)
-        #super(CPUSpeler, self).__init__(self, id, name, age, color)  # Correcte manier van inheritance in Python 2.7?
+        #Speler.Speler(id, name, age, color)
+        super(CPUSpeler, self).__init__(self, id, name, age, color)  # Correcte manier van inheritance in Python 2.7?
         self.hand = collections.Counter(red=0, blue=0, green=0)  # Opvragen met hand['red']
 
     # Heeft deze ook methodes add_card_to_hand en remove_card_from_hand van Speler???
@@ -24,3 +24,7 @@ class CPUSpeler(Speler.Speler):
 
     def is_cpu(self):
         return True
+
+    def get_name(self):
+        return super(Speler, self).get_name()
+
