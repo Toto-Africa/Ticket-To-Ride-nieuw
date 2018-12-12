@@ -42,11 +42,12 @@ class Beurt:
         d = {} # Dictionary
 
         cpu_colors = ['blue', 'green', 'yellow']
-        # CPU-spelers aanmaken: 3 CPU-spelers (2, 3, 4)
-        for i in range(0, 3):
-            # cpu2, cpu3 en cpu4: werkt dit? (Getal achter "cpu" is ID)
-            # namen cpu's zitten in array: itereren over array?
-            d["cpu" + str(i+2)] = CPUSpeler.CPUSpeler(i+2, cpu_names[i], cpu_colors[i]) # Eerste deel werkt                                                                                               # #Willekeurige leeftijd tussen 10 en 99
+        # CPU-spelers aanmaken: 3 CPU-spelers (2, 3, 4)                                                                                             # #Willekeurige leeftijd tussen 10 en 99
+
+        cpu_x = CPUSpeler.CPUSpeler(2, cpu_names[0], 'blue')
+        cpu_y = CPUSpeler.CPUSpeler(3, cpu_names[1], 'green')
+        cpy_z = CPUSpeler.CPUSpeler(4, cpu_names[2], 'yellow')
+
 
         # 4 treinkaarten nemen om te starten (CPU)
         #for k in range(len(d)):
