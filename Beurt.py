@@ -1,9 +1,9 @@
-from klasses import Speler
-from klasses import CPUSpeler
+import Speler
+import CPUSpeler
 #from klasses import GUI
-from klasses import TrainCards
-from klasses import MissionCards
-from klasses import Route
+import TrainCards
+import MissionCards
+import Route
 from random import randint
 from collections import defaultdict
 d = defaultdict(int)
@@ -85,8 +85,7 @@ class Beurt:
                 player.remove_pawns(route.get_pathCost())
                 self.end_of_beurt(player)
             else:
-                print("Niet genoeg treinkaarten")
-                # Moet nog naar messagebox?
+                print("Niet genoeg treinkaarten")                # Moet nog naar messagebox?
 
         else:
             print("Deze route is reeds ingenomen")
