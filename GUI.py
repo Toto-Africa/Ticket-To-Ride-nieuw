@@ -59,6 +59,7 @@ class GUI:
 
                     print(beurt.return_player(1).get_name())
 
+                    master.destroy()
                     my_gui.spelerstats()
 
                 else:
