@@ -6,6 +6,7 @@ import MissionCards
 import Route
 from random import randint
 from collections import defaultdict
+from tkinter import messagebox
 d = defaultdict(int)
 
 # Iedere keer nieuwe instantie van Beurt? Of altijd de gegevens verversen?
@@ -112,13 +113,22 @@ class Beurt:
         # Is route al ingenomen?
         if route.get_occupiedBy() == 0:
             # Heeft speler genoeg treinkaarten?
-            if player.get_traincards(route.get_color()) >= route.get_pathCost() or player.get_traincards(route.get_color() + player.get_traincards(route.get_color('wild')) >= route.get_pathCost()):
-                route.set_occupiedBy(player.get_id)
-                player.remove_card_from_hand(route.get_color(), route.get_pathCost())
-                player.remove_pawns(route.get_pathCost())
-                self.end_of_beurt(player)
+            aantalMetWilds = player.get_traincards(route.get_color()) + player.get_traincards("wild")
+
+            if(aantalMetWilds < route.get_pathCost() or player.get_pawns() < route.get_pathCost()):
+                messagebox.showwarning("Waarschuwing","Onvoldoende treinkaarten \n\n of \n\npionnen")
+
             else:
-                print("Niet genoeg treinkaarten")                # Moet nog naar messagebox?
+                route.set_occupiedBy(player.get_id())
+                player.remove_cards_from_hand(route.get_color(),route.get_pathCost())
+                player.remove_pawns(route.get_pathCost())
+                if(player.get_pawns() == 0):
+                    messagebox.showwarning("Waarschuwing",
+                                           "Speler " + player.get_name() + " heeft geen pionnen meer over!")
+                    #EINDIGEN SPEL
+                else:
+                    self.end_of_beurt(player)
+
 
         else:
             print("Deze route is reeds ingenomen")

@@ -57,10 +57,10 @@ class GUI:
                     cpunamen.append(cpu3)
                     beurt = Beurt.Beurt(username, age, 'pink', cpunamen);
 
-                    print(beurt.return_player(1).get_name())
+                    print(beurt.return_player(2).get_name())
 
                     master.destroy()
-                    my_gui.spelerstats()
+                    my_gui.spelerstats(beurt)
 
                 else:
                     messagebox.showwarning("Fout", "Gelieve al de nodige gegevens in te vullen ")
@@ -185,7 +185,7 @@ class GUI:
 
         mainloop(0)
 
-    def spelerstats(self): #hier gaan we het attribuut speler (en beurt????) zeker moeten megeven, eventueel ook de graph of list met spelers
+    def spelerstats(self, beurt): #hier gaan we het attribuut speler (en beurt????) zeker moeten megeven, eventueel ook de graph of list met spelers
 
         root = Tk()
 
@@ -319,10 +319,10 @@ class GUI:
         Label(root, text="Spelersnamen", bg="black", fg="white").grid(row=4, column=4)
         Label(root, text="Voltooide missies", bg="black", fg="white").grid(row=4, column=5)
         Label(root, text="Pionnen", bg="black", fg="white").grid(row=4, column=6)
-        Label(root, text="Toto africa").grid(row=5, column=4)
-        Label(root, text="Elmer").grid(row=6, column=4)
-        Label(root, text="Jan").grid(row=7, column=4)
-        Label(root, text="Dries").grid(row=8, column=4)
+        Label(root, text=beurt.return_player(1).get_name()).grid(row=5, column=4)
+        Label(root, text=beurt.return_player(2).get_name()).grid(row=6, column=4)
+        Label(root, text=beurt.return_player(3).get_name()).grid(row=7, column=4)
+        Label(root, text=beurt.return_player(4).get_name()).grid(row=8, column=4)
 
         #als rest klaar is dan scorebord van goed naar slecht laten tonen (voorlopig: this will do)
 
