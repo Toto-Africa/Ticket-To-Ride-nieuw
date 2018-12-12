@@ -97,10 +97,10 @@ class Beurt:
 
 
     def swap_mission(self, pl = Speler.Speler, mission_to_change = str()): # Correct????
-        new_mission = self.missioncards.dealMission()
-        for i in range(0, 2):
-            if pl.get_missions()[i] == mission_to_change:
-                pl.get_missions[i] = new_mission
+        new_mission1 = self.missioncards.dealMission()
+        new_mission2 = self.missioncards.dealMission()
+        pl.set_missions(new_mission1, new_mission2)
+
 
 
     def extra_traincard(self, pl = Speler.Speler):
