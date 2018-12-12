@@ -25,6 +25,9 @@ class CPUSpeler(Speler.Speler):
     def is_cpu(self):
         return True
 
+    def get_name(self):
+        return super(Speler,self).get_name()
+
     def remove_cards_from_hand(self, color, amount):
         aantalMetWilds = self.hand[color]+self.hand["wild"]
         aantalPionnen = self.get_pawns()
