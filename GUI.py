@@ -30,7 +30,7 @@ class GUI:
             # hier dan overgaan naar beurt?
             # hoe doe ik da praktisch? :D
 
-            if e1.index("end") != 0:
+            if len(e1.get()) != 0:
                 if agevar.get() != 0:
                     # controleren dat belangrijkste textvakken niet leeg zijn
                     username = e1.get()
@@ -51,15 +51,21 @@ class GUI:
                     else:
                         cpu3 = e4.get()
 
-                cpunamen = []
-                cpunamen.append(cpu1)
-                cpunamen.append(cpu2)
-                cpunamen.append(cpu3)
-                beurt = Beurt.Beurt(username, age, 'pink', cpunamen);
+                    cpunamen = []
+                    cpunamen.append(cpu1)
+                    cpunamen.append(cpu2)
+                    cpunamen.append(cpu3)
+                    beurt = Beurt.Beurt(username, age, 'pink', cpunamen);
 
-                my_gui.spelerstats(beurt)
+                    print(beurt.return_player(1).get_name())
 
+                    master.destroy()
+                    my_gui.spelerstats()
 
+                else:
+                    messagebox.showwarning("Fout", "Gelieve al de nodige gegevens in te vullen ")
+            else:
+                messagebox.showwarning("Fout", "Gelieve al de nodige gegevens in te vullen  ")
 
                     # doorgeven en ga naar beurt dan? hoe doe ik da juist? :D variables zijn dan: (username, age, cpu1-3)
                     # kleuren moeten hier ook nog bij
@@ -74,9 +80,9 @@ class GUI:
         bg_image = bg_image.zoom(1)
         bg_image = bg_image.subsample(1)
         bg_label = Label(master, image=bg_image)
-        bg_label.place(x=0, y=0, width=380, height=160)
+        bg_label.place(x=0, y=0, width=480, height=160)
 
-        Label(master, text="Speler naam - leeftijd").grid(row=0, column=4)
+        Label(master, text="Speler naam * - leeftijd * ").grid(row=0, column=4)
         Label(master, text="CPU1 naam").grid(row=1, column=4)
         Label(master, text="CPU2 naam").grid(row=2, column=4)
         Label(master, text="CPU3 naam").grid(row=3, column=4)
@@ -179,7 +185,7 @@ class GUI:
 
         mainloop(0)
 
-    def spelerstats(self, beurt): #hier gaan we het attribuut speler (en beurt????) zeker moeten megeven, eventueel ook de graph of list met spelers
+    def spelerstats(self): #hier gaan we het attribuut speler (en beurt????) zeker moeten megeven, eventueel ook de graph of list met spelers
 
         root = Tk()
 
@@ -328,5 +334,5 @@ class GUI:
 my_gui = GUI()
 while True:
     my_gui.start()
-
+    #my_gui.spelerstats()
 

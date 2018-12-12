@@ -24,6 +24,7 @@ class Beurt:
 
         # Menselijke speler aanmaken: heeft id = 1
         # Treinkaarten en missiekaarten op begin van spel: constructor Speler
+        global player
         player = Speler.Speler(1, name, age, color) # Menselijke speler altijd ID = 0 geven # Of Speler.Speler.__init__(...)
 
         self.deck = TrainCards.TrainCards() # Deck treinkaarten
@@ -39,32 +40,60 @@ class Beurt:
         missioncard2 = self.missioncards.dealMission()
         player.set_currmissions(tuple([missioncard1, missioncard2]))
 
-        d = {} # Dictionary
-
         cpu_colors = ['blue', 'green', 'yellow']
         # CPU-spelers aanmaken: 3 CPU-spelers (2, 3, 4)                                                                                             # #Willekeurige leeftijd tussen 10 en 99
 
+        global cpu_x
         cpu_x = CPUSpeler.CPUSpeler(2, cpu_names[0], 'blue')
+        global cpu_y
         cpu_y = CPUSpeler.CPUSpeler(3, cpu_names[1], 'green')
-        cpy_z = CPUSpeler.CPUSpeler(4, cpu_names[2], 'yellow')
-
+        global cpu_z
+        cpu_z = CPUSpeler.CPUSpeler(4, cpu_names[2], 'yellow')
 
         # 4 treinkaarten nemen om te starten (CPU)
-        #for k in range(len(d)):
-        for k, v in d:
-            for j in range(0, 3):
-                # Treinkaarten toekennen aan CPU's
-                traincard = self.deck.dealCard()
-                #traincards_array.append(traincard)  # # Indien methode "TrainCards.dealcard" kaartenteller van Speler verhoogt, dan is dit niet nodig
-                k.add_card_to_hand(traincard) # Werkt hopelijk
+        for j in range(0, 3):
+            # Treinkaarten toekennen aan CPU's
+            traincard = self.deck.dealCard()                #traincards_array.append(traincard)  # # Indien methode "TrainCards.dealcard" kaartenteller van Speler verhoogt, dan is dit niet nodig
+            cpu_x.add_card_to_hand(traincard) # Werkt hopelijk
 
-            # Missiekaarten toekennen aan CPU's (terug buitenste for-loop om over CPU's te stappen)
-            missioncard1 = self.missioncards.dealMission()
-            missioncard2 = self.missioncards.dealMission()
-            k.set_currmissions = tuple([missioncard1, missioncard2])
+        for j in range(0, 3):
+            # Treinkaarten toekennen aan CPU's
+            traincard = self.deck.dealCard()
+            cpu_y.add_card_to_hand(traincard)
+
+        for j in range(0, 3):
+                # Treinkaarten toekennen aan CPU's
+                traincard = self.deck.dealCard()  # traincards_array.append(traincard)  # # Indien methode "TrainCards.dealcard" kaartenteller van Speler verhoogt, dan is dit niet nodig
+                cpu_z.add_card_to_hand(traincard)  # Werkt hopelijk
+
+
+        # Missiekaarten toekennen aan CPU's (terug buitenste for-loop om over CPU's te stappen)
+        missioncard1 = self.missioncards.dealMission()
+        missioncard2 = self.missioncards.dealMission()
+        cpu_x.set_currmissions = tuple([missioncard1, missioncard2])
+
+        missioncard1 = self.missioncards.dealMission()
+        missioncard2 = self.missioncards.dealMission()
+        cpu_y.set_currmissions = tuple([missioncard1, missioncard2])
+
+        missioncard1 = self.missioncards.dealMission()
+        missioncard2 = self.missioncards.dealMission()
+        cpu_z.set_currmissions = tuple([missioncard1, missioncard2])
 
 
     # Normale methodes
+    def return_player(self, id):
+        if id == 1:
+            return player
+        if id == 2:
+            return cpu_x
+        if id == 3:
+            return cpu_y
+        if id==4:
+            return cpu_z
+
+
+
     def swap_mission(self, pl = Speler.Speler, mission_to_change = str()): # Correct????
         new_mission = self.missioncards.dealMission()
         for i in range(0, 2):
