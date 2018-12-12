@@ -1,5 +1,6 @@
 # import TrainCards
 import collections
+from tkinter import messagebox
 
 # LOGICA PIONNEN!!!
 class Speler:
@@ -65,7 +66,21 @@ class Speler:
         self.hand[color] = self.hand[color] + 1
 
     def remove_cards_from_hand(self, color, amount):
-        self.hand[color] = self.hand[color] - amount
+        aantalMetWilds = self.hand[color]+self.hand["wild"]
+        aantalPionnen = self.get_pawns()
+        if(aantalMetWilds<amount or aantalPionnen<amount):
+            messagebox.showwarning("Waarschuwing", "Onvoldoende treinkaarten van de kleur:  " + color + "\n of \n Onvoldoende pionnen resterend!")
+        else:
+            if(self.hand[color]<amount):
+                rest = amount - self.hand[color]
+                self.hand[color] = 0
+                self.hand["wild"] = self.hand["wild"] - rest
+                self.remove_pawns(amount)
+            else:
+                self.hand[color] = self.hand[color] - amount
+                self.remove_pawns(amount)
+                if self.get_pawns() == 0:
+                    messagebox.showwarning("Spel afgelopen", "Speler: " + self.__name + " heeft geen pionnen meer over!")
 
     """"
     DIT MOET IN BEURT DENK IK? in methode 'extra_train_card'
