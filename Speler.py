@@ -7,7 +7,7 @@ class Speler:
     # constructor
     def __init__(self, id, name, age, color):
         self.__id = id
-        self.__name = name  # deze opbjecten krijgt hij door van de GUI? ofwa?
+        self.name = name  # deze opbjecten krijgt hij door van de GUI? ofwa?
         self.__age = age  # deze opbjecten krijgt hij door van de GUI? ofwa?
         self.__color = color  # deze opbjecten krijgt hij door van de GUI? ofwa?
         self.__pawnnr = 20
@@ -27,7 +27,7 @@ class Speler:
     # onderstaande is vrij overbodig denk ik
 
     def get_name(self):
-        return self.__name
+        return self.name
 
     def get_pawns(self):
         return self.__pawnnr
