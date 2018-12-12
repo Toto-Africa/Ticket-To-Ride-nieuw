@@ -187,22 +187,3 @@ class Beurt:
            # else:
                 # Volgende beurt -> Wel "else" statement nodig?
 
-
-
-    # ================================================================================================
-
-
-# OUDE COMMENTS
-# TODO constructor van Speler: gegevens startscherm (naam, leeftijd) + kaarten genereren
-
-# TODO eerste beurt -> init, dit gebeurt in klasse Speler
-# TODO eerste beurt -> spelbord in GUI initialiseren
-# TODO eerste beurt -> vanuit GUI, initBoard alle routes definieren (hardcoded) + scorebord
-
-# TODO spel bezig:
-# TODO Hoe missiekaarten controleren qua uitvoerbaarheid? Eerst knop onklikbaar zetten en op begin van beurt berekenen wat kan en wat niet kan
-# TODO route innemen -> eerst op GUI route aanklikken -> naar klasse Route om info over die route op te halen -> naar Beurt -> naar Speler: controle of speler genoeg kaarten heeft -> speler geeft go of no go aan Beurt (true/false)
-# TODO -> LET OP: meerdere routes tussen steden mogelijk!
-
-# NOTE: CPU-speler -> focussen op missiekaarten (wel 2 trekken) en altijd kortste route laten nemen
-# NOTE: voor routes 0 als ingenomen en 1-4 de spelers

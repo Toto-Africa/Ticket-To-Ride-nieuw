@@ -34,8 +34,11 @@ class Speler:
     def remove_pawns(self, amount):
         self.__pawnnr -= amount
 
-    def get_missions(self):
-        return self.__missions
+    def get_mission(self, nr):
+        if nr == 1:
+            return self.__missioncard1
+        if nr == 2:
+            return self.__missioncard2
 
     def get_traincards(self, color):
         return self.hand[color]
