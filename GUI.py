@@ -56,7 +56,8 @@ class GUI:
                     cpunamen.append(cpu2)
                     cpunamen.append(cpu3)
                     beurt = Beurt.Beurt(username, age, 'pink', cpunamen);
-                    print(beurt.speler)
+
+                    print(beurt.return_player(1).get_name())
 
                     my_gui.spelerstats()
 

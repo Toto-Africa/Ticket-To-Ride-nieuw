@@ -24,7 +24,8 @@ class Beurt:
 
         # Menselijke speler aanmaken: heeft id = 1
         # Treinkaarten en missiekaarten op begin van spel: constructor Speler
-        global player = Speler.Speler(1, name, age, color) # Menselijke speler altijd ID = 0 geven # Of Speler.Speler.__init__(...)
+        global player
+        player = Speler.Speler(1, name, age, color) # Menselijke speler altijd ID = 0 geven # Of Speler.Speler.__init__(...)
 
         self.deck = TrainCards.TrainCards() # Deck treinkaarten
         self.missioncards = MissionCards.MissionCards()  # Deck missiekaarten
@@ -42,9 +43,12 @@ class Beurt:
         cpu_colors = ['blue', 'green', 'yellow']
         # CPU-spelers aanmaken: 3 CPU-spelers (2, 3, 4)                                                                                             # #Willekeurige leeftijd tussen 10 en 99
 
-        global cpu_x = CPUSpeler.CPUSpeler(2, cpu_names[0], 'blue')
-        global cpu_y = CPUSpeler.CPUSpeler(3, cpu_names[1], 'green')
-        global cpu_z = CPUSpeler.CPUSpeler(4, cpu_names[2], 'yellow')
+        global cpu_x
+        cpu_x = CPUSpeler.CPUSpeler(2, cpu_names[0], 'blue')
+        global cpu_y
+        cpu_y = CPUSpeler.CPUSpeler(3, cpu_names[1], 'green')
+        global cpu_z
+        cpu_z = CPUSpeler.CPUSpeler(4, cpu_names[2], 'yellow')
 
         # 4 treinkaarten nemen om te starten (CPU)
         for j in range(0, 3):
