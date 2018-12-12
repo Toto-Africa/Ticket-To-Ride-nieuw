@@ -44,7 +44,7 @@ class Beurt:
 
         cpu_x = CPUSpeler.CPUSpeler(2, cpu_names[0], 'blue')
         cpu_y = CPUSpeler.CPUSpeler(3, cpu_names[1], 'green')
-        cpy_z = CPUSpeler.CPUSpeler(4, cpu_names[2], 'yellow')
+        cpu_z = CPUSpeler.CPUSpeler(4, cpu_names[2], 'yellow')
 
         # 4 treinkaarten nemen om te starten (CPU)
         for j in range(0, 3):
