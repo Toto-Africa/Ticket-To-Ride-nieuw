@@ -145,7 +145,7 @@ class GUI:
         # Berlijn to
         # Wenen to
         #rou = Route.Route('', 0, ["", ""], 0)
-        routes.append(Route.Route('r', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (yellow)
+        routes.append(Route.Route('b', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (yellow)
         routes.append(Route.Route('r', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (red)
         # Warschau to
         routes.append(Route.Route('b', 2, [listOfCities[2], listOfCities[0]], 0))  # Berlijn (blue)
@@ -184,8 +184,9 @@ class GUI:
         copyBoard = board.copy()
 
         nx.draw(board, pos, edges=edges, edge_color=colors, width=weights, with_labels=True)
+        #nx.draw_networkx_edge_labels(board,pos, edge_labels=weights)
         #nx.draw_networkx_nodes(board, pos, node_size=700)
-        #nx.draw_networkx_edge_labels(board, pos)
+        nx.draw_networkx_edge_labels(board, pos)
 
         plt.axis('off')
         plt.show()
@@ -284,7 +285,9 @@ class GUI:
 
         copyBoard = board.copy()
 
+        #nx.draw_networkx_edge_labels(board, pos, edge_labels=weights)
         nx.draw(board, pos, edges=edges, edge_color=colors, width=weights, with_labels=True, ax=a)
+        nx.draw_networkx_edge_labels(board, pos)
 
         # Canvas maken en hier graph in tekenen
         canvas = FigureCanvasTkAgg(f, master=root)
