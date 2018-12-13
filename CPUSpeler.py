@@ -27,8 +27,8 @@ class CPUSpeler(Speler.Speler):
     def is_cpu(self):
         return True
 
-    def getname(self):
-        return self.get_name()
+    def getpawn(self):
+        return super(CPUSpeler, self).getpawn()
 
     # logica blijft hetzelfde in CPUSpeler en Speler
     #def remove_cards_from_hand(self, color, amount):

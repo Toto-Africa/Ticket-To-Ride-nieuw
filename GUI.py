@@ -59,8 +59,29 @@ class GUI:
 
                     print(beurt.return_player(2).get_name())
 
+                    listOfCities = [
+                        "Berlijn", "Wenen", "Warschau", "Kiev", "Boekarest"  # 0, 1, 2, 3, 4
+                    ]
+
+                    routes = []
+                    #
+                    # rou = Route.Route('', 0, ["", ""], 0)
+                    routes.append(Route.Route('r', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (yellow)
+                    routes.append(Route.Route('r', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (red)
+                    # Warschau to
+                    routes.append(Route.Route('b', 2, [listOfCities[2], listOfCities[0]], 0))  # Berlijn (blue)
+                    routes.append(Route.Route('g', 2, [listOfCities[2], listOfCities[0]], 0))  # Berlijn (green)
+                    routes.append(Route.Route('b', 1, [listOfCities[2], listOfCities[1]], 0))  # Wenen (black)
+                    # Kiev to
+                    routes.append(Route.Route('r', 3, [listOfCities[3], listOfCities[1]], 0))  # Wenen (white)
+                    routes.append(Route.Route('g', 1, [listOfCities[3], listOfCities[2]], 0))  # Warschau (yellow)
+                    # Boekarest to
+                    routes.append(Route.Route('r', 2, [listOfCities[4], listOfCities[1]], 0))  # Wenen (yellow)
+                    routes.append(Route.Route('b', 2, [listOfCities[4], listOfCities[1]], 0))  # Wenen (blue)
+                    routes.append(Route.Route('r', 2, [listOfCities[4], listOfCities[3]], 0))  # Kiev (red)
+
                     master.destroy()
-                    my_gui.spelerstats(beurt)
+                    my_gui.spelerstats(beurt, routes)
 
                 else:
                     messagebox.showwarning("Fout", "Gelieve al de nodige gegevens in te vullen ")
@@ -185,7 +206,7 @@ class GUI:
 
         mainloop(0)
 
-    def spelerstats(self, beurt): #hier gaan we het attribuut speler (en beurt????) zeker moeten megeven, eventueel ook de graph of list met spelers
+    def spelerstats(self, beurt, routes): #hier gaan we het attribuut speler (en beurt????) zeker moeten megeven, eventueel ook de graph of list met spelers
 
         root = Tk()
 
@@ -199,6 +220,23 @@ class GUI:
         root.wm_title("Spelersbord")
         # Quit when the window is done !!!!WERKT NOG ALTIJD NIET GOED!!!
         root.wm_protocol('WM_DELETE_WINDOW', root.quit)
+
+        def updatescore():
+
+            Label(root, text=beurt.return_player(1).get_pawns()).grid(row=5, column=6)
+            Label(root, text=beurt.return_player(2).getpawn()).grid(row=6, column=6)
+            Label(root, text=beurt.return_player(3).get_pawns()).grid(row=7, column=6)
+            Label(root, text=beurt.return_player(4).get_pawns()).grid(row=8, column=6)
+
+            Label(root, text=beurt.return_player(1).get_missionscomp()).grid(row=5, column=5)
+            Label(root, text=beurt.return_player(2).get_missionscomp()).grid(row=6, column=5)
+            Label(root, text=beurt.return_player(3).get_missionscomp()).grid(row=7, column=5)
+            Label(root, text=beurt.return_player(4).get_missionscomp()).grid(row=8, column=5)
+
+            Label(root, text=beurt.return_player(1).get_name()).grid(row=5, column=4)
+            Label(root, text=beurt.return_player(2).get_name()).grid(row=6, column=4)
+            Label(root, text=beurt.return_player(3).get_name()).grid(row=7, column=4)
+            Label(root, text=beurt.return_player(4).get_name()).grid(row=8, column=4)
 
         def updatedash():
             Label(root, text=beurt.return_player(1).get_traincards('red')).grid(row=9, column=1, sticky="W")
@@ -221,22 +259,6 @@ class GUI:
             "Berlijn", "Wenen", "Warschau", "Kiev", "Boekarest"  # 0, 1, 2, 3, 4
         ]
 
-        routes = []
-        #
-        #rou = Route.Route('', 0, ["", ""], 0)
-        routes.append(Route.Route('r', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (yellow)
-        routes.append(Route.Route('r', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (red)
-        # Warschau to
-        routes.append(Route.Route('b', 2, [listOfCities[2], listOfCities[0]], 0))  # Berlijn (blue)
-        routes.append(Route.Route('g', 2, [listOfCities[2], listOfCities[0]], 0))  # Berlijn (green)
-        routes.append(Route.Route('b', 1, [listOfCities[2], listOfCities[1]], 0))  # Wenen (black)
-        # Kiev to
-        routes.append(Route.Route('r', 3, [listOfCities[3], listOfCities[1]], 0))  # Wenen (white)
-        routes.append(Route.Route('g', 1, [listOfCities[3], listOfCities[2]], 0))  # Warschau (yellow)
-        # Boekarest to
-        routes.append(Route.Route('r', 2, [listOfCities[4], listOfCities[1]], 0))  # Wenen (yellow)
-        routes.append(Route.Route('b', 2, [listOfCities[4], listOfCities[1]], 0))  # Wenen (blue)
-        routes.append(Route.Route('r', 2, [listOfCities[4], listOfCities[3]], 0))  # Kiev (red)
 
         board = nx.Graph()
 
@@ -276,6 +298,7 @@ class GUI:
 
             beurt.extra_traincard(beurt.return_player(1))
             updatedash()
+            updatescore()
 
         def route_innemen():
             popup = Tk()
@@ -289,6 +312,8 @@ class GUI:
 
             dropvan = OptionMenu(popup, vanvar, *listOfCities)
             dropnaar = OptionMenu(popup, naarvar, *listOfCities)
+
+
 
             def cancel_route():
                 popup.destroy()
@@ -335,14 +360,11 @@ class GUI:
         Label(root, text="Spelersnamen", bg="black", fg="white").grid(row=4, column=4)
         Label(root, text="Voltooide missies", bg="black", fg="white").grid(row=4, column=5)
         Label(root, text="Pionnen", bg="black", fg="white").grid(row=4, column=6)
-        Label(root, text=beurt.return_player(1).get_name()).grid(row=5, column=4)
-        Label(root, text=beurt.return_player(2).get_name()).grid(row=6, column=4)
-        Label(root, text=beurt.return_player(3).get_name()).grid(row=7, column=4)
-        Label(root, text=beurt.return_player(4).get_name()).grid(row=8, column=4)
 
         #als rest klaar is dan scorebord van goed naar slecht laten tonen (voorlopig: this will do)
 
         updatedash()
+        updatescore()
 
         mainloop(1)
         #Hierin speler statistieken (pionnen, kaarten, etc) laten zien + besturingsknoppen
