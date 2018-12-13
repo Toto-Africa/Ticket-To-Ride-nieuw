@@ -96,6 +96,9 @@ class Beurt:
 
     # def swap_mission(self, pl = Speler.Speler, mission_to_change = str()): # Correct????
     def swap_mission(self, pl, mission_to_change): # Correct????
+        # TODO Check bij wisselen van missiekaarten
+        # Iedere mogelijke route/weg afgaan en kijken of daar al 1 van ingenomen is
+        # Als van alle mogelijke routes/wegen (tussen de 2 missiesteden) minstens eentje is ingenomen, dan is het onmogelijk
         new_mission1 = self.missioncards.dealMission()
         new_mission2 = self.missioncards.dealMission()
         pl.set_missions(new_mission1, new_mission2)
