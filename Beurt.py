@@ -7,6 +7,9 @@ import Route
 from random import randint
 from collections import defaultdict
 from tkinter import messagebox
+
+from Speler import Speler
+
 d = defaultdict(int)
 
 # Iedere keer nieuwe instantie van Beurt? Of altijd de gegevens verversen?
@@ -94,17 +97,41 @@ class Beurt:
         if id==4:
             return cpu_z
 
-    # def swap_mission(self, pl = Speler.Speler, mission_to_change = str()): # Correct????
-    def swap_mission(self, pl = Speler.Speler): # Correct????
-        # TODO Check bij wisselen van missiekaarten
-        # Iedere mogelijke route/weg afgaan en kijken of daar al 1 van ingenomen is
-        # Als van alle mogelijke routes/wegen (tussen de 2 missiesteden) minstens eentje is ingenomen, dan is het onmogelijk
+    def swap_mission(self, pl = Speler.Speler, table = list):
+        # Route: tussen 2 aanliggende steden
+        # Weg: tussen 2 niet-aanliggende steden (missie dus)
 
-        bool = False
+
+        # TODO Check bij wisselen van missiekaarten
+        # Iedere mogelijke weg afgaan en kijken of daar al 1 van ingenomen is
+        # Als van alle mogelijke wegen (tussen de 2 missiesteden) minstens 1 route is ingenomen, dan is het onmogelijk
+
+        bool1 = False  # Zegt of er nog een hele weg tussen de steden van missiekaart 1 beschikbaar is.
+                       # Zegt dus of voltooien van missie nog mogelijk is.
 
         # Controle of aan voorwaarden voldaan is
+        # 1) Waar staan missies van missiekaart 1 in tabel? Itereren door lange tabel
+        for i in range(len(table)):
+            # Naar juiste rij gaan (missiekaart 1)
+            if pl.get_mission(1) == table[i]:
+                # LOGICA: controleer of iedere mogelijke weg/route onmogelijk is
+                # 2) Itereren over iedere mogelijke route/weg tussen de twee steden
+                for j in range(len(table[i][1])):
+                    route = table[i][1][j]
+                    # 3) Controleren of iedere weg (die bestaat uit routes)
+                    if route.get_occupied() == 0:
+                        bool1 = True
+                        break # Er is nog minstens 1 route vrij, dus rest controleren hoeft niet
 
-        if bool:
+                # Hier raak je enkel als er geen route meer vrij is
+                bool1 = False
+
+
+
+
+
+        # Beide missies niet uit te voeren? -> bool = True
+        if not bool1:
             new_mission1 = self.missioncards.dealMission()
             new_mission2 = self.missioncards.dealMission()
             pl.set_missions(new_mission1, new_mission2)
