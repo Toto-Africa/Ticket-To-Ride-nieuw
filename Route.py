@@ -1,9 +1,10 @@
 class Route:
-    __color = ""
-    __pathCost = 0
-    __cities = []
-    __occupiedBy = 0
+    #__color = ""
+    #__pathCost = 0
+    #__cities = []
+    #__occupiedBy = 0
 
+    #def __init__(self, color='r', pathCost=1, cities=["", ""], occupiedBy=0):
     def __init__(self, color, pathCost, cities, occupiedBy):
         self.__color = color
         self.__pathCost = pathCost

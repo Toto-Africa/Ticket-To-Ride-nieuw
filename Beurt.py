@@ -42,7 +42,7 @@ class Beurt:
         player.set_missions(missioncard1, missioncard2)
 
         cpu_colors = ['blue', 'green', 'yellow']
-        # CPU-spelers aanmaken: 3 CPU-spelers (2, 3, 4)                                                                                             # #Willekeurige leeftijd tussen 10 en 99
+        # CPU-spelers aanmaken: 3 CPU-spelers (2, 3, 4) # #Willekeurige leeftijd tussen 10 en 99
 
         global cpu_x
         cpu_x = CPUSpeler.CPUSpeler(2, cpu_names[0], 'blue')
@@ -55,7 +55,7 @@ class Beurt:
         # 4 treinkaarten nemen om te starten (CPU)
         for j in range(0, 3):
             # Treinkaarten toekennen aan CPU's
-            traincard = self.deck.dealCard()                #traincards_array.append(traincard)  # # Indien methode "TrainCards.dealcard" kaartenteller van Speler verhoogt, dan is dit niet nodig
+            traincard = self.deck.dealCard() #traincards_array.append(traincard)  # # Indien methode "TrainCards.dealcard" kaartenteller van Speler verhoogt, dan is dit niet nodig
             cpu_x.add_card_to_hand(traincard) # Werkt hopelijk
 
         for j in range(0, 3):
@@ -64,9 +64,9 @@ class Beurt:
             cpu_y.add_card_to_hand(traincard)
 
         for j in range(0, 3):
-                # Treinkaarten toekennen aan CPU's
-                traincard = self.deck.dealCard()  # traincards_array.append(traincard)  # # Indien methode "TrainCards.dealcard" kaartenteller van Speler verhoogt, dan is dit niet nodig
-                cpu_z.add_card_to_hand(traincard)  # Werkt hopelijk
+            # Treinkaarten toekennen aan CPU's
+            traincard = self.deck.dealCard()  # traincards_array.append(traincard)  # # Indien methode "TrainCards.dealcard" kaartenteller van Speler verhoogt, dan is dit niet nodig
+            cpu_z.add_card_to_hand(traincard)  # Werkt hopelijk
 
 
         # Missiekaarten toekennen aan CPU's (terug buitenste for-loop om over CPU's te stappen)
@@ -94,46 +94,49 @@ class Beurt:
         if id==4:
             return cpu_z
 
+    # def swap_mission(self, pl = Speler.Speler, mission_to_change = str()): # Correct????
+    def swap_mission(self, pl, mission_to_change): # Correct????
+        new_mission1 = self.missioncards.dealMission()
+        new_mission2 = self.missioncards.dealMission()
+        pl.set_missions(new_mission1, new_mission2)
 
 
-    def swap_mission(self, pl = Speler.Speler, mission_to_change = str()): # Correct????
-        new_mission = self.missioncards.dealMission()
-        for i in range(0, 2):
-            if pl.get_missions()[i] == mission_to_change:
-                pl.get_missions[i] = new_mission
-
-
-    def extra_traincard(self, pl = Speler.Speler):
+    #def extra_traincard(self, pl = Speler.Speler):
+    def extra_traincard(self, pl):
         color = self.deck.dealCard()                # dealCard: returnt 1 kaart? Correcte methode? Instantie maken eerst?
         pl.add_card_to_hand(color)                                        #NOTA VAN ELMER: Best object bv "Deck" aanmaken --> self.deck = TrainCards.TrainCards()
                                                 #Dit initialiseert Traincards met een stapel, daarna doe je self.deck.dealCard()" natuurlijk in de speler zijn hand
 
 
-    def conquer_route(self, route = Route.Route, player = Speler.Speler):
+    #def conquer_route(self, route = Route.Route(), player = Speler.Speler()):
+    def conquer_route(self, route, player):
+        statuscode = 0
+        # nota jan:
+        # statuscode => 0 = alles ok, 1 = route reeds ingenomen, 2 = niet genoeg treinkaarten of pionnen, 3 = pionnen op
+        # de menselijke speler kan communiceren via messageboxes, CPU niet. => daarom code
         # Is route al ingenomen?
         if route.get_occupiedBy() == 0:
             # Heeft speler genoeg treinkaarten?
             aantalMetWilds = player.get_traincards(route.get_color()) + player.get_traincards("wild")
-
             if(aantalMetWilds < route.get_pathCost() or player.get_pawns() < route.get_pathCost()):
-                messagebox.showwarning("Waarschuwing","Onvoldoende treinkaarten \n\n of \n\npionnen")
-
+                #messagebox.showwarning("Waarschuwing","Onvoldoende treinkaarten \n\n of \n\npionnen")
+                statuscode = 2
             else:
                 route.set_occupiedBy(player.get_id())
                 player.remove_cards_from_hand(route.get_color(),route.get_pathCost())
                 player.remove_pawns(route.get_pathCost())
                 if(player.get_pawns() == 0):
-                    messagebox.showwarning("Waarschuwing",
-                                           "Speler " + player.get_name() + " heeft geen pionnen meer over!")
+                    #messagebox.showwarning("Waarschuwing",
+                    #                       "Speler " + player.get_name() + " heeft geen pionnen meer over!")
+                    statuscode = 3
                     #EINDIGEN SPEL
                 else:
-                    self.end_of_beurt(player)
-
-
+                    self.end_of_beurt(player) # deze droppen voor statuscode (standaard 0)
         else:
-            print("Deze route is reeds ingenomen")
+            #print("Deze route is reeds ingenomen")
+            statuscode = 1
             # Moet nog naar messagebox?
-
+        return statuscode
 
 
     # Mee in conquer_route geimplementeerd
