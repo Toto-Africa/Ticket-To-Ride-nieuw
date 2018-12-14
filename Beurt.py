@@ -170,11 +170,11 @@ class Beurt:
 
 
                 # Hier raak je enkel als er geen route meer vrij is
-                if not bool1 and not bool2:
-                    # Beide missies niet uit te voeren? -> bool = True
-                    new_mission1 = self.missioncards.dealMission()
-                    new_mission2 = self.missioncards.dealMission()
-                    pl.set_missions(new_mission1, new_mission2)
+        if not bool1 and not bool2:
+            # Beide missies niet uit te voeren? -> bool = True
+            new_mission1 = self.missioncards.dealMission()
+            new_mission2 = self.missioncards.dealMission()
+            pl.set_missions(new_mission1, new_mission2)
 
 
 
