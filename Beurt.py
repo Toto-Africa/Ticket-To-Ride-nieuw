@@ -142,18 +142,45 @@ class Beurt:
                             #bool1 = True
                             #break # Er is nog minstens 1 route vrij, dus rest controleren hoeft niet
 
+
+            # Idem voor missiekaart 2
+        for i in range(len(table)):
+            # Naar juiste rij gaan (missiekaart 1)
+            if pl.get_mission(2) == table[i]:
+                # LOGICA: controleer of iedere mogelijke weg/route onmogelijk is
+                # 2) Itereren over iedere mogelijke route/weg tussen de twee steden
+                for j in range(len(table[i][1])):
+
+                    # TODO Meer if-structuren in soort case-structure met grootte van route = aantal 'and'
+                     # Aantal routes in weg?
+                    if len(table[i][1][j]) == 1:
+                        if table[i][1][j][0] == 0:  # Correct?
+                            bool2 = True
+                            break
+
+                    if len(table[i][1][j]) == 2:
+                        if table[i][1][j][0] == 0 and table[i][1][j][1] == 0:  # Correct?
+                            bool2 = True
+                            break
+
+                    if len(table[i][1][j]) == 3:
+                        if table[i][1][j][0] == 0 and table[i][1][j][1] == 0 and table[i][1][j][2] == 0:  # Correct?
+                            bool2 = True
+                            break
+
+
                 # Hier raak je enkel als er geen route meer vrij is
-                bool1 = False
+                if not bool1 and not bool2:
+                    # Beide missies niet uit te voeren? -> bool = True
+                    new_mission1 = self.missioncards.dealMission()
+                    new_mission2 = self.missioncards.dealMission()
+                    pl.set_missions(new_mission1, new_mission2)
 
 
 
 
 
-        # Beide missies niet uit te voeren? -> bool = True
-        if not bool1:
-            new_mission1 = self.missioncards.dealMission()
-            new_mission2 = self.missioncards.dealMission()
-            pl.set_missions(new_mission1, new_mission2)
+
 
 
     #def extra_traincard(self, pl = Speler.Speler):
