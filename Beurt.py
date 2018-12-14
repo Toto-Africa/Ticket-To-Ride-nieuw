@@ -168,8 +168,6 @@ class Beurt:
                             bool2 = True
                             break
 
-
-                # Hier raak je enkel als er geen route meer vrij is
         if not bool1 and not bool2:
             # Beide missies niet uit te voeren? -> bool = True
             new_mission1 = self.missioncards.dealMission()
