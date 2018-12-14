@@ -117,12 +117,18 @@ class Beurt:
                 # LOGICA: controleer of iedere mogelijke weg/route onmogelijk is
                 # 2) Itereren over iedere mogelijke route/weg tussen de twee steden
                 for j in range(len(table[i][1])):
-                    for k in range(len(table[i][1][j])):
-                        route = table[i][1][j]
-                        # 3) Controleren of iedere weg (die bestaat uit routes)
-                        if route.get_occupied() == 0:
-                            bool1 = True
-                            break # Er is nog minstens 1 route vrij, dus rest controleren hoeft niet
+
+                    # TODO Meer if-structuren in soort case-structure met grootte van route = aantal 'and'
+                    # Aantal routes in weg?
+                    if table[i][1][j][0] == 0 and table[i][1][j][1] == 0:
+                        bool1 = True
+                        break
+                    #for k in range(len(table[i][1][j])):
+                        #route = table[i][1][j][k] # Werkt dit??????????
+                        # 3) Controleren of route al ingenomen is
+                        #if route.get_occupied() == 0:
+                            #bool1 = True
+                            #break # Er is nog minstens 1 route vrij, dus rest controleren hoeft niet
 
                 # Hier raak je enkel als er geen route meer vrij is
                 bool1 = False
