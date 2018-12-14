@@ -120,9 +120,21 @@ class Beurt:
 
                     # TODO Meer if-structuren in soort case-structure met grootte van route = aantal 'and'
                     # Aantal routes in weg?
-                    if table[i][1][j][0] == 0 and table[i][1][j][1] == 0:
-                        bool1 = True
-                        break
+                    if len(table[i][1][j]) == 1:
+                        if table[i][1][j][0] == 0:  # Correct?
+                            bool1 = True
+                            break
+
+                    if len(table[i][1][j]) == 2:
+                        if table[i][1][j][0] == 0 and table[i][1][j][1] == 0:  # Correct?
+                            bool1 = True
+                            break
+
+                    if len(table[i][1][j]) == 3:
+                        if table[i][1][j][0] == 0 and table[i][1][j][1] == 0 and table[i][1][j][2] == 0:  # Correct?
+                            bool1 = True
+                            break
+
                     #for k in range(len(table[i][1][j])):
                         #route = table[i][1][j][k] # Werkt dit??????????
                         # 3) Controleren of route al ingenomen is
