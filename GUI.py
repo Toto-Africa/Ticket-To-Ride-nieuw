@@ -224,15 +224,15 @@ class GUI:
 
         def updatescore():
 
-            Label(root, text=beurt.return_player(1).get_pawns()).grid(row=5, column=6)
-            Label(root, text=beurt.return_player(2).getpawn()).grid(row=6, column=6)
-            Label(root, text=beurt.return_player(3).get_pawns()).grid(row=7, column=6)
-            Label(root, text=beurt.return_player(4).get_pawns()).grid(row=8, column=6)
+            #Label(root, text=beurt.return_player(1).get_pawns()).grid(row=5, column=6)
+            #Label(root, text=beurt.return_player(2).getpawn()).grid(row=6, column=6)
+            #Label(root, text=beurt.return_player(3).get_pawns()).grid(row=7, column=6)
+            #Label(root, text=beurt.return_player(4).get_pawns()).grid(row=8, column=6)
 
-            Label(root, text=beurt.return_player(1).get_missionscomp()).grid(row=5, column=5)
-            Label(root, text=beurt.return_player(2).get_missionscomp()).grid(row=6, column=5)
-            Label(root, text=beurt.return_player(3).get_missionscomp()).grid(row=7, column=5)
-            Label(root, text=beurt.return_player(4).get_missionscomp()).grid(row=8, column=5)
+            #Label(root, text=beurt.return_player(1).get_missionscomp()).grid(row=5, column=5)
+            #Label(root, text=beurt.return_player(2).get_missionscomp()).grid(row=6, column=5)
+            #Label(root, text=beurt.return_player(3).get_missionscomp()).grid(row=7, column=5)
+            #Label(root, text=beurt.return_player(4).get_missionscomp()).grid(row=8, column=5)
 
             Label(root, text=beurt.return_player(1).get_name()).grid(row=5, column=4)
             Label(root, text=beurt.return_player(2).get_name()).grid(row=6, column=4)
@@ -287,7 +287,7 @@ class GUI:
 
         #nx.draw_networkx_edge_labels(board, pos, edge_labels=weights)
         nx.draw(board, pos, edges=edges, edge_color=colors, width=weights, with_labels=True, ax=a)
-        nx.draw_networkx_edge_labels(board, pos)
+        #nx.draw_networkx_edge_labels(board, pos)
 
         # Canvas maken en hier graph in tekenen
         canvas = FigureCanvasTkAgg(f, master=root)
