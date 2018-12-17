@@ -27,7 +27,8 @@ class CPUSpeler(Parent):
         return True
 
     def getpawn(self):
-        return super(CPUSpeler, self).get_pawns()
+        #return super(CPUSpeler, self).get_pawns()
+        self.get_pawns()
 
     # logica blijft hetzelfde in CPUSpeler en Speler
     #def remove_cards_from_hand(self, color, amount):
