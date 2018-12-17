@@ -2,10 +2,8 @@ import Speler
 import collections
 from random import randint
 
-__metaclass__ = type
 
-
-class CPUSpeler(Speler.Speler):
+class CPUSpeler(Speler):
 
     # Age niet meegeven als argument in constructor CPU-Speler
     def __init__(self, id, name, color):  # Niet zeker van inheritance
