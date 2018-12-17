@@ -5,7 +5,8 @@ from random import randint
 
 
 class CPUSpeler(Parent):
-
+    __mis_in_prog = 0
+    __attempts = 0
     # Age niet meegeven als argument in constructor CPU-Speler
     def __init__(self, id, name, color):  # Niet zeker van inheritance
         age = randint(10, 99)
@@ -31,6 +32,19 @@ class CPUSpeler(Parent):
     def getpawn(self):
         #return super(CPUSpeler, self).get_pawns()
         self.get_pawns()
+
+    def set_mis_in_prog(self, mis_in_prog):
+        self.__mis_in_prog = mis_in_prog
+
+    def get_mis_in_prog(self):
+        return self.__mis_in_prog
+
+    def get_attempts(self):
+        return self.__attempts
+
+    def increase_attempts(self):
+        self.__attempts = self.__attempts + 1
+
 
     # logica blijft hetzelfde in CPUSpeler en Speler
     #def remove_cards_from_hand(self, color, amount):
