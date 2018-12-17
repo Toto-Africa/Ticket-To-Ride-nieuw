@@ -7,30 +7,17 @@ from random import randint
 class CPUSpeler(Parent):
     __mis_in_prog = 0
     __attempts = 0
-    # Age niet meegeven als argument in constructor CPU-Speler
+
+    # Age niet meegeven als argument in constructor CPU-Speler (wordt random bepaald)
     def __init__(self, id, name, color):  # Niet zeker van inheritance
         age = randint(10, 99)
-        #self.name = name
-        #self.pawnnr = 20
-        #self.missionscomp = 0
-        #Speler.Speler(id, self.name, age, color)
-
-        super(CPUSpeler, self).__init__(id, name, age, color)  # Correcte manier van inheritance in Python 2.7?
+        super(CPUSpeler, self).__init__(id, name, age, color)
         self.hand = collections.Counter(red=0, blue=0, green=0)  # Opvragen met hand['red']
-
-    # Heeft deze ook methodes add_card_to_hand en remove_card_from_hand van Speler???
-
-    # def add_card_to_hand(self, color): # Mogen weg?
-    # self.hand[color] = self.hand[color] + 1
-
-    # def remove_card_from_hand(self, color): # Mogen weg?
-    # self.hand[color] = self.hand[color] - 1
 
     def is_cpu(self):
         return True
 
     def getpawn(self):
-        #return super(CPUSpeler, self).get_pawns()
         self.get_pawns()
 
     def set_mis_in_prog(self, mis_in_prog):

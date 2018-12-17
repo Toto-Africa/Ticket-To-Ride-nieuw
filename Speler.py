@@ -1,6 +1,4 @@
-# import TrainCards
 import collections
-from tkinter import messagebox
 
 # LOGICA PIONNEN!!!
 class Speler:
@@ -13,16 +11,8 @@ class Speler:
         self.pawnnr = 20
         self.missionscomp = 0
 
-
-        # Met collection.hand is beter denk ik: card=TrainCards.dealCard();self.hand[card] += 1; maar kdenk collection best nog initialiseren
-        # Op die manier wordt elke kleur (dus "red" bv) als een aantal bijgehouden ipv een lijst
-
         self.hand = collections.Counter(red=0, blue=0, green=0)  # Opvragen met hand['red']
 
-        # dit zou dan de constructor zijn om nieuwe spelers aan te maken? 'Jaa (Dries) :D'
-        # Je geeft dan id, name, age, color mee in het startscherm (GUI)  'id genereer je automatisch bij het startscherm of hier?, de rest komt uit het startscherm'
-
-        # pawnnr, missionscomplete, traincards en missioncards worden dan gegenereerd? (controleren of dit wel de juiste instanties zijn?)
 
     def get_name(self):
         return self.name
@@ -75,25 +65,6 @@ class Speler:
         if(self.hand[color]>=amount):
             self.hand[color] = self.hand[color] - amount
         else:
-
             rest = amount - self.hand[color]
             self.hand[color] = self.hand[color] - self.hand[color]
             self.hand["wild"] = self.hand["wild"] - rest
-
-    """"
-    DIT MOET IN BEURT DENK IK? in methode 'extra_train_card'
-
-    Samenwerken met treinkaarten? iets met een kaarten dek waaruit je uit kan 'trekken'
-    --> zou er ongeveer zo kunnen uitzien:
-
-    NOTA VAN ELMER: Dit is hoe ik bovenstaande opmerking bedoel
-    Deck is niet nodig, deze is enkel nodig als ge da deck aanvult, maar ge kunt mijne cardslist gewoon blijven poppen tot die leeg is
-    Het poppen van de lijst gebeurt in GUI denk ik of in beurt met "Deck.dealCard()", deck is dan het object dat je van traincards aanmaakte
-
-    #add traincard to hand
-        def addCardToHand(self, traincard):
-
-            if traincard != None:
-                self.hand[traincard] += 1
-
-        """
