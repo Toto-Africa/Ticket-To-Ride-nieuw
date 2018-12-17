@@ -221,9 +221,6 @@ class GUI:
 
         def updatescore():
 
-            tp_1 = beurt.return_player(2)
-
-
             Label(root, text=beurt.return_player(1).get_pawns()).grid(row=5, column=6)
             Label(root, text=beurt.return_player(2).get_pawns()).grid(row=6, column=6)
             Label(root, text=beurt.return_player(3).get_pawns()).grid(row=7, column=6)
