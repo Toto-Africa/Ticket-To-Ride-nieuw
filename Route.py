@@ -25,7 +25,10 @@ class Route:
     def set_pathCost(self, pathCost):
         self.__pathCost = pathCost
 
-    def get_cities(self, nr):
+    def get_cities(self):
+        return self.__cities
+
+    def get_cities_nr(self, nr):
         return self.__cities[nr]
 
     def set_cities(self, city1, city2):
