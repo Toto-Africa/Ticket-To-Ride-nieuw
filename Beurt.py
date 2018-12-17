@@ -100,7 +100,10 @@ class Beurt:
     def swap_mission(self, pl, table = list):
         new_mission1 = self.missioncards.dealMission()
         new_mission2 = self.missioncards.dealMission()
-        pl.set_missions(new_mission1, new_mission2)
+        if(new_mission1=="leeg" or new_mission2=="leeg"):
+            return ValueError
+        else:
+            pl.set_missions(new_mission1, new_mission2)
 
         # Gaat ervan uit dat er 1 tabel is met mogelijke missies in eerste kolom en alle mogelijke wegen in tweede kolom
         # Route: tussen 2 aanliggende steden

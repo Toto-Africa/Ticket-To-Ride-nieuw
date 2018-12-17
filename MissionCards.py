@@ -34,8 +34,7 @@ class MissionCards(object):
         try:
             return self.missions.pop() #Geeft de laatste item uit de list, dus dankzij shuffle een random mission
         except IndexError: #Als de stapel leeg is zullen we een IndexError krijgen en opvangen
-            #SPEL STOPPEN
-            print("gedaan")
+            return("leeg")
 
 
     #OPMERKING: Deck en Weggooistapel niet nodig omdat wij de objecten gewoon verwijderen zonder meer

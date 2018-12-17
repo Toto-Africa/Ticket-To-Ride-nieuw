@@ -332,8 +332,11 @@ class GUI:
             mainloop(1)
 
         def missiewissel():
-            beurt.swap_mission(beurt.return_player(1))
-            updatedash()
+            try:
+                beurt.swap_mission(beurt.return_player(1))
+                updatedash()
+            except ValueError:
+                my_gui.win()
 
         def winner():
 
