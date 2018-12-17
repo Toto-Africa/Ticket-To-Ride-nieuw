@@ -28,7 +28,7 @@ class Speler:
         return self.name
 
     def get_pawns(self):
-        return self.__pawnnr
+        return self.pawnnr
 
     def remove_pawns(self, amount):
         self.__pawnnr -= amount
