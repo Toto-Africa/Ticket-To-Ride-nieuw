@@ -1,40 +1,24 @@
 import Speler
 import CPUSpeler
-#from klasses import GUI
 import TrainCards
 import MissionCards
 import Route
 from random import randint
 from collections import defaultdict
-from tkinter import messagebox
-
 from Speler import Speler
-
-d = defaultdict(int)
-
-# Iedere keer nieuwe instantie van Beurt? Of altijd de gegevens verversen?
-# TODO GUI triggert Beurt. Eerste keer Beurt (init): aanmaken spelers, verdelen van kaarten en aanmaken routes
-
-# Aantal kaarten bijhouden live bijhouden in Speler?
 
 class Beurt:
 
     # Constructor
     def __init__(self, name, age, color, cpu_names): # Welke argumenten zijn het beste? List of array van spelers?
-        # TODO aanmaken spelers, verdelen van kaarten en aanmaken routes
-        # Iedere speler krijgt 2 missiekaarten en 4 treinkaarten
-
-        # Planning: eerst gewone speler aanmaken. Dan CPU-spelers: eerst kaarten genereren, dan toekennen bij aanmaken CPU-speler
-
         # Menselijke speler aanmaken: heeft id = 1
         # Treinkaarten en missiekaarten op begin van spel: constructor Speler
         global player
-        player = Speler(1, name, age, color) # Menselijke speler altijd ID = 0 geven # Of Speler.Speler.__init__(...)
+        player = Speler(1, name, age, color) # Menselijke speler altijd ID = 0 geven
 
         self.deck = TrainCards.TrainCards() # Deck treinkaarten
         self.missioncards = MissionCards.MissionCards()  # Deck missiekaarten
 
-        #for i in range(aantalSpelers): # Niet nodig omdat je enkel aan player toekent
         for j in range(4):
             getrokkenKaart = self.deck.dealCard()
             player.add_card_to_hand(getrokkenKaart)
@@ -58,8 +42,8 @@ class Beurt:
         # 4 treinkaarten nemen om te starten (CPU)
         for j in range(0, 3):
             # Treinkaarten toekennen aan CPU's
-            traincard = self.deck.dealCard() #traincards_array.append(traincard)  # # Indien methode "TrainCards.dealcard" kaartenteller van Speler verhoogt, dan is dit niet nodig
-            cpu_x.add_card_to_hand(traincard) # Werkt hopelijk
+            traincard = self.deck.dealCard()
+            cpu_x.add_card_to_hand(traincard)
 
         for j in range(0, 3):
             # Treinkaarten toekennen aan CPU's
@@ -189,31 +173,28 @@ class Beurt:
 
 
 
-    #def extra_traincard(self, pl = Speler.Speler):
     def extra_traincard(self, pl):
-        color = self.deck.dealCard()                # dealCard: returnt 1 kaart? Correcte methode? Instantie maken eerst?
+        color = self.deck.dealCard()
         if(color=="leeg"):
             raise ValueError
         else:
-            pl.add_card_to_hand(color)                                        #NOTA VAN ELMER: Best object bv "Deck" aanmaken --> self.deck = TrainCards.TrainCards()
-                                                #Dit initialiseert Traincards met een stapel, daarna doe je self.deck.dealCard()" natuurlijk in de speler zijn hand
+            pl.add_card_to_hand(color)
+        #Dit initialiseert Traincards met een stapel, daarna doe je self.deck.dealCard()" natuurlijk in de speler zijn hand
 
     def search_route(self, cities = list, routes = list):
         for i in range(len(routes)):
-            #if cities == routes[i] or (cities[0] == routes[i][1] and cities[1] == routes[i][0]):
             if (cities[0] == routes[i].get_cities_nr(0) or cities[0] == routes[i].get_cities_nr(1)) and (cities[1] == routes[i].get_cities_nr(0) or cities[1] == routes[i].get_cities_nr(1)):
                 return routes[i]
 
 
-    #def conquer_route(self, route = Route.Route(), player = Speler.Speler()):
     def conquer_route(self, route, player):
         statuscode = 0
-        # nota jan:
+        # nota Jan:
         # statuscode => 0 = alles ok, 1 = route reeds ingenomen, 2 = niet genoeg treinkaarten of pionnen, 3 = pionnen op
         # de menselijke speler kan communiceren via messageboxes, CPU niet. => daarom code
-        # Is route al ingenomen?
 
         print(str(route.get_pathCost()) + "pad kost")
+        # Is route al ingenomen?
         if route.get_occupiedBy() == 0:
             # Heeft speler genoeg treinkaarten?
             aantalMetWilds = player.get_traincards(route.get_color()) + player.get_traincards("wild")
@@ -221,38 +202,25 @@ class Beurt:
             print(str(aantalMetWilds) + " aantal met wilds")
 
             if(aantalMetWilds < route.get_pathCost() or player.get_pawns() < route.get_pathCost()):
-
-                #messagebox.showwarning("Waarschuwing","Onvoldoende treinkaarten \n\n of \n\npionnen")
                 statuscode = 2
             else:
                 route.set_occupiedBy(player.get_id())
                 player.remove_cards_from_hand(route.get_color(),route.get_pathCost())
                 player.remove_pawns(route.get_pathCost())
                 if(player.get_pawns() == 0):
-                    #messagebox.showwarning("Waarschuwing",
-                    #                       "Speler " + player.get_name() + " heeft geen pionnen meer over!")
                     statuscode = 3
                     #EINDIGEN SPEL
                 else:
-                    #self.end_of_beurt(player) # deze droppen voor statuscode (standaard 0)
                     print("end of life")
         else:
             #print("Deze route is reeds ingenomen")
             statuscode = 1
-            # Moet nog naar messagebox?
+
         return statuscode
 
         print(str(route.get_occupiedBy()) + "heeft deze route nu")
 
 
-
-
-    # Mee in conquer_route geimplementeerd
-    # def check_completed_route(self, routeid):
-       # print("Test")
-        # Code controleer of er een route voltooid is
-        # If (kaarten van Speler kloppen om route in te nemen en nrOfBoxes klopt)
-            # Route.isTaken == true
 
 
 
