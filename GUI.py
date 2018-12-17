@@ -331,6 +331,9 @@ class GUI:
 
             mainloop(1)
 
+        def missiewissel():
+            beurt.swap_mission(beurt.return_player(1))
+
         def winner():
 
             root.destroy()
@@ -340,7 +343,7 @@ class GUI:
         #Methodes uit beurt vasthangen aan deze routes
         b = Button(root, text="Extra treinkaart", command=extra_tc)
         b1 = Button(root, text="Route innemen", command=route_innemen)
-        b2 = Button(root, text="Missie wisselen", command=next_graph)
+        b2 = Button(root, text="Missie wisselen", command=missiewissel)
         b3 = Button(root, text="Valsspelen is ook spelen", command=winner)
 
         b.grid(row=4)

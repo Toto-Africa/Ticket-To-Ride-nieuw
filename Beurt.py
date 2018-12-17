@@ -219,6 +219,8 @@ class Beurt:
         return statuscode
 
 
+
+
     # Mee in conquer_route geimplementeerd
     # def check_completed_route(self, routeid):
        # print("Test")
