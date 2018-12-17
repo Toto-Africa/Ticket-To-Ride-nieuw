@@ -101,7 +101,7 @@ class Beurt:
         new_mission1 = self.missioncards.dealMission()
         new_mission2 = self.missioncards.dealMission()
         if(new_mission1=="leeg" or new_mission2=="leeg"):
-            return ValueError
+            raise ValueError
         else:
             pl.set_missions(new_mission1, new_mission2)
 

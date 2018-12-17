@@ -131,7 +131,7 @@ class GUI:
         mainloop(0)
 
     def initbord(self):
-
+        #DIT IS OM TE WISSELEN
         # subset van kaart
         listOfCities = [
             "Berlijn", "Wenen", "Warschau", "Kiev", "Boekarest"  # 0, 1, 2, 3, 4
@@ -331,17 +331,19 @@ class GUI:
 
             mainloop(1)
 
-        def missiewissel():
-            try:
-                beurt.swap_mission(beurt.return_player(1))
-                updatedash()
-            except ValueError:
-                my_gui.win()
+
 
         def winner():
 
             root.destroy()
             my_gui.win(beurt)
+
+        def missiewissel():
+            try:
+                beurt.swap_mission(beurt.return_player(1))
+                updatedash()
+            except ValueError:
+                winner()
 
         #Control Buttons
         #Methodes uit beurt vasthangen aan deze routes
