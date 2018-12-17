@@ -296,9 +296,12 @@ class GUI:
 
         def extra_tc():
 
-            beurt.extra_traincard(beurt.return_player(1))
-            updatedash()
-            updatescore()
+            try:
+                beurt.extra_traincard(beurt.return_player(1))
+                updatedash()
+                updatescore()
+            except ValueError:
+                winner()
 
         def route_innemen():
             popup = Tk()

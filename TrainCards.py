@@ -23,7 +23,7 @@ class TrainCards(object):
 
         except IndexError:
             #SPEL STOPPEN
-            return("gedaan")
+            return("leeg")
 
 
     def cardsLeftover(self):
