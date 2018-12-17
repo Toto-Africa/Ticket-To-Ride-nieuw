@@ -4,7 +4,7 @@ import random
 class TrainCards(object):
 
     def __init__(self):
-        self.colors = ["green", "blue", "red"]
+        self.colors = ["g", "b", "r"]
 
         #wildcards nog toevoegen
         self.cards = ["wild" for i in range(6)] + [i for i in self.colors for j in range(22)]
