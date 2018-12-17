@@ -313,6 +313,8 @@ class GUI:
             dropvan = OptionMenu(popup, vanvar, *listOfCities)
             dropnaar = OptionMenu(popup, naarvar, *listOfCities)
 
+            beurt.search_route([vanvar,naarvar], routes)
+
 
 
             def cancel_route():
