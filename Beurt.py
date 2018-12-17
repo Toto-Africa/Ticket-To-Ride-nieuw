@@ -195,6 +195,11 @@ class Beurt:
         pl.add_card_to_hand(color)                                        #NOTA VAN ELMER: Best object bv "Deck" aanmaken --> self.deck = TrainCards.TrainCards()
                                                 #Dit initialiseert Traincards met een stapel, daarna doe je self.deck.dealCard()" natuurlijk in de speler zijn hand
 
+    def search_route(self, cities = list, routes = list):
+        for i in range(len(routes)):
+            if cities == routes[i]:
+                return routes[i]
+
 
     #def conquer_route(self, route = Route.Route(), player = Speler.Speler()):
     def conquer_route(self, route, player):
