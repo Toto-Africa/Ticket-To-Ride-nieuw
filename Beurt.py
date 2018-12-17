@@ -201,7 +201,7 @@ class Beurt:
     def search_route(self, cities = list, routes = list):
         for i in range(len(routes)):
             #if cities == routes[i] or (cities[0] == routes[i][1] and cities[1] == routes[i][0]):
-            if (cities[0] == routes[i].getcities(0) or cities[0] == routes[i].getcities(1)) and (cities[1] == routes[i].getcities(0) or cities[1] == routes[i].getcities(1)):
+            if (cities[0] == routes[i].get_cities_nr(0) or cities[0] == routes[i].get_cities_nr(1)) and (cities[1] == routes[i].get_cities_nr(0) or cities[1] == routes[i].get_cities_nr(1)):
                 return routes[i]
 
 
