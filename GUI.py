@@ -88,19 +88,14 @@ class GUI:
             else:
                 messagebox.showwarning("Fout", "Gelieve al de nodige gegevens in te vullen  ")
 
-                    # doorgeven en ga naar beurt dan? hoe doe ik da juist? :D variables zijn dan: (username, age, cpu1-3)
-                    # kleuren moeten hier ook nog bij
-                    # --> effe hardcoden denk ik
-
-        # eerst namen ingeven: spelers aanmaken dus
-
         master = Tk()
         master.wm_title("Start")
 
-        bg_image = PhotoImage(file="maxresdefault.png", )
-        bg_image = bg_image.zoom(1)
-        bg_image = bg_image.subsample(1)
-        bg_label = Label(master, image=bg_image)
+        b_image = PhotoImage(file="maxresdefault.png")
+        b_image = b_image.zoom(1)
+        b_image = b_image.subsample(1)
+        bg_label = Label(master, image=b_image)
+
         bg_label.place(x=0, y=0, width=480, height=160)
 
         Label(master, text="Speler naam * - leeftijd * ").grid(row=0, column=4)
