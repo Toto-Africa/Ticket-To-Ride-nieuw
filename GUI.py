@@ -237,9 +237,9 @@ class GUI:
             Label(root, text=beurt.return_player(4).get_name()).grid(row=8, column=4)
 
         def updatedash():
-            Label(root, text=beurt.return_player(1).get_traincards('red')).grid(row=9, column=1, sticky="W")
-            Label(root, text=beurt.return_player(1).get_traincards('green')).grid(row=10, column=1, sticky="W")
-            Label(root, text=beurt.return_player(1).get_traincards('blue')).grid(row=11, column=1, sticky="W")
+            Label(root, text=beurt.return_player(1).get_traincards('r')).grid(row=9, column=1, sticky="W")
+            Label(root, text=beurt.return_player(1).get_traincards('g')).grid(row=10, column=1, sticky="W")
+            Label(root, text=beurt.return_player(1).get_traincards('b')).grid(row=11, column=1, sticky="W")
             Label(root, text=beurt.return_player(1).get_traincards('wild')).grid(row=12, column=1, sticky="W")
 
             Label(root, text=beurt.return_player(1).get_pawns()).grid(row=13, column=1, sticky="W")

@@ -212,12 +212,15 @@ class Beurt:
         # statuscode => 0 = alles ok, 1 = route reeds ingenomen, 2 = niet genoeg treinkaarten of pionnen, 3 = pionnen op
         # de menselijke speler kan communiceren via messageboxes, CPU niet. => daarom code
         # Is route al ingenomen?
+
+        print(str(route.get_pathCost()) + "pad kost")
         if route.get_occupiedBy() == 0:
             # Heeft speler genoeg treinkaarten?
             aantalMetWilds = player.get_traincards(route.get_color()) + player.get_traincards("wild")
+
+            print(str(aantalMetWilds) + " aantal met wilds")
+
             if(aantalMetWilds < route.get_pathCost() or player.get_pawns() < route.get_pathCost()):
-                print("aantal met wilds" + aantalMetWilds)
-                print("pad kost" + route.get_pathCost())
 
                 #messagebox.showwarning("Waarschuwing","Onvoldoende treinkaarten \n\n of \n\npionnen")
                 statuscode = 2
