@@ -10,9 +10,11 @@ class CPUSpeler(Parent):
     def __init__(self, id, name, color):  # Niet zeker van inheritance
         age = randint(10, 99)
         self.name = name
-        #Speler.Speler(id, self.name, age, color)
+        self.pawnnr = 20
+        self.missionscomp = 0
+        Speler.Speler(id, self.name, age, color)
 
-        super(CPUSpeler, self).__init__(id, name, age, color)  # Correcte manier van inheritance in Python 2.7?
+        #super(CPUSpeler, self).__init__(self, id, name, age, color)  # Correcte manier van inheritance in Python 2.7?
         self.hand = collections.Counter(red=0, blue=0, green=0)  # Opvragen met hand['red']
 
     # Heeft deze ook methodes add_card_to_hand en remove_card_from_hand van Speler???
@@ -29,7 +31,6 @@ class CPUSpeler(Parent):
     def getpawn(self):
         #return super(CPUSpeler, self).get_pawns()
         self.get_pawns()
-
 
     # logica blijft hetzelfde in CPUSpeler en Speler
     #def remove_cards_from_hand(self, color, amount):
