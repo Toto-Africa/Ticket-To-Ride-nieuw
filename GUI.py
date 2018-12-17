@@ -24,6 +24,7 @@ class GUI:
 
     def start(self):
 
+
         def close_start():
             master.destroy()
 
@@ -261,6 +262,8 @@ class GUI:
         board = nx.Graph()
 
 
+
+
         #for city in listOfCities:
          #   board.add_node(city)
           #  print(city)
@@ -278,7 +281,11 @@ class GUI:
             for route in routes:
 
               #                 # from city                # to city                  # path cost           # color of path       #label die meegegeven wordt
-              board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost(), title= str(route.get_pathCost()) + " ; " + str(route.get_occupiedBy()))
+              if (route.get_occupiedBy() == 0):
+                  ingenomen = ' v '
+              else:
+                  ingenomen = beurt.return_player(route.get_occupiedBy()).get_name()
+              board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost(), title= str(route.get_pathCost()) + " ; " + ingenomen)
               print(route.get_cities()[0] + " naar " + route.get_cities()[1] +  " kleur " + route.get_color())
 
             edges = board.edges()
@@ -338,14 +345,15 @@ class GUI:
                 updatedash()
                 updatescore()
                 refreshgraph()
+                popup.destroy()
                 if (beep==0):
-                    messagebox.showerror("Foutje gemaakt", "Deze route is succesvol ingenomen")
+                    messagebox.showerror("Goed gedaan man!", "Deze route is succesvol ingenomen")
                 if (beep==1):
-                    messagebox.showerror("Foutje gemaakt", "Deze route is reeds ingenomen")
+                    messagebox.showerror("Oops foutje gemaakt", "Deze route is reeds ingenomen")
                 if (beep==2):
-                    messagebox.showerror("Foutje gemaakt", "Je hebt niet vodloende treinkaarten om deze route in te nemen")
+                    messagebox.showerror("Oops foutje gemaakt", "Je hebt niet voldoende treinkaarten om deze route in te nemen")
                 if (beep==3):
-                    messagebox.showerror("Foutje gemaakt", "Je hebt niet voldoende pionnen om deze route in te nemen ")
+                    messagebox.showerror("Oops foutje gemaakt", "Je hebt niet voldoende pionnen om deze route in te nemen ")
 
             Label(popup, text="Van").grid(row=0, column=0)
             #evan = Entry(popup)
