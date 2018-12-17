@@ -1,15 +1,16 @@
 import Speler
 import collections
+from Speler import Speler as Parent
 from random import randint
 
 
-class CPUSpeler(Speler.Speler):
+class CPUSpeler(Parent):
 
     # Age niet meegeven als argument in constructor CPU-Speler
     def __init__(self, id, name, color):  # Niet zeker van inheritance
         age = randint(10, 99)
         self.name = name
-        Speler.Speler.__init__(id, self.name, age, color)
+        Speler.Speler(id, self.name, age, color)
 
         #super(CPUSpeler, self).__init__(self, id, name, age, color)  # Correcte manier van inheritance in Python 2.7?
         self.hand = collections.Counter(red=0, blue=0, green=0)  # Opvragen met hand['red']
