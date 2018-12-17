@@ -334,11 +334,18 @@ class GUI:
 
             mainloop(1)
 
+        def winner():
+
+            root.destroy()
+            my_gui.win()
+
+
         #Control Buttons
         #Methodes uit beurt vasthangen aan deze routes
         b = Button(root, text="Extra treinkaart", command=extra_tc)
         b1 = Button(root, text="Route innemen", command=route_innemen)
         b2 = Button(root, text="Missie wisselen", command=next_graph)
+        b3 = Button(root, text="Valsspelen is ook spelen", command=winner)
 
         b.grid(row=4)
         b1.grid(row=5)
