@@ -31,7 +31,7 @@ class Speler:
         return self.pawnnr
 
     def remove_pawns(self, amount):
-        self.__pawnnr -= amount
+        self.pawnnr -= amount
 
     def get_mission(self, nr):
         if nr == 1:
@@ -46,7 +46,7 @@ class Speler:
         return False
 
     def get_id(self):
-        return self.__id
+        return self.id
 
     def get_missionscomp(self):
         return self.missionscomp
