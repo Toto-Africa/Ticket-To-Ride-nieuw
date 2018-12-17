@@ -4,6 +4,7 @@ import networkx as nx #soort van graph waar we het spelbord van kunnen maken
 import Beurt
 import Route
 import Speler
+import CPUSpeler
 #import os
 
 from tkinter import *
@@ -154,7 +155,7 @@ class GUI:
         routes.append(Route.Route('b', 2, [listOfCities[4], listOfCities[1]], 0))  # Wenen (blue)
         routes.append(Route.Route('r', 2, [listOfCities[4], listOfCities[3]], 0))  # Kiev (red)
 
-        board = nx.Graph()
+        board = nx.MultiDiGraph()
 
         board.add_node("Berlijn", pos=(1, 1))
         board.add_node("Wenen", pos=(2, 0))
@@ -220,10 +221,13 @@ class GUI:
 
         def updatescore():
 
-            #Label(root, text=beurt.return_player(1).get_pawns()).grid(row=5, column=6)
-            #Label(root, text=beurt.return_player(2).getpawn()).grid(row=6, column=6)
-            #Label(root, text=beurt.return_player(3).get_pawns()).grid(row=7, column=6)
-            #Label(root, text=beurt.return_player(4).get_pawns()).grid(row=8, column=6)
+            tp_1 = beurt.return_player(2)
+
+
+            Label(root, text=beurt.return_player(1).get_pawns()).grid(row=5, column=6)
+            Label(root, text=beurt.return_player(2).get_pawns()).grid(row=6, column=6)
+            Label(root, text=beurt.return_player(3).get_pawns()).grid(row=7, column=6)
+            Label(root, text=beurt.return_player(4).get_pawns()).grid(row=8, column=6)
 
             #Label(root, text=beurt.return_player(1).get_missionscomp()).grid(row=5, column=5)
             #Label(root, text=beurt.return_player(2).get_missionscomp()).grid(row=6, column=5)
