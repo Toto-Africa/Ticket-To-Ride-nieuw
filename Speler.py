@@ -46,7 +46,7 @@ class Speler:
         return False
 
     def get_id(self):
-        return self.__id
+        return self.id
 
     def get_missionscomp(self):
         return self.missionscomp

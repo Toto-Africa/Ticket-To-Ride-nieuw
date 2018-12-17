@@ -269,30 +269,30 @@ class GUI:
          #   board.add_node(city)
           #  print(city)
 
-        for route in routes:
-          #                 # from city                # to city                  # path cost                      # color of path
-          board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost(), title=route.get_pathCost())
-          print(route.get_cities()[0] + " naar " + route.get_cities()[1] +  " kleur " + route.get_color())
+        def refreshgraph():
+            for route in routes:
+              #                 # from city                # to city                  # path cost           # color of path       #label die meegegeven wordt
+              board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost(), title=route.get_pathCost())
+              print(route.get_cities()[0] + " naar " + route.get_cities()[1] +  " kleur " + route.get_color())
 
-        edges = board.edges()
-        colors = [board[u][v]['color'] for u, v in edges]
-        weights = [board[u][v]['weight'] for u, v in edges]
+            edges = board.edges()
+            colors = [board[u][v]['color'] for u, v in edges]
+            weights = [board[u][v]['weight'] for u, v in edges]
 
-        pos = nx.get_node_attributes(board, 'pos')
+            pos = nx.get_node_attributes(board, 'pos')
 
-        copyBoard = board.copy()
+            copyBoard = board.copy()
 
-        edge_labels = nx.get_edge_attributes(board, 'title')
-        nx.draw(board, pos, edges=edges, edge_color=colors, width=weights, with_labels=True, ax=a)
-        nx.draw_networkx_edge_labels(board, pos, edge_labels=edge_labels)
+            edge_labels = nx.get_edge_attributes(board, 'title')
+            nx.draw(board, pos, edges=edges, edge_color=colors, width=weights, with_labels=True, ax=a)
+            nx.draw_networkx_edge_labels(board, pos, edge_labels=edge_labels)
 
         # Canvas maken en hier graph in tekenen
+        refreshgraph()
         canvas = FigureCanvasTkAgg(f, master=root)
         canvas.draw()
         canvas.get_tk_widget().grid(row=0, column=1)
 
-        def next_graph():
-            messagebox.showinfo("test")
 
         def extra_tc():
             try:
@@ -321,18 +321,31 @@ class GUI:
             def cancel_route():
                 popup.destroy()
 
+            def next_graph():
+                print(vanvar.get() + " naar " + naarvar.get() )
+
+                routeX = beurt.search_route([vanvar.get(),naarvar.get()], routes)
+                print(routeX)
+                beep = beurt.conquer_route(routeX, beurt.return_player(1))
+                print(beep)
+
+                updatedash()
+                messagebox.showinfo("test")
+
             Label(popup, text="Van").grid(row=0, column=0)
             #evan = Entry(popup)
             dropvan.grid(row=0, column=1)
             Label(popup, text="Naar").grid(row=1, column=0)
             #enaar = Entry(popup)
             dropnaar.grid(row=1, column=1)
-            b = Button(popup, text="INNEMEN", command=next_graph)
-            b2 = Button(popup, text="Annuleer", command=cancel_route)
-            b.grid(row=2, column =0)
-            b2.grid(row=2, column=1)
+            bIn = Button(popup, text="INNEMEN", command=next_graph)
+            bAn = Button(popup, text="Annuleer", command=cancel_route)
+            bIn.grid(row=2, column =0)
+            bAn.grid(row=2, column=1)
 
             mainloop(1)
+
+
 
 
 

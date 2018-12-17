@@ -215,7 +215,10 @@ class Beurt:
         if route.get_occupiedBy() == 0:
             # Heeft speler genoeg treinkaarten?
             aantalMetWilds = player.get_traincards(route.get_color()) + player.get_traincards("wild")
-            if(aantalMetWilds < route.get_pathCost() or player.get_traincards(route.get_color()) < route.get_pathCost()):
+            if(aantalMetWilds < route.get_pathCost() or player.get_pawns() < route.get_pathCost()):
+                print("aantal met wilds" + aantalMetWilds)
+                print("pad kost" + route.get_pathCost())
+
                 #messagebox.showwarning("Waarschuwing","Onvoldoende treinkaarten \n\n of \n\npionnen")
                 statuscode = 2
             else:
@@ -229,7 +232,7 @@ class Beurt:
                     #EINDIGEN SPEL
                 else:
                     #self.end_of_beurt(player) # deze droppen voor statuscode (standaard 0)
-                    print('Ik zit in den else')
+                    print("end of life")
         else:
             #print("Deze route is reeds ingenomen")
             statuscode = 1
