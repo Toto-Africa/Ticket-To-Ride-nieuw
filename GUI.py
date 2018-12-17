@@ -67,7 +67,7 @@ class GUI:
                     #
                     # rou = Route.Route('', 0, ["", ""], 0)
                     routes.append(Route.Route('r', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (yellow)
-                    routes.append(Route.Route('r', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (red)
+                    routes.append(Route.Route('g', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (red)
                     # Warschau to
                     routes.append(Route.Route('b', 2, [listOfCities[2], listOfCities[0]], 0))  # Berlijn (blue)
                     routes.append(Route.Route('g', 2, [listOfCities[2], listOfCities[0]], 0))  # Berlijn (green)
@@ -379,6 +379,6 @@ class GUI:
 
 my_gui = GUI()
 while True:
-    my_gui.initbord()
+    my_gui.start()
     #my_gui.spelerstats()
 
