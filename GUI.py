@@ -189,7 +189,7 @@ class GUI:
 
         return routes
 
-    def win(self):
+    def win(self, beurt):
 
         master = Tk()
         master.wm_title("Winner")
@@ -199,7 +199,7 @@ class GUI:
         bg_label = Label(master, image=bg_image)
 
         bg_label.pack()
-        Label(master, text="... WINT! Feestje! Amai, tof seg! Hoho, leuk spelletje!", bg="black", fg="white", font=("Helvetica", 30)).pack()
+        Label(master, text= "'" + beurt.return_player(1).get_name() + "' WINT! Feestje! Amai, tof seg! Hoho, leuk spelletje!", bg="black", fg="white", font=("Helvetica", 30)).pack()
 
         mainloop(0)
 
@@ -333,7 +333,7 @@ class GUI:
         def winner():
 
             root.destroy()
-            my_gui.win()
+            my_gui.win(beurt)
 
 
         #Control Buttons
@@ -346,6 +346,7 @@ class GUI:
         b.grid(row=4)
         b1.grid(row=5)
         b2.grid(row=6)
+        b3.grid(row=7)
 
 
         #Spelerstats displayen
