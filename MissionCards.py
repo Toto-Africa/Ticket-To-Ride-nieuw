@@ -1,9 +1,6 @@
-
 import random
 
-
 class MissionCards(object):
-
     def __init__(self):
         self.missions = [(("Berlijn, Kiev"), (("Warschau"),("Wenen"),("Warschau, Wenen"),("Wenen, Bucharest"))),
                      (("Berlijn, Bucharest"), (("Wenen"), ("Warschau, Kiev"), ("Warschau, Wenen"))),
@@ -35,8 +32,3 @@ class MissionCards(object):
             return self.missions.pop() #Geeft de laatste item uit de list, dus dankzij shuffle een random mission
         except IndexError: #Als de stapel leeg is zullen we een IndexError krijgen en opvangen
             return("leeg")
-
-
-    #OPMERKING: Deck en Weggooistapel niet nodig omdat wij de objecten gewoon verwijderen zonder meer
-    #           We staan namelijk niet toe dat er kaarten worden bijgevuld,....
-    #           Hetzelfde geldt voor de traincards!

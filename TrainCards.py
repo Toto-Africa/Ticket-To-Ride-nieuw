@@ -5,8 +5,6 @@ class TrainCards(object):
 
     def __init__(self):
         self.colors = ["g", "b", "r"]
-
-        #wildcards nog toevoegen
         self.cards = ["wild" for i in range(6)] + [i for i in self.colors for j in range(22)]
         self.shuffle(self.cards)
 
@@ -19,7 +17,7 @@ class TrainCards(object):
     def dealCard(self):
 
         try:
-            return self.cards.pop() #Pop() removes the last item from the list and returns it
+            return self.cards.pop()  # Pop() removes the last item from the list and returns it
 
         except IndexError:
             #SPEL STOPPEN
@@ -27,9 +25,8 @@ class TrainCards(object):
 
 
     def cardsLeftover(self):
+        return len(self.cards)  # Geeft weer hoeveel treinkaarten er nog zijn, kan bv tellertje geven op bord?
+                                # Indien dit niet gewenst is, deze methode verwijderen
 
-        return len(self.cards)      #Geeft weer hoeveel treinkaarten er nog zijn, kan bv tellertje geven op bord?
-                                    #Indien dit niet gewenst is, deze methode verwijderen
 
-
-    #print(dealCard())
+    # print(dealCard())
