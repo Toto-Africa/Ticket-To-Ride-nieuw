@@ -339,13 +339,13 @@ class GUI:
                 updatescore()
                 refreshgraph()
                 if (beep==0):
-                    messagebox.showerror("Deze route is succesvol ingenomen")
+                    messagebox.showerror("Foutje gemaakt", "Deze route is succesvol ingenomen")
                 if (beep==1):
-                    messagebox.showerror("Deze route is reeds ingenomen")
+                    messagebox.showerror("Foutje gemaakt", "Deze route is reeds ingenomen")
                 if (beep==2):
-                    messagebox.showerror("Je hebt niet vodloende treinkaarten om deze route in te nemen")
+                    messagebox.showerror("Foutje gemaakt", "Je hebt niet vodloende treinkaarten om deze route in te nemen")
                 if (beep==3):
-                    messagebox.showerror("Je hebt niet voldoende pionnen om deze route in te nemen ")
+                    messagebox.showerror("Foutje gemaakt", "Je hebt niet voldoende pionnen om deze route in te nemen ")
 
             Label(popup, text="Van").grid(row=0, column=0)
             #evan = Entry(popup)
