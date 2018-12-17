@@ -3,7 +3,7 @@ import collections
 from random import randint
 
 
-class CPUSpeler(Speler):
+class CPUSpeler(Speler.Speler):
 
     # Age niet meegeven als argument in constructor CPU-Speler
     def __init__(self, id, name, color):  # Niet zeker van inheritance
