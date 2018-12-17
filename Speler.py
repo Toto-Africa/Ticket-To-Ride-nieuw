@@ -31,7 +31,7 @@ class Speler:
         return self.pawnnr
 
     def remove_pawns(self, amount):
-        self.__pawnnr -= amount
+        self.pawnnr -= amount
 
     def get_mission(self, nr):
         if nr == 1:
@@ -74,7 +74,7 @@ class Speler:
     def remove_cards_from_hand(self, color, amount):
         if(self.hand[color]<amount):
             rest = amount - self.hand[color]
-            self.hand[color] = 0
+            self.hand[color] = self.hand[color] - self.hand[color]
             self.hand["wild"] = self.hand["wild"] - rest
         else:
             self.hand[color] = self.hand[color] - amount
