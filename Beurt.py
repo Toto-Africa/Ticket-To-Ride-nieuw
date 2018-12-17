@@ -97,7 +97,7 @@ class Beurt:
         if id==4:
             return cpu_z
 
-    def swap_mission(self, pl = Speler.Speler(), table = list):
+    def swap_mission(self, pl, table = list):
         # Route: tussen 2 aanliggende steden
         # Weg: tussen 2 niet-aanliggende steden (missie dus)
 
