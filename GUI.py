@@ -295,11 +295,11 @@ class GUI:
             messagebox.showinfo("test")
 
         def extra_tc():
-
             try:
-                beurt.extra_traincard(beurt.return_player(1))
-                updatedash()
-                updatescore()
+                for i in range(2):
+                    beurt.extra_traincard(beurt.return_player(1))
+                    updatedash()
+                    updatescore()
             except ValueError:
                 winner()
 
