@@ -192,12 +192,16 @@ class Beurt:
     #def extra_traincard(self, pl = Speler.Speler):
     def extra_traincard(self, pl):
         color = self.deck.dealCard()                # dealCard: returnt 1 kaart? Correcte methode? Instantie maken eerst?
-        pl.add_card_to_hand(color)                                        #NOTA VAN ELMER: Best object bv "Deck" aanmaken --> self.deck = TrainCards.TrainCards()
+        if(color=="leeg"):
+            raise ValueError
+        else:
+            pl.add_card_to_hand(color)                                        #NOTA VAN ELMER: Best object bv "Deck" aanmaken --> self.deck = TrainCards.TrainCards()
                                                 #Dit initialiseert Traincards met een stapel, daarna doe je self.deck.dealCard()" natuurlijk in de speler zijn hand
 
     def search_route(self, cities = list, routes = list):
         for i in range(len(routes)):
-            if cities == routes[i]:
+            #if cities == routes[i] or (cities[0] == routes[i][1] and cities[1] == routes[i][0]):
+            if (cities[0] == routes[i].getcities(0) or cities[0] == routes[i].getcities(1)) and (cities[1] == routes[i].getcities(0) or cities[1] == routes[i].getcities(1)):
                 return routes[i]
 
 
