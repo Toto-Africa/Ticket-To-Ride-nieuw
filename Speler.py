@@ -72,12 +72,13 @@ class Speler:
         self.hand[color] = self.hand[color] + 1
 
     def remove_cards_from_hand(self, color, amount):
-        if(self.hand[color]<amount):
+        if(self.hand[color]>=amount):
+            self.hand[color] = self.hand[color] - amount
+        else:
+
             rest = amount - self.hand[color]
             self.hand[color] = self.hand[color] - self.hand[color]
             self.hand["wild"] = self.hand["wild"] - rest
-        else:
-            self.hand[color] = self.hand[color] - amount
 
     """"
     DIT MOET IN BEURT DENK IK? in methode 'extra_train_card'
