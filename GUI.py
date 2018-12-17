@@ -168,7 +168,7 @@ class GUI:
 
         for route in routes:
           #                 # from city                # to city                  # path cost                      # color of path
-          board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost(), title=route.get_pathCost())
+          board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost(), title=str(route.get_pathCost()) + " " + str(route.get_occupiedBy()))
           print(route.get_cities()[0] + " naar " + route.get_cities()[1] +  " kleur " + route.get_color())
 
         edges = board.edges()
@@ -260,19 +260,25 @@ class GUI:
 
         board = nx.Graph()
 
-        board.add_node("Berlijn", pos=(1, 1))
-        board.add_node("Wenen", pos=(2, 0))
-        board.add_node("Warschau", pos=(3, 1))
-        board.add_node("Kiev", pos=(5, 0))
-        board.add_node("Boekarest", pos=(5, -2))
+
         #for city in listOfCities:
          #   board.add_node(city)
           #  print(city)
 
         def refreshgraph():
+
+            board.clear()
+
+            board.add_node("Berlijn", pos=(1, 1))
+            board.add_node("Wenen", pos=(2, 0))
+            board.add_node("Warschau", pos=(3, 1))
+            board.add_node("Kiev", pos=(5, 0))
+            board.add_node("Boekarest", pos=(5, -2))
+
             for route in routes:
+
               #                 # from city                # to city                  # path cost           # color of path       #label die meegegeven wordt
-              board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost(), title=route.get_pathCost())
+              board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost(), title= str(route.get_pathCost()) + " ; " + str(route.get_occupiedBy()))
               print(route.get_cities()[0] + " naar " + route.get_cities()[1] +  " kleur " + route.get_color())
 
             edges = board.edges()
@@ -281,17 +287,17 @@ class GUI:
 
             pos = nx.get_node_attributes(board, 'pos')
 
-            copyBoard = board.copy()
-
             edge_labels = nx.get_edge_attributes(board, 'title')
             nx.draw(board, pos, edges=edges, edge_color=colors, width=weights, with_labels=True, ax=a)
             nx.draw_networkx_edge_labels(board, pos, edge_labels=edge_labels)
 
+            canvas = FigureCanvasTkAgg(f, master=root)
+            canvas.draw()
+            canvas.get_tk_widget().grid(row=0, column=1)
+
         # Canvas maken en hier graph in tekenen
         refreshgraph()
-        canvas = FigureCanvasTkAgg(f, master=root)
-        canvas.draw()
-        canvas.get_tk_widget().grid(row=0, column=1)
+
 
 
         def extra_tc():
@@ -330,6 +336,8 @@ class GUI:
                 print(beep)
 
                 updatedash()
+                updatescore()
+                refreshgraph()
                 messagebox.showinfo("test")
 
             Label(popup, text="Van").grid(row=0, column=0)
@@ -344,10 +352,6 @@ class GUI:
             bAn.grid(row=2, column=1)
 
             mainloop(1)
-
-
-
-
 
         def winner():
 
@@ -384,7 +388,6 @@ class GUI:
         Label(root, text="Missie1", bg="grey", fg="white").grid(row=14, column=0)
 
         Label(root, text="Missie2", bg="grey", fg="white").grid(row=15, column=0)
-
 
         #SCOREBORD
         #tabel aanmaken

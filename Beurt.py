@@ -242,6 +242,8 @@ class Beurt:
             # Moet nog naar messagebox?
         return statuscode
 
+        print(str(route.get_occupiedBy()) + "heeft deze route nu")
+
 
 
 
