@@ -167,7 +167,7 @@ class GUI:
 
         for route in routes:
           #                 # from city                # to city                  # path cost                      # color of path
-          board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost())
+          board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost(), title=route.get_pathCost())
           print(route.get_cities()[0] + " naar " + route.get_cities()[1] +  " kleur " + route.get_color())
 
         edges = board.edges()
@@ -178,10 +178,11 @@ class GUI:
 
         copyBoard = board.copy()
 
+        edge_labels = nx.get_edge_attributes(board, 'title')
         nx.draw(board, pos, edges=edges, edge_color=colors, width=weights, with_labels=True)
         #nx.draw_networkx_edge_labels(board,pos, edge_labels=weights)
         #nx.draw_networkx_nodes(board, pos, node_size=700)
-        nx.draw_networkx_edge_labels(board, pos)
+        nx.draw_networkx_edge_labels(board, pos, edge_labels=edge_labels)
 
         plt.axis('off')
         plt.show()
@@ -269,7 +270,7 @@ class GUI:
 
         for route in routes:
           #                 # from city                # to city                  # path cost                      # color of path
-          board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost())
+          board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost(), title=route.get_pathCost())
           print(route.get_cities()[0] + " naar " + route.get_cities()[1] +  " kleur " + route.get_color())
 
         edges = board.edges()
@@ -280,9 +281,9 @@ class GUI:
 
         copyBoard = board.copy()
 
-        #nx.draw_networkx_edge_labels(board, pos, edge_labels=weights)
+        edge_labels = nx.get_edge_attributes(board, 'title')
         nx.draw(board, pos, edges=edges, edge_color=colors, width=weights, with_labels=True, ax=a)
-        #nx.draw_networkx_edge_labels(board, pos)
+        nx.draw_networkx_edge_labels(board, pos, edge_labels=edge_labels)
 
         # Canvas maken en hier graph in tekenen
         canvas = FigureCanvasTkAgg(f, master=root)
@@ -378,6 +379,6 @@ class GUI:
 
 my_gui = GUI()
 while True:
-    my_gui.start()
+    my_gui.initbord()
     #my_gui.spelerstats()
 
