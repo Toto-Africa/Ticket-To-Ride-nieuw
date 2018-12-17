@@ -106,34 +106,34 @@ class Beurt:
         # Iedere mogelijke weg afgaan en kijken of daar al 1 van ingenomen is
         # Als van alle mogelijke wegen (tussen de 2 missiesteden) minstens 1 route is ingenomen, dan is het onmogelijk
 
-        bool1 = False  # Zegt of er nog een hele weg tussen de steden van missiekaart 1 beschikbaar is.
+        #bool1 = False  # Zegt of er nog een hele weg tussen de steden van missiekaart 1 beschikbaar is.
                        # Zegt dus of voltooien van missie nog mogelijk is.
 
         # Controle of aan voorwaarden voldaan is
         # 1) Waar staan missies van missiekaart 1 in tabel? Itereren door lange tabel
-        for i in range(len(table)):
-            # Naar juiste rij gaan (missiekaart 1)
-            if pl.get_mission(1) == table[i]:
-                # LOGICA: controleer of iedere mogelijke weg/route onmogelijk is
-                # 2) Itereren over iedere mogelijke route/weg tussen de twee steden
-                for j in range(len(table[i][1])):
+        #for i in range(len(table)):
+        #   # Naar juiste rij gaan (missiekaart 1)
+        #    if pl.get_mission(1) == table[i]:
+        #        # LOGICA: controleer of iedere mogelijke weg/route onmogelijk is
+        #        # 2) Itereren over iedere mogelijke route/weg tussen de twee steden
+        #        for j in range(len(table[i][1])):
 
-                    # TODO Meer if-structuren in soort case-structure met grootte van route = aantal 'and'
-                    # Aantal routes in weg?
-                    if len(table[i][1][j]) == 1:
-                        if table[i][1][j][0] == 0:  # Correct?
-                            bool1 = True
-                            break
+        #            # TODO Meer if-structuren in soort case-structure met grootte van route = aantal 'and'
+        #            # Aantal routes in weg?
+        #            if len(table[i][1][j]) == 1:
+        #               if table[i][1][j][0] == 0:  # Correct?
+        #                    bool1 = True
+        #                    break
 
-                    if len(table[i][1][j]) == 2:
-                        if table[i][1][j][0] == 0 and table[i][1][j][1] == 0:  # Correct?
-                            bool1 = True
-                            break
+        #            if len(table[i][1][j]) == 2:
+        #                if table[i][1][j][0] == 0 and table[i][1][j][1] == 0:  # Correct?
+        #                    bool1 = True
+        #                    break
 
-                    if len(table[i][1][j]) == 3:
-                        if table[i][1][j][0] == 0 and table[i][1][j][1] == 0 and table[i][1][j][2] == 0:  # Correct?
-                            bool1 = True
-                            break
+        #            if len(table[i][1][j]) == 3:
+        #                if table[i][1][j][0] == 0 and table[i][1][j][1] == 0 and table[i][1][j][2] == 0:  # Correct?
+        #                    bool1 = True
+        #                    break
 
                     #for k in range(len(table[i][1][j])):
                         #route = table[i][1][j][k] # Werkt dit??????????
@@ -144,31 +144,31 @@ class Beurt:
 
 
             # Idem voor missiekaart 2
-        for i in range(len(table)):
+        #for i in range(len(table)):
             # Naar juiste rij gaan (missiekaart 1)
-            if pl.get_mission(2) == table[i]:
+        #    if pl.get_mission(2) == table[i]:
                 # LOGICA: controleer of iedere mogelijke weg/route onmogelijk is
                 # 2) Itereren over iedere mogelijke route/weg tussen de twee steden
-                for j in range(len(table[i][1])):
+        #        for j in range(len(table[i][1])):
 
-                    # TODO Meer if-structuren in soort case-structure met grootte van route = aantal 'and'
-                     # Aantal routes in weg?
-                    if len(table[i][1][j]) == 1:
-                        if table[i][1][j][0] == 0:  # Correct?
-                            bool2 = True
-                            break
+        #            # TODO Meer if-structuren in soort case-structure met grootte van route = aantal 'and'
+        #             # Aantal routes in weg?
+        #            if len(table[i][1][j]) == 1:
+        #                if table[i][1][j][0] == 0:  # Correct?
+        #                    bool2 = True
+        #                    break
 
-                    if len(table[i][1][j]) == 2:
-                        if table[i][1][j][0] == 0 and table[i][1][j][1] == 0:  # Correct?
-                            bool2 = True
-                            break
+        #            if len(table[i][1][j]) == 2:
+        #                if table[i][1][j][0] == 0 and table[i][1][j][1] == 0:  # Correct?
+        #                    bool2 = True
+        #                    break
 
-                    if len(table[i][1][j]) == 3:
-                        if table[i][1][j][0] == 0 and table[i][1][j][1] == 0 and table[i][1][j][2] == 0:  # Correct?
-                            bool2 = True
-                            break
+        #            if len(table[i][1][j]) == 3:
+        #                if table[i][1][j][0] == 0 and table[i][1][j][1] == 0 and table[i][1][j][2] == 0:  # Correct?
+        #                    bool2 = True
+        #                    break
 
-        if not bool1 and not bool2:
+        #if not bool1 and not bool2:
             # Beide missies niet uit te voeren? -> bool = True
             new_mission1 = self.missioncards.dealMission()
             new_mission2 = self.missioncards.dealMission()
