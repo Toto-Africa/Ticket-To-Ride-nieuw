@@ -67,7 +67,7 @@ class GUI:
                     #
                     # rou = Route.Route('', 0, ["", ""], 0)
                     routes.append(Route.Route('r', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (yellow)
-                    routes.append(Route.Route('r', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (red)
+                    routes.append(Route.Route('g', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (red)
                     # Warschau to
                     routes.append(Route.Route('b', 2, [listOfCities[2], listOfCities[0]], 0))  # Berlijn (blue)
                     routes.append(Route.Route('g', 2, [listOfCities[2], listOfCities[0]], 0))  # Berlijn (green)
@@ -88,19 +88,14 @@ class GUI:
             else:
                 messagebox.showwarning("Fout", "Gelieve al de nodige gegevens in te vullen  ")
 
-                    # doorgeven en ga naar beurt dan? hoe doe ik da juist? :D variables zijn dan: (username, age, cpu1-3)
-                    # kleuren moeten hier ook nog bij
-                    # --> effe hardcoden denk ik
-
-        # eerst namen ingeven: spelers aanmaken dus
-
         master = Tk()
         master.wm_title("Start")
 
-        bg_image = PhotoImage(file="maxresdefault.png", )
-        bg_image = bg_image.zoom(1)
-        bg_image = bg_image.subsample(1)
-        bg_label = Label(master, image=bg_image)
+        b_image = PhotoImage(file="maxresdefault.png")
+        b_image = b_image.zoom(1)
+        b_image = b_image.subsample(1)
+        bg_label = Label(master, image=b_image)
+
         bg_label.place(x=0, y=0, width=480, height=160)
 
         Label(master, text="Speler naam * - leeftijd * ").grid(row=0, column=4)
@@ -172,7 +167,7 @@ class GUI:
 
         for route in routes:
           #                 # from city                # to city                  # path cost                      # color of path
-          board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost())
+          board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost(), title=route.get_pathCost())
           print(route.get_cities()[0] + " naar " + route.get_cities()[1] +  " kleur " + route.get_color())
 
         edges = board.edges()
@@ -183,10 +178,11 @@ class GUI:
 
         copyBoard = board.copy()
 
+        edge_labels = nx.get_edge_attributes(board, 'title')
         nx.draw(board, pos, edges=edges, edge_color=colors, width=weights, with_labels=True)
         #nx.draw_networkx_edge_labels(board,pos, edge_labels=weights)
         #nx.draw_networkx_nodes(board, pos, node_size=700)
-        nx.draw_networkx_edge_labels(board, pos)
+        nx.draw_networkx_edge_labels(board, pos, edge_labels=edge_labels)
 
         plt.axis('off')
         plt.show()
@@ -274,7 +270,7 @@ class GUI:
 
         for route in routes:
           #                 # from city                # to city                  # path cost                      # color of path
-          board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost())
+          board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost(), title=route.get_pathCost())
           print(route.get_cities()[0] + " naar " + route.get_cities()[1] +  " kleur " + route.get_color())
 
         edges = board.edges()
@@ -285,9 +281,9 @@ class GUI:
 
         copyBoard = board.copy()
 
-        #nx.draw_networkx_edge_labels(board, pos, edge_labels=weights)
+        edge_labels = nx.get_edge_attributes(board, 'title')
         nx.draw(board, pos, edges=edges, edge_color=colors, width=weights, with_labels=True, ax=a)
-        #nx.draw_networkx_edge_labels(board, pos)
+        nx.draw_networkx_edge_labels(board, pos, edge_labels=edge_labels)
 
         # Canvas maken en hier graph in tekenen
         canvas = FigureCanvasTkAgg(f, master=root)
