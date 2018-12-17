@@ -49,7 +49,7 @@ class Speler:
         return self.__id
 
     def get_missionscomp(self):
-        return self.__missionscomp
+        return self.missionscomp
 
     def set_name(self, name):
         self.__name = name
