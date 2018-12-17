@@ -6,12 +6,12 @@ from tkinter import messagebox
 class Speler:
     # constructor
     def __init__(self, id, name, age, color):
-        self.__id = id
+        self.id = id
         self.name = name  # deze opbjecten krijgt hij door van de GUI? ofwa?
-        self.__age = age  # deze opbjecten krijgt hij door van de GUI? ofwa?
-        self.__color = color  # deze opbjecten krijgt hij door van de GUI? ofwa?
-        self.__pawnnr = 20
-        self.__missionscomp = 0
+        self.age = age  # deze opbjecten krijgt hij door van de GUI? ofwa?
+        self.color = color  # deze opbjecten krijgt hij door van de GUI? ofwa?
+        self.pawnnr = 20
+        self.missionscomp = 0
 
 
         # Met collection.hand is beter denk ik: card=TrainCards.dealCard();self.hand[card] += 1; maar kdenk collection best nog initialiseren
