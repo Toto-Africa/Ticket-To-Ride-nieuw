@@ -23,18 +23,15 @@ class GUI:
 
 
     def start(self):
-
-
+        # Startscherm, hierin zal de speler terrechtkomen bij het opstarten van het spel vanuit hier zal hij zijn geg. moeten invullen en doorgaan
         def close_start():
             master.destroy()
 
         def buttonstart():
-            # hier dan overgaan naar beurt?
-            # hoe doe ik da praktisch? :D
 
             if len(e1.get()) != 0:
                 if agevar.get() != 0:
-                    # controleren dat belangrijkste textvakken niet leeg zijn
+                    # controleren dat belangrijkste textvakken niet leeg zijn, andere tekstvakken (CPU spelers)
                     username = e1.get()
                     age = agevar.get()
                     messagebox.showinfo("Hello Python", "Hello " + username + " : " + age)
@@ -57,8 +54,9 @@ class GUI:
                     cpunamen.append(cpu1)
                     cpunamen.append(cpu2)
                     cpunamen.append(cpu3)
+                    #CPU  spelers genereren adhv gegevens
                     beurt = Beurt.Beurt(username, age, 'pink', cpunamen);
-
+                    #controle print (wordt niet getoond aan gebruiker)
                     print(beurt.return_player(2).get_name())
 
                     listOfCities = [
@@ -66,7 +64,7 @@ class GUI:
                     ]
 
                     routes = []
-                    #
+                    #Hier voegen we onze routes toe, dit zal ten alle tijden gehardcoded moeten worden...
                     # rou = Route.Route('', 0, ["", ""], 0)
                     routes.append(Route.Route('r', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (yellow)
                     #routes.append(Route.Route('g', 1, [listOfCities[1], listOfCities[0]], 0))  # Berlijn (red)
@@ -86,25 +84,30 @@ class GUI:
                     my_gui.spelerstats(beurt, routes)
 
                 else:
+                    #foutcontrole
                     messagebox.showwarning("Fout", "Gelieve al de nodige gegevens in te vullen ")
             else:
+                #foutcontrole
                 messagebox.showwarning("Fout", "Gelieve al de nodige gegevens in te vullen  ")
 
+       #window aanmaken
         master = Tk()
         master.wm_title("Start")
 
+        #achtergrond afbeelding
         b_image = PhotoImage(file="maxresdefault.png")
         b_image = b_image.zoom(1)
         b_image = b_image.subsample(1)
         bg_label = Label(master, image=b_image)
-
         bg_label.place(x=0, y=0, width=480, height=160)
 
+        #opmaak
         Label(master, text="Speler naam * - leeftijd * ").grid(row=0, column=4)
         Label(master, text="CPU1 naam").grid(row=1, column=4)
         Label(master, text="CPU2 naam").grid(row=2, column=4)
         Label(master, text="CPU3 naam").grid(row=3, column=4)
 
+        #opmaak
         e1 = Entry(master)
         e2 = Entry(master)
         e3 = Entry(master)
@@ -132,8 +135,7 @@ class GUI:
         mainloop(0)
 
     def initbord(self):
-        #DIT IS OM TE WISSELEN
-        # subset van kaart
+        #Methode om het spelbord te testen... om nieuwigheden eerst hier in te implementeren alvorens ze toe te voegen aan het actuele spel.
         listOfCities = [
             "Berlijn", "Wenen", "Warschau", "Kiev", "Boekarest"  # 0, 1, 2, 3, 4
         ]
@@ -156,6 +158,7 @@ class GUI:
         routes.append(Route.Route('b', 2, [listOfCities[4], listOfCities[1]], 0))  # Wenen (blue)
         routes.append(Route.Route('r', 2, [listOfCities[4], listOfCities[3]], 0))  # Kiev (red)
 
+        #graph tekenen
         board = nx.MultiDiGraph()
 
         board.add_node("Berlijn", pos=(1, 1))
@@ -166,18 +169,20 @@ class GUI:
         #for city in listOfCities:
          #   board.add_node(city)
           #  print(city)
-
         for route in routes:
           #                 # from city                # to city                  # path cost                      # color of path
           board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost(), title=str(route.get_pathCost()) + " " + str(route.get_occupiedBy()))
+          # controle print (wordt niet getoond aan gebruiker)
           print(route.get_cities()[0] + " naar " + route.get_cities()[1] +  " kleur " + route.get_color())
 
+        #edges selecteren, kleuren filteren, gewichten filteren
         edges = board.edges()
         colors = [board[u][v]['color'] for u, v in edges]
         weights = [board[u][v]['weight'] for u, v in edges]
 
         pos = nx.get_node_attributes(board, 'pos')
 
+        #kopie van het bord bewaren
         copyBoard = board.copy()
 
         edge_labels = nx.get_edge_attributes(board, 'title')
@@ -192,7 +197,7 @@ class GUI:
         return routes
 
     def win(self, beurt):
-
+        #speler komt op dit scherm uit als er aan de eindvoorwaarden voldaan is...
         master = Tk()
         master.wm_title("Winner")
 
@@ -205,10 +210,12 @@ class GUI:
 
         mainloop(0)
 
-    def spelerstats(self, beurt, routes): #hier gaan we het attribuut speler (en beurt????) zeker moeten megeven, eventueel ook de graph of list met spelers
+    def spelerstats(self, beurt, routes): #uiteraard moeten beurt en routes steeds worden doorgegeven tussen de verschillende beurten
+        #Dit is het toegangscherm dat de speler te zien krijgt bij het spelen van het spel
 
         root = Tk()
 
+        #achtergrondafbeelding
         bg_image = PhotoImage(file="maxresdefault.png", )
         bg_image = bg_image.zoom(1)
         bg_image = bg_image.subsample(1)
@@ -217,11 +224,11 @@ class GUI:
 
 
         root.wm_title("Spelersbord")
-        # Quit when the window is done !!!!WERKT NOG ALTIJD NIET GOED!!!
+        # Quit when the window is done !!
         root.wm_protocol('WM_DELETE_WINDOW', root.quit)
 
         def updatescore():
-
+            #Methode binnen spelerstat om het scorebord up te daten
             Label(root, text=beurt.return_player(1).get_pawns()).grid(row=5, column=6)
             Label(root, text=beurt.return_player(2).get_pawns()).grid(row=6, column=6)
             Label(root, text=beurt.return_player(3).get_pawns()).grid(row=7, column=6)
