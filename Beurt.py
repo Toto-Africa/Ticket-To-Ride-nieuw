@@ -225,6 +225,7 @@ class Beurt:
 
 
     # Onderstaande methode werd niet voltooid omdat er tijdsnood was en door het werken met een andere datastructuur.
+    # Met de nieuwe datastructuur nu zou dit te implementeren zijn, maar door tijdsnood was dit niet meer mogelijk.
 
     # Controleer of missie voltooid werd
     # Ja, missie werd voltooid: aantal voltooide missies + 1
