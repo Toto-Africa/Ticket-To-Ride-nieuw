@@ -306,6 +306,7 @@ class GUI:
 
 
         def extra_tc():
+            #methode achter de knop om extra treinkaarten te verkrijgen
             try:
                 for i in range(2):
                     beurt.extra_traincard(beurt.return_player(1))
@@ -315,6 +316,7 @@ class GUI:
                 winner()
 
         def route_innemen():
+            # methode achter de knop om route in te nemen
             popup = Tk()
 
             listOfCities = [
@@ -327,12 +329,11 @@ class GUI:
             dropvan = OptionMenu(popup, vanvar, *listOfCities)
             dropnaar = OptionMenu(popup, naarvar, *listOfCities)
 
-
-
             def cancel_route():
                 popup.destroy()
 
             def next_graph():
+                #overgaan naar een volgende beurt
                 print(vanvar.get() + " naar " + naarvar.get() )
 
                 routeX = beurt.search_route([vanvar.get(),naarvar.get()], routes)
@@ -367,10 +368,11 @@ class GUI:
             mainloop(1)
 
         def winner():
-
+            #als er voldaan is aan de winstvoorwaarde wordt deze methode opgeropeen
             root.destroy()
             my_gui.win(beurt)
 
+        #methode om missiewissel door te voeren
         def missiewissel():
             try:
                 beurt.swap_mission(beurt.return_player(1))
