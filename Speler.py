@@ -1,6 +1,6 @@
 import collections
 
-# LOGICA PIONNEN!!!
+
 class Speler:
     # constructor
     def __init__(self, id, name, age, color):
