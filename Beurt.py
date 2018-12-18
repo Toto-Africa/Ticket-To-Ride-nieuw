@@ -10,7 +10,7 @@ from Speler import Speler
 class Beurt:
 
     # Constructor
-    def __init__(self, name, age, color, cpu_names): # Welke argumenten zijn het beste? List of array van spelers?
+    def __init__(self, name, age, color, cpu_names):
         # Menselijke speler aanmaken: heeft id = 1
         # Treinkaarten en missiekaarten op begin van spel: constructor Speler
         global player
@@ -28,9 +28,7 @@ class Beurt:
         missioncard2 = self.missioncards.dealMission()
         player.set_missions(missioncard1, missioncard2)
 
-        cpu_colors = ['blue', 'green', 'yellow']
-        # CPU-spelers aanmaken: 3 CPU-spelers (2, 3, 4) # #Willekeurige leeftijd tussen 10 en 99
-
+        # CPU-spelers aanmaken: 3 CPU-spelers (IDs 2, 3, 4) en willekeurige leeftijd tussen 10 en 99 (gebeurt in cosntructor CPUSpeler)
         global cpu_x
         cpu_x = CPUSpeler.CPUSpeler(2, cpu_names[0], 'blue')
         global cpu_y
@@ -52,11 +50,11 @@ class Beurt:
 
         for j in range(0, 3):
             # Treinkaarten toekennen aan CPU's
-            traincard = self.deck.dealCard()  # traincards_array.append(traincard)  # # Indien methode "TrainCards.dealcard" kaartenteller van Speler verhoogt, dan is dit niet nodig
-            cpu_z.add_card_to_hand(traincard)  # Werkt hopelijk
+            traincard = self.deck.dealCard()
+            cpu_z.add_card_to_hand(traincard)
 
 
-        # Missiekaarten toekennen aan CPU's (terug buitenste for-loop om over CPU's te stappen)
+        # Missiekaarten toekennen aan CPU's
         missioncard1 = self.missioncards.dealMission()
         missioncard2 = self.missioncards.dealMission()
         cpu_x.set_missions(missioncard1, missioncard2)
@@ -71,6 +69,8 @@ class Beurt:
 
 
     # Normale methodes
+
+    # Geeft een instantie van Speler terug indien je het ID van deze speler meegeeft als argument.
     def return_player(self, id):
         if id == 1:
             return player
@@ -81,6 +81,9 @@ class Beurt:
         if id==4:
             return cpu_z
 
+    # Indien een speler zijn missiekaarten wil omruilen. De nodige controles die volgens de spelregels moeten gebeuren,
+    # zijn niet geïmplementeerd. De reden hiervoor is dat het werken met de datastructuur om de mogelijke wegen tussen
+    # twee steden (missiekaart) te controleren, moeilijk was.
     def swap_mission(self, pl, table = list):
         new_mission1 = self.missioncards.dealMission()
         new_mission2 = self.missioncards.dealMission()
@@ -168,11 +171,8 @@ class Beurt:
 
 
 
-
-
-
-
-
+    # Speler wil extra treinkaart nemen. Indien de speler een treinkaart probeert te nemen en de stapel is op, dan
+    # stopt het spel.
     def extra_traincard(self, pl):
         color = self.deck.dealCard()
         if(color=="leeg"):
@@ -181,15 +181,17 @@ class Beurt:
             pl.add_card_to_hand(color)
         #Dit initialiseert Traincards met een stapel, daarna doe je self.deck.dealCard()" natuurlijk in de speler zijn hand
 
+    # Met deze methode kan je een specifieke route (tussen 2 aanliggende steden) opvragen indien je de twee steden aan
+    # de rand ervan meegeeft als argument in een list. Je moet ook de list met mogelijke routes meegeven.
     def search_route(self, cities = list, routes = list):
         for i in range(len(routes)):
             if (cities[0] == routes[i].get_cities_nr(0) or cities[0] == routes[i].get_cities_nr(1)) and (cities[1] == routes[i].get_cities_nr(0) or cities[1] == routes[i].get_cities_nr(1)):
                 return routes[i]
 
-
+    # De speler wil route innemen. Deze methode kijkt of de route reeds ingenomen is en of de speler genoeg treinkaarten
+    # heeft. Indien aan de voorwaarden voldaan is, wordt de route toegekend aan de speler die werd meegegeven als argument.
     def conquer_route(self, route, player):
         statuscode = 0
-        # nota Jan:
         # statuscode => 0 = alles ok, 1 = route reeds ingenomen, 2 = niet genoeg treinkaarten of pionnen, 3 = pionnen op
         # de menselijke speler kan communiceren via messageboxes, CPU niet. => daarom code
 
@@ -222,7 +224,8 @@ class Beurt:
 
 
 
-
+    # Onderstaande methode werd niet voltooid omdat er tijdsnood was en door het werken met een andere datastructuur.
+    # Met de nieuwe datastructuur nu zou dit te implementeren zijn, maar door tijdsnood was dit niet meer mogelijk.
 
     # Controleer of missie voltooid werd
     # Ja, missie werd voltooid: aantal voltooide missies + 1
@@ -233,6 +236,7 @@ class Beurt:
     # Neen, missie werd niet voltooid:
     # Zijn pionnen op? --> Ja: speler met meeste voltooide missies wint
     # Neen: volgende beurt
+
     #def end_of_beurt(self, pl = Speler.Speler, tabel = list):
         #if  Missie voltooid (Hoe implementeren???)
         # Eerst itereren door eerste kolom ("Waar staat missie?")

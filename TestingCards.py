@@ -3,6 +3,7 @@ import MissionCards
 import Speler
 import time
 
+# Dit is een klasse om de werking van treinkaarten en missiekaarten te testen.
 
 class Test(object):
         player = Speler.Speler(1, "Elmer", "21", "Rood")
