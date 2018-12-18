@@ -261,12 +261,6 @@ class GUI:
         a = f.add_subplot(111)
         plt.axis('off')
 
-        # INSERT HIER ONZE GRAPH (dit is voorbeeldgraph)
-        #OP termijn zou route moeten doorgegeven worden, en dan kan er veel van dieje zever hieronder wweg
-        listOfCities = [
-            "Berlijn", "Wenen", "Warschau", "Kiev", "Boekarest"  # 0, 1, 2, 3, 4
-        ]
-
         board = nx.Graph()
 
         def refreshgraph():
@@ -297,6 +291,7 @@ class GUI:
 
             pos = nx.get_node_attributes(board, 'pos')
 
+            #
             edge_labels = nx.get_edge_attributes(board, 'title')
             nx.draw(board, pos, edges=edges, edge_color=colors, width=weights, with_labels=True, ax=a)
             nx.draw_networkx_edge_labels(board, pos, edge_labels=edge_labels)
