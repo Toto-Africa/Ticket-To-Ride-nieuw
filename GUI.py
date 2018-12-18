@@ -245,6 +245,7 @@ class GUI:
             Label(root, text=beurt.return_player(4).get_name()).grid(row=8, column=4)
 
         def updatedash():
+            #Methode binnen spelerstat om de het dashboard van de speler up te daten
             Label(root, text=beurt.return_player(1).get_traincards('r')).grid(row=9, column=1, sticky="W")
             Label(root, text=beurt.return_player(1).get_traincards('g')).grid(row=10, column=1, sticky="W")
             Label(root, text=beurt.return_player(1).get_traincards('b')).grid(row=11, column=1, sticky="W")
@@ -255,6 +256,7 @@ class GUI:
             Label(root, text=beurt.return_player(1).get_mission(1)[0]).grid(row=14, column=1, sticky="W")
             Label(root, text=beurt.return_player(1).get_mission(2)[0]).grid(row=15, column=1, sticky="W")
 
+        #figuur in canvas plotten
         f = plt.figure(figsize=(5, 4))
         a = f.add_subplot(111)
         plt.axis('off')
@@ -265,17 +267,10 @@ class GUI:
             "Berlijn", "Wenen", "Warschau", "Kiev", "Boekarest"  # 0, 1, 2, 3, 4
         ]
 
-
         board = nx.Graph()
 
-
-
-
-        #for city in listOfCities:
-         #   board.add_node(city)
-          #  print(city)
-
         def refreshgraph():
+            #methode om de graph up te daten na een beurt
 
             board.clear()
 
@@ -293,6 +288,7 @@ class GUI:
               else:
                   ingenomen = beurt.return_player(route.get_occupiedBy()).get_name()
               board.add_edge(route.get_cities()[0], route.get_cities()[1], color=route.get_color(), weight=route.get_pathCost(), title= str(route.get_pathCost()) + " ; " + ingenomen)
+              # controle print (wordt niet getoond aan gebruiker)
               print(route.get_cities()[0] + " naar " + route.get_cities()[1] +  " kleur " + route.get_color())
 
             edges = board.edges()
