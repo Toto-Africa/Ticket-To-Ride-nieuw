@@ -34,7 +34,7 @@ class GUI:
                     # controleren dat belangrijkste textvakken niet leeg zijn, andere tekstvakken (CPU spelers)
                     username = e1.get()
                     age = agevar.get()
-                    messagebox.showinfo("Hello Python", "Hello " + username + " : " + age)
+                    messagebox.showinfo("Hallo", "Hallo '" + username + "' (" + age + ") druk OK om verder te gaan")
                     if len(e2.get()) == 0:
                         cpu1 = "Patrick"
                     else:
